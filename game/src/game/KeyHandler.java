@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 /** Class to handle keyboard input.
  *
- * @author Nicholas Nugyen
+ * @author Nicholas Nguyen
  *
  */
 public class KeyHandler implements KeyListener {

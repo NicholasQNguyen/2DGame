@@ -3,6 +3,7 @@ package entity;
 import game.GamePanel;
 import game.KeyHandler;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -34,13 +35,20 @@ public class Player extends Entity {
    *
    */
   public void setDefaultValues() {
-    this.worldX = gamePanel.tileSize * 8;
-    this.worldY = gamePanel.tileSize * 2;
+     this.worldX = gamePanel.worldWidth / 2;
+    // this.worldY = -25;
+    this.worldY = 0;
     // Start just off center X and above the ground Y
-    this.screenX = gamePanel.screenWidth / 2 - 50;
-    this.screenY = gamePanel.tileSize * 10 - (gamePanel.tileSize);
+    // this.screenX = gamePanel.screenWidth / 2 - 50;
+    // this.screenY = gamePanel.tileSize * 10 - (gamePanel.tileSize);
+    // this.screenX = gamePanel.screenWidth / 2;
+    // this.screenY = gamePanel.screenHeight / 2;
+    this.screenX = 0;
+    this.screenY = 0;
     this.speed = 4;
     this.direction = "down";
+    
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
   }
 
   /** Load all of the player images from a stream.
@@ -67,25 +75,46 @@ public class Player extends Entity {
   public void update() {
     if (keyHandler.upPressed == true) {
       direction = "up";
-      this.worldY -= this.speed;
-      this.screenY -= this.speed;
-    }
-    if (keyHandler.downPressed == true) {
+    } else if (keyHandler.downPressed == true) {
       direction = "down";
-      this.worldY += this.speed;
-      this.screenY += this.speed;
-    }
-    if (keyHandler.leftPressed == true) {
+    } else if (keyHandler.leftPressed == true) {
       direction = "left";
-      this.worldX -= this.speed;
-      this.screenX -= this.speed;
-    }
-    if (keyHandler.rightPressed == true) {
+    } else if (keyHandler.rightPressed == true) {
       direction = "right";
-      this.worldX += this.speed;
-      this.screenX += this.speed;
+    } else {
+      direction = "standing";
+    }
+    
+    // Check tile collision
+    collisionOn = false;
+    gamePanel.collisionChecker.checkTile(this);
+    
+    if (collisionOn == false) {
+      switch (this.direction) {
+        case "up":
+          this.worldY -= this.speed;
+          // this.screenY -= this.speed;
+          break;
+        case "down":
+          this.worldY += this.speed;
+          // this.screenY += this.speed;
+          break;
+        case "left":
+          this.worldX -= this.speed;
+          // this.screenX -= this.speed;
+          break;
+        case "right":
+          this.worldX += this.speed;
+          // this.screenX += this.speed;
+          break;
+        case "standing":
+          break;
+        default:
+          break;
+      }
     }
 
+    // Cycle through the 2 animation frames
     this.spriteCounter++;
     if (this.spriteCounter > 10) {
       if (this.spriteNumber == 1) {
@@ -135,6 +164,14 @@ public class Player extends Entity {
           image = left1;
         } else {
           image = left2;
+        }
+        break;
+        
+      case "standing":
+        if (this.spriteNumber == 1) {
+          image = right1;
+        } else {
+          image = right2;
         }
         break;
 

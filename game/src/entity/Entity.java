@@ -1,14 +1,15 @@
 package entity;
 
 import game.GamePanel;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /** Parent class for all entities (Player, enemies, etc.
  *
- * @author hananguyen
+ * @author Nicholas Nguyen 
  *
  */
-public class Entity {
+public abstract class Entity {
   public int worldX;
   public int worldY;
   public int speed;
@@ -25,6 +26,9 @@ public class Entity {
   public String direction;
   public int spriteCounter = 0;
   public int spriteNumber = 1;
+  
+  public Rectangle solidArea;
+  public boolean collisionOn = false;
 
   public GamePanel gamePanel;
 }

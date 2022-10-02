@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
   public final int screenHeight = tileSize * maxScreenRows;
 
   // World Settings
-  public final int maxWorldColumns = 25;
+  public final int maxWorldColumns = 50;
   public final int maxWorldRows = 12;
   public final int worldWidth = this.maxWorldColumns * this.tileSize;
   public final int worldHeight = this.maxWorldRows * this.tileSize;
@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
   KeyHandler keyHandler = new KeyHandler();
   public Player player = new Player(this, keyHandler);
   TileManager tm = new TileManager(this);
+  public CollisionChecker collisionChecker = new CollisionChecker(this);
   
   /** Constructor.
    *
@@ -87,6 +88,8 @@ public class GamePanel extends JPanel implements Runnable {
       System.exit(0);
     }  
     player.update();
+    System.out.println("X: " + player.worldX);
+    System.out.println("Y: " + player.worldY);
   }
 
   /** All of the drawing stuff.

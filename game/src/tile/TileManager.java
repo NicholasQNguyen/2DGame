@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
 public class TileManager {
 
   GamePanel gamePanel;
-  Tile[] tile;
-  int[][] mapTileNumber;
+  public Tile[] tile;
+  public int[][] mapTileNumber;
 
   /** Constructor.
    *
@@ -38,10 +38,13 @@ public class TileManager {
     try {
       tile[0] = new Tile();
       tile[0].image = ImageIO.read(getClass().getResourceAsStream("/background/grass.png"));
+      tile[0].collision = true;
       tile[1] = new Tile();
       tile[1].image = ImageIO.read(getClass().getResourceAsStream("/background/water.png"));
+      // tile[1].collision = true;
       tile[2] = new Tile();
       tile[2].image = ImageIO.read(getClass().getResourceAsStream("/background/sky.png"));
+      // tile[2].collision = true;
     } catch (IOException e) {
       e.printStackTrace();
     }
