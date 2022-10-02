@@ -73,6 +73,15 @@ public class CollisionChecker {
           System.out.println("RIGHT COLLIDE");
         }
         break;
+      case "standing":
+        entityBottomRow = (entityBottomWorldY - entity.speed) / gamePanel.tileSize;
+        tileNum1 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
+        tileNum2 = gamePanel.tm.mapTileNumber[entityRightColumn][entityBottomRow];
+        if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
+          entity.collisionOn = true;
+          System.out.println("BOTTOM COLLIDE");
+        }
+        break;
       default:
         break;
         // System.out.println("PROBLEM");

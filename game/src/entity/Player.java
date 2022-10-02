@@ -18,6 +18,7 @@ public class Player extends Entity {
   KeyHandler keyHandler;
   public int screenX;
   public int screenY;
+  private double jumpSpeed;
 
   /** Constructor.
    *
@@ -36,19 +37,15 @@ public class Player extends Entity {
    */
   public void setDefaultValues() {
     this.worldX = gamePanel.worldWidth / 2;
-    // this.worldY = -25;
     this.worldY = 0;
     // Start just off center X and above the ground Y
-    // this.screenX = gamePanel.screenWidth / 2;
-    // this.screenY = gamePanel.tileSize * 9;
     this.screenX = gamePanel.screenWidth / 2;
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    // this.screenX = 0;
-    // this.screenY = 0;
     this.speed = 4;
-    this.direction = "down";
+    this.jumpSpeed = 1.0;
+    this.direction = "standing";
     
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
   }
@@ -87,14 +84,17 @@ public class Player extends Entity {
       direction = "standing";
     }
     
+    // Apply gravity
+    this.velocityY += gamePanel.gravity;
+
     // Check tile collision
     collisionOn = false;
     gamePanel.collisionChecker.checkTile(this);
     
-    if (collisionOn == false) {
+    if (!collisionOn) {
       switch (this.direction) {
         case "up":
-          this.worldY -= this.speed;
+          this.jump();
           // this.screenY -= this.speed;
           break;
         case "down":
@@ -112,9 +112,15 @@ public class Player extends Entity {
         case "standing":
           break;
         default:
+          System.out.println("PROBLEM");
           break;
       }
+    } else {
+      this.velocityY = 0;
     }
+
+    // Apply velocity
+    this.worldY += velocityY;
 
     // Cycle through the 2 animation frames
     this.spriteCounter++;
@@ -126,6 +132,10 @@ public class Player extends Entity {
       }
       spriteCounter = 0;
     }
+  }
+
+  private void jump() {
+    this.velocityY -= this.jumpSpeed;
   }
 
   /** Handle of the the drawing of the player.

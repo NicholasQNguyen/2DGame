@@ -35,11 +35,15 @@ public class GamePanel extends JPanel implements Runnable {
 
   final int fps = 60;
 
+  // Initialize some components
   Thread gameThread;
   KeyHandler keyHandler = new KeyHandler();
   public Player player = new Player(this, keyHandler);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
+  
+  // In-game variables
+  public final double gravity = .1;
   
   /** Constructor.
    *
