@@ -2,6 +2,8 @@ package entity;
 
 import java.awt.image.BufferedImage;
 
+import game.GamePanel;
+
 public class Entity {
 	public int x;
 	public int y;
@@ -20,4 +22,5 @@ public class Entity {
 	public int spriteCounter = 0;
 	public int spriteNumber = 1;
 	
+	public GamePanel gamePanel;
 }
