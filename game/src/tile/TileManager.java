@@ -21,7 +21,7 @@ public class TileManager {
 		tile = new Tile[10];
 		mapTileNumber = new int[gamePanel.MAX_SCREEN_COLUMNS][gamePanel.MAX_SCREEN_ROWS];
 		getTileImage();
-		loadMap("/maps/map.txt");
+		loadMap("/maps/stage1.txt");
 	}
 	
 	public void getTileImage() {
