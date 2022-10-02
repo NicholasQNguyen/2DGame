@@ -25,8 +25,9 @@ public class Player extends Entity{
 	public void setDefaultValues() {
 		this.worldX = gamePanel.TILE_SIZE * 8;
 		this.worldY = gamePanel.TILE_SIZE * 2;
+		// Start just off center X and above the ground Y
 		this.screenX = gamePanel.SCREEN_WIDTH / 2 - 50;
-		this.screenY = gamePanel.TILE_SIZE * 2;
+		this.screenY = gamePanel.TILE_SIZE * 10 - (gamePanel.TILE_SIZE);
 		this.speed = 4;
 		this.direction = "down";
 	}
