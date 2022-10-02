@@ -61,22 +61,53 @@ public class Player extends Entity{
 			direction = "right";
 			this.x += this.speed;
 		}
+		
+		this.spriteCounter++;
+		if (this.spriteCounter > 10) {
+			if (this.spriteNumber == 1) {
+				this.spriteNumber = 2;
+			}
+			else {
+				this.spriteNumber = 1;
+			}
+			spriteCounter = 0;
+		}
 	}
 	
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 		switch(direction) {
 			case "up":
-				image = up1;
+				if (this.spriteNumber == 1) {
+					image = up1;
+				}
+				else {
+					image = up2;
+				}
 				break;
 			case "down":
-				image = down1;
+				if (this.spriteNumber == 1) {
+					image = down1;
+				}
+				else {
+					image = down2;
+				}
 				break;
 			case "right":
-				image = right1;
+				if (this.spriteNumber == 1) {
+					image = right1;
+				}
+				else {
+					image = right2;
+				}
 				break;
 			case "left":
-				image = left1;
+				if (this.spriteNumber == 1) {
+					image = left1;
+				}
+				else {
+					image = left2;
+				}
 				break;
 		}
 		g2.drawImage(image, this.x, this.y, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);

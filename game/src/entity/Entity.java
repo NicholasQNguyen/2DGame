@@ -17,5 +17,7 @@ public class Entity {
 	public BufferedImage right2;
 	
 	public String direction;
+	public int spriteCounter = 0;
+	public int spriteNumber = 1;
 	
 }
