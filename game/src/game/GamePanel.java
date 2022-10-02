@@ -16,6 +16,7 @@ import tile.TileManager;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
 
+  // Tile settings
   final int originalTileSize = 16;
   final int scale = 3;
   public final int tileSize = originalTileSize * scale;
@@ -88,8 +89,6 @@ public class GamePanel extends JPanel implements Runnable {
       System.exit(0);
     }  
     player.update();
-    System.out.println("X: " + player.worldX);
-    System.out.println("Y: " + player.worldY);
   }
 
   /** All of the drawing stuff.
