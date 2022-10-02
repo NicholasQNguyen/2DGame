@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 public abstract class Entity {
   public int worldX;
   public int worldY;
+  public int screenX;
+  public int screenY;
   public int speed;
 
   public BufferedImage up1;

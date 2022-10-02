@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 /** Manager to handle tiling with Tiles.
  *
  * @author Nicholas Nguyen
- *
  */
 public class TileManager {
 
