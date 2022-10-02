@@ -46,7 +46,7 @@ public class TileManager {
       e.printStackTrace();
     }
   }
-	
+
   /** Load the map file into the array of arrays mapTileNumber.
    *
    * @param file Map file

@@ -1,8 +1,7 @@
 package entity;
 
-import java.awt.image.BufferedImage;
-
 import game.GamePanel;
+import java.awt.image.BufferedImage;
 
 /** Parent class for all entities (Player, enemies, etc.
  *

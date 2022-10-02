@@ -8,7 +8,7 @@ import javax.swing.JFrame;
  *
  */
 public class Main {
-	
+
   /** Main function.
    *
    * @param args command line arguments

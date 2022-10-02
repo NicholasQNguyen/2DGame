@@ -29,7 +29,7 @@ public class Player extends Entity {
     setDefaultValues();
     getPlayerImage();
   }
-	
+
   /** Helper function to constructor where we initialize some values.
    *
    */
