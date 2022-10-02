@@ -39,10 +39,12 @@ public class Player extends Entity {
     // this.worldY = -25;
     this.worldY = 0;
     // Start just off center X and above the ground Y
-    this.screenX = gamePanel.screenWidth / 2;
-    this.screenY = gamePanel.tileSize * 9;
     // this.screenX = gamePanel.screenWidth / 2;
-    // this.screenY = gamePanel.screenHeight / 2;
+    // this.screenY = gamePanel.tileSize * 9;
+    this.screenX = gamePanel.screenWidth / 2;
+    this.screenY = gamePanel.screenHeight / 2;
+    this.worldX += this.screenX;
+    this.worldY += this.screenY;
     // this.screenX = 0;
     // this.screenY = 0;
     this.speed = 4;
