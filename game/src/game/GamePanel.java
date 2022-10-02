@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable {
 	
 	// Screen Settings
@@ -27,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	Thread gameThread;
 	KeyHandler keyHandler = new KeyHandler();
+	Player player = new Player(this, keyHandler);
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
