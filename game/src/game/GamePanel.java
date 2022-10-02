@@ -44,19 +44,35 @@ public class GamePanel extends JPanel implements Runnable {
 	// The game loop
 	@Override
 	public void run() {
+
+		final double drawInterval = 1000000000/FPS;
+		double nextDrawTime = System.nanoTime();
+
 		while (gameThread != null) {
-			long currentTime = System.nanoTime();
 			update();
 			repaint();
+			
+			try {
+				double remainingTime = nextDrawTime - System.nanoTime();
+				remainingTime /= 1000000;
+				if (remainingTime < 0) {
+					remainingTime = 0;
+				}
+				Thread.sleep((long) remainingTime);
+				nextDrawTime += drawInterval;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void update() {
 		if (keyHandler.upPressed == true) {
-			playerX -= PLAYER_SPEED;
+			playerY -= PLAYER_SPEED;
 		}
 		if (keyHandler.downPressed == true) {
-			playerX += PLAYER_SPEED;
+			playerY += PLAYER_SPEED;
 		}
 		if (keyHandler.leftPressed == true) {
 			playerX -= PLAYER_SPEED;
