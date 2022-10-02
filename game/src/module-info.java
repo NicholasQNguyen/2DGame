@@ -1,8 +1,5 @@
 /**
- * 
- */
-/**
- * @author hananguyen
+ * @author Nicholas Nguyen 
  *
  */
 module game {

@@ -1,88 +1,103 @@
 package game;
 
+import entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
-
-import entity.Player;
 import tile.TileManager;
 
+/** Contains main data and art loops.
+ *
+ * @author Nicholas Nguyen
+ *
+*/
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
-	
-	// Screen Settings
-	final int ORIGINAL_TILE_SIZE = 16;
-	final int SCALE = 3;
-	public final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
-	public final int MAX_SCREEN_COLUMNS = 16;
-	public final int MAX_SCREEN_ROWS = 12;
-	public final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COLUMNS;
-	public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROWS;
-	
-	// World Settings
-	public final int MAX_WORLD_COLUMNS = 25;
-	public final int MAX_WORLD_ROWS = 12;
-	public final int WORLD_WIDTH = this.MAX_WORLD_COLUMNS * this.TILE_SIZE;
-	public final int WORLD_HEIGHT = this.MAX_WORLD_ROWS * this.TILE_SIZE;
-	
-	
-	final int FPS = 60;
 
-	Thread gameThread;
-	KeyHandler keyHandler = new KeyHandler();
-	public Player player = new Player(this, keyHandler);
-	TileManager tm = new TileManager(this);
+  final int originalTileSize = 16;
+  final int scale = 3;
+  public final int tileSize = originalTileSize * scale;
 
-	public GamePanel() {
-		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
-		this.setBackground(Color.white);
-		this.setDoubleBuffered(true);
-		this.addKeyListener(keyHandler);
-		this.setFocusable(true);
-	}
-	
-	public void startGameThread() {
-		gameThread = new Thread(this);
-		gameThread.start();
-	}
+  // Screen Settings
+  public final int maxScreenColumns = 16;
+  public final int maxScreenRows = 12;
+  public final int screenWidth = tileSize * maxScreenColumns;
+  public final int screenHeight = tileSize * maxScreenRows;
 
-	// The game loop
-	@Override
-	public void run() {
+  // World Settings
+  public final int maxWorldColumns = 25;
+  public final int maxWorldRows = 12;
+  public final int worldWidth = this.maxWorldColumns * this.tileSize;
+  public final int worldHeight = this.maxWorldRows * this.tileSize;
 
-		final double drawInterval = 1000000000/FPS;
-		double delta = 0.0;
-		long lastTime = System.nanoTime();
-		long currentTime;
+  final int fps = 60;
 
-		while (gameThread != null) {
-			currentTime = System.nanoTime();
-			delta += (currentTime - lastTime) / drawInterval;
-			lastTime = currentTime;
-			if (delta > 1) {
+  Thread gameThread;
+  KeyHandler keyHandler = new KeyHandler();
+  public Player player = new Player(this, keyHandler);
+  TileManager tm = new TileManager(this);
+  
+  /** Constructor.
+   *
+ */
+  public GamePanel() {
+    this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+    this.setBackground(Color.white);
+    this.setDoubleBuffered(true);
+    this.addKeyListener(keyHandler);
+    this.setFocusable(true);
+  }
 
-				update();
-				repaint();
+  public void startGameThread() {
+    gameThread = new Thread(this);
+    gameThread.start();
+  }
 
-				delta--;
-			}
-		}
-	}
-	
-	public void update() {
-		player.update();
-		if (keyHandler.escPressed) {
-			System.exit(0);
-		}
-	}
+  // The game loop
+  @Override
+  public void run() {
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D)g;
-		tm.draw(g2);
-		player.draw(g2);
-		g2.dispose();
-	}
+    final double drawInterval = 1000000000 / fps;
+    double delta = 0.0;
+    long lastTime = System.nanoTime();
+    long currentTime;
+
+    while (gameThread != null) {
+      currentTime = System.nanoTime();
+      delta += (currentTime - lastTime) / drawInterval;
+      lastTime = currentTime;
+      if (delta > 1) {
+
+        update();
+        repaint();
+
+        delta--;
+      }
+    }
+  }
+  
+  /** Main game data loop.
+   * 
+   */
+  public void update() {
+    // Exit on esc press
+    if (keyHandler.escPressed) {
+      System.exit(0);
+    }  
+    player.update();
+  }
+
+  /** All of the drawing stuff.
+   * 
+   */
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D) g;
+    tm.draw(g2);
+    player.draw(g2);
+    // Free up the memory after we draw
+    g2.dispose();
+  }
 }
