@@ -13,7 +13,7 @@ public class Background extends Entity{
 	GamePanel gamePanel;
 	public Background(GamePanel gp) {
 		try {
-			this.image = ImageIO.read(getClass().getResourceAsStream("/background/country-platform-preview.png"));
+			this.image = ImageIO.read(getClass().getResourceAsStream("/background/tree.png"));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
