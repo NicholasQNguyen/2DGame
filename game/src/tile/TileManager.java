@@ -76,8 +76,9 @@ public class TileManager {
 			int worldY = worldRow * gamePanel.TILE_SIZE;
 			int screenX = worldX - gamePanel.player.worldX;
 			int screenY = worldY - gamePanel.player.worldY;
-
+			
 			g2.drawImage(this.tile[tileNumber].image, screenX, screenY, gamePanel.TILE_SIZE, gamePanel.TILE_SIZE, null);
+
 			worldColumn++;
 			
 			if (worldColumn == gamePanel.MAX_WORLD_COLUMNS) {
