@@ -73,6 +73,9 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void update() {
 		player.update();
+		if (keyHandler.escPressed) {
+			System.exit(0);
+		}
 	}
 
 	public void paintComponent(Graphics g) {
