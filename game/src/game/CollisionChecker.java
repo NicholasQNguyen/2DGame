@@ -57,8 +57,8 @@ public class CollisionChecker {
         break;
       case "left":
         entityLeftColumn = (entityLeftWorldX - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[Math.max(0, entityLeftColumn)][entityTopRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[Math.max(0, entityLeftColumn)][entityBottomRow];
+        tileNum1 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
+        tileNum2 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
         if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
           entity.collisionOn = true;
           System.out.println("LEFT COLLIDE");
@@ -66,8 +66,8 @@ public class CollisionChecker {
         break;
       case "right": 
         entityRightColumn = (entityRightWorldX - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[Math.max(0, entityRightColumn)][entityTopRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[Math.max(0, entityRightColumn)][entityBottomRow];
+        tileNum1 = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
+        tileNum2 = gamePanel.tm.mapTileNumber[entityRightColumn][entityBottomRow];
         if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
           entity.collisionOn = true;
           System.out.println("RIGHT COLLIDE");
