@@ -33,58 +33,30 @@ public class CollisionChecker {
     int entityTopRow = entityTopWorldY / gamePanel.tileSize;
     int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
     
-    int tileNum1;
-    int tileNum2;
+    int topLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
+    int topRightTile = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
+    int bottomLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
+    int bottomRightTile = gamePanel.tm.mapTileNumber[entityRightColumn][entityBottomRow];
     
-    switch (entity.direction) {
-      case "up":
-        entityTopRow = (entityTopWorldY - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
-        if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
-          entity.collisionOn = true;
-          System.out.println("TOP COLLIDE");
-        }
-        break;
-      case "down":
-        entityBottomRow = (entityBottomWorldY - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[entityRightColumn][entityBottomRow];
-        if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
-          entity.collisionOn = true;
-          System.out.println("BOTTOM COLLIDE");
-        }
-        break;
-      case "left":
-        entityLeftColumn = (entityLeftWorldX - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
-        if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
-          entity.collisionOn = true;
-          System.out.println("LEFT COLLIDE");
-        }
-        break;
-      case "right": 
-        entityRightColumn = (entityRightWorldX - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[entityRightColumn][entityBottomRow];
-        if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
-          entity.collisionOn = true;
-          System.out.println("RIGHT COLLIDE");
-        }
-        break;
-      case "standing":
-        entityBottomRow = (entityBottomWorldY - entity.speed) / gamePanel.tileSize;
-        tileNum1 = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
-        tileNum2 = gamePanel.tm.mapTileNumber[entityRightColumn][entityBottomRow];
-        if (gamePanel.tm.tile[tileNum1].collision || gamePanel.tm.tile[tileNum2].collision) {
-          entity.collisionOn = true;
-          System.out.println("BOTTOM COLLIDE");
-        }
-        break;
-      default:
-        break;
-        // System.out.println("PROBLEM");
+    if (gamePanel.tm.tile[topLeftTile].collision
+        || gamePanel.tm.tile[topRightTile].collision) {
+      entity.topCollision = true;
+      System.out.println("TOP COLLIDE");
+    }
+    if (gamePanel.tm.tile[bottomLeftTile].collision 
+        || gamePanel.tm.tile[bottomRightTile].collision) {
+      entity.bottomCollision = true;
+      System.out.println("BOTTOM COLLIDE");
+    }
+    if (gamePanel.tm.tile[topLeftTile].collision
+        || gamePanel.tm.tile[bottomLeftTile].collision) {
+      entity.leftCollision = true;
+      System.out.println("LEFT COLLIDE");
+    }
+    if (gamePanel.tm.tile[topRightTile].collision
+        || gamePanel.tm.tile[bottomRightTile].collision) {
+      entity.rightCollision = true;
+      System.out.println("Right COLLIDE");
     }
     
   }

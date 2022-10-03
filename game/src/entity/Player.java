@@ -20,7 +20,7 @@ public class Player extends Entity {
   public int screenY;
   private double jumpSpeed;
   private long jumpTimer;
-  private final long jumpTime = 400000;
+  private final long jumpTime = 450000;
   private boolean ableToJump = true;
 
   /** Constructor.
@@ -99,6 +99,9 @@ public class Player extends Entity {
     if (!collisionOn) {
       switch (this.direction) {
         case "up":
+          if (this.bottomCollision) {
+            this.velocityY = 0;
+          }
           if (this.jumpTimer > 0 && ableToJump) {
             this.jump();
             long elapsedTime = (System.nanoTime() - currentTime);
@@ -113,17 +116,29 @@ public class Player extends Entity {
           break;
         case "down":
           this.worldY += this.speed;
+          this.velocityY = 0;
           // this.screenY += this.speed;
           break;
         case "left":
-          this.worldX -= this.speed;
+          if (this.bottomCollision) {
+            this.velocityY = 0;
+          }
+          if (!this.leftCollision) {
+            this.worldX -= this.speed;
+          }
           // this.screenX -= this.speed;
           break;
         case "right":
           this.worldX += this.speed;
+          if (this.bottomCollision) {
+            this.velocityY = 0;
+          }
           // this.screenX += this.speed;
           break;
         case "standing":
+          if (bottomCollision) {
+            this.velocityY = 0;
+          }
           break;
         default:
           System.out.println("PROBLEM");

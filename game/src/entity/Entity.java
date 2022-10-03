@@ -35,4 +35,8 @@ public abstract class Entity {
   public boolean collisionOn = false;
 
   public GamePanel gamePanel;
+  public boolean topCollision = false;
+  public boolean bottomCollision = false;
+  public boolean leftCollision = false;
+  public boolean rightCollision = false;
 }
