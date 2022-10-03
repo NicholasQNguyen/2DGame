@@ -20,6 +20,7 @@ public class Player extends Entity {
   public int screenY;
   private double jumpSpeed;
   private long jumpTimer;
+  private final long jumpTime = 400000;
   private boolean ableToJump = true;
 
   /** Constructor.
@@ -47,7 +48,7 @@ public class Player extends Entity {
     this.worldY += this.screenY;
     this.speed = 4;
     this.jumpSpeed = 0.25;
-    this.jumpTimer = 400000;
+    this.jumpTimer = jumpTime;
     this.direction = "standing";
     
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
@@ -104,7 +105,7 @@ public class Player extends Entity {
             jumpTimer -= elapsedTime;
           } else {
             System.out.println("RESET");
-            jumpTimer = 400000;
+            jumpTimer = this.jumpTime;
             ableToJump = false;
             break;
           }
