@@ -19,6 +19,8 @@ public class Player extends Entity {
   public int screenX;
   public int screenY;
   private double jumpSpeed;
+  private long jumpTimer;
+  private boolean ableToJump = true;
 
   /** Constructor.
    *
@@ -44,7 +46,8 @@ public class Player extends Entity {
     this.worldX += this.screenX;
     this.worldY += this.screenY;
     this.speed = 4;
-    this.jumpSpeed = 1.0;
+    this.jumpSpeed = 0.25;
+    this.jumpTimer = 400000;
     this.direction = "standing";
     
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
@@ -72,6 +75,7 @@ public class Player extends Entity {
    * 
    */
   public void update() {
+    long currentTime = System.nanoTime();
     if (keyHandler.upPressed == true) {
       direction = "up";
     } else if (keyHandler.downPressed == true) {
@@ -94,7 +98,16 @@ public class Player extends Entity {
     if (!collisionOn) {
       switch (this.direction) {
         case "up":
-          this.jump();
+          if (this.jumpTimer > 0 && ableToJump) {
+            this.jump();
+            long elapsedTime = (System.nanoTime() - currentTime);
+            jumpTimer -= elapsedTime;
+          } else {
+            System.out.println("RESET");
+            jumpTimer = 400000;
+            ableToJump = false;
+            break;
+          }
           // this.screenY -= this.speed;
           break;
         case "down":
@@ -117,6 +130,7 @@ public class Player extends Entity {
       }
     } else {
       this.velocityY = 0;
+      ableToJump = true;
     }
 
     // Apply velocity
