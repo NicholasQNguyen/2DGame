@@ -47,7 +47,7 @@ public class Player extends Entity {
     this.worldX += this.screenX;
     this.worldY += this.screenY;
     this.speed = 4;
-    this.jumpSpeed = 0.25;
+    this.jumpSpeed = 4.55;
     this.jumpTimer = jumpTime;
     this.direction = "standing";
     
@@ -95,59 +95,31 @@ public class Player extends Entity {
     // Check tile collision
     collisionOn = false;
     gamePanel.collisionChecker.checkTile(this);
-    
-    if (!collisionOn) {
+
+    if (this.bottomCollision) {
+      this.velocityY = 0;
       switch (this.direction) {
         case "up":
-          if (this.bottomCollision) {
-            this.velocityY = 0;
-          }
-          if (this.jumpTimer > 0 && ableToJump) {
-            this.jump();
-            long elapsedTime = (System.nanoTime() - currentTime);
-            jumpTimer -= elapsedTime;
-          } else {
-            System.out.println("RESET");
-            jumpTimer = this.jumpTime;
-            ableToJump = false;
-            break;
-          }
-          // this.screenY -= this.speed;
-          break;
-        case "down":
-          this.worldY += this.speed;
-          this.velocityY = 0;
-          // this.screenY += this.speed;
-          break;
-        case "left":
-          if (this.bottomCollision) {
-            this.velocityY = 0;
-          }
-          if (!this.leftCollision) {
-            this.worldX -= this.speed;
-          }
-          // this.screenX -= this.speed;
+          this.jump();
           break;
         case "right":
           this.worldX += this.speed;
-          if (this.bottomCollision) {
-            this.velocityY = 0;
-          }
-          // this.screenX += this.speed;
+          break;
+        case "left":
+          this.worldX -= this.speed;
           break;
         case "standing":
-          if (bottomCollision) {
-            this.velocityY = 0;
-          }
           break;
         default:
           System.out.println("PROBLEM");
-          break;
       }
-    } else {
-      this.velocityY = 0;
-      ableToJump = true;
     }
+    
+    // Reset the collisions
+    this.bottomCollision = false;
+    this.topCollision = false;
+    this.leftCollision = false;
+    this.rightCollision = false;
 
     // Apply velocity
     this.worldY += velocityY;
@@ -211,9 +183,9 @@ public class Player extends Entity {
         
       case "standing":
         if (this.spriteNumber == 1) {
-          image = right1;
+          image = down1;
         } else {
-          image = right2;
+          image = down2;
         }
         break;
 

@@ -48,13 +48,11 @@ public class CollisionChecker {
       entity.bottomCollision = true;
       System.out.println("BOTTOM COLLIDE");
     }
-    if (gamePanel.tm.tile[topLeftTile].collision
-        || gamePanel.tm.tile[bottomLeftTile].collision) {
+    if (gamePanel.tm.tile[topLeftTile].collision) {
       entity.leftCollision = true;
       System.out.println("LEFT COLLIDE");
     }
-    if (gamePanel.tm.tile[topRightTile].collision
-        || gamePanel.tm.tile[bottomRightTile].collision) {
+    if (gamePanel.tm.tile[topRightTile].collision) {
       entity.rightCollision = true;
       System.out.println("Right COLLIDE");
     }
