@@ -43,6 +43,7 @@ public class Player extends Entity {
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
+    this.jumpSpeed = 4.55;
     this.direction = "standing";
     this.accelX = 0.5;
     
