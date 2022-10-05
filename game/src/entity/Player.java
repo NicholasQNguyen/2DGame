@@ -50,6 +50,7 @@ public class Player extends Entity {
     this.jumpSpeed = 4.55;
     this.jumpTimer = jumpTime;
     this.direction = "standing";
+    this.accelX = 0.5;
     
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
   }
@@ -75,9 +76,7 @@ public class Player extends Entity {
   /** Grab the keyboard input and change the player's position.
    * 
    */
-  public void update() {
-    long currentTime = System.nanoTime();
-    if (keyHandler.upPressed == true) {
+  public void update() { long currentTime = System.nanoTime(); if (keyHandler.upPressed == true) {
       direction = "up";
     } else if (keyHandler.downPressed == true) {
       direction = "down";
@@ -96,19 +95,24 @@ public class Player extends Entity {
     collisionOn = false;
     gamePanel.collisionChecker.checkTile(this);
 
-    if (this.bottomCollision) {
+    if (this.bottomCollision && (!this.leftCollision || !this.rightCollision)) {
       this.velocityY = 0;
       switch (this.direction) {
         case "up":
           this.jump();
           break;
         case "right":
-          this.worldX += this.speed;
+          if (Math.abs(this.velocityX) < 5) {
+            this.velocityX += this.accelX;
+          }
           break;
         case "left":
-          this.worldX -= this.speed;
+          if (Math.abs(this.velocityX) < 5) {
+            this.velocityX -= this.accelX;
+          }
           break;
         case "standing":
+          this.velocityX = 0;
           break;
         default:
           System.out.println("PROBLEM");
@@ -122,7 +126,8 @@ public class Player extends Entity {
     this.rightCollision = false;
 
     // Apply velocity
-    this.worldY += velocityY;
+    this.worldY += this.velocityY;
+    this.worldX += this.velocityX;
 
     // Cycle through the 2 animation frames
     this.spriteCounter++;

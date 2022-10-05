@@ -16,7 +16,8 @@ public abstract class Entity {
   public int screenY;
   public int speed;
   public double velocityY = 0.0;
-  public double accelY = 0.0;
+  public double velocityX = 0.0;
+  public double accelX = 0.0;
 
   public BufferedImage up1;
   public BufferedImage up2;
