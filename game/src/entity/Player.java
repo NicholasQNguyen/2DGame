@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 
 
@@ -19,6 +21,7 @@ public class Player extends Entity {
   public int screenX;
   public int screenY;
   private double jumpSpeed;
+  public List<Fireball> fireballList = new ArrayList<Fireball>();
 
   /** Constructor.
    *
@@ -72,16 +75,19 @@ public class Player extends Entity {
    * 
    */
   public void update() { 
-    if (keyHandler.upPressed == true) {
+    if (keyHandler.upPressed) {
       direction = "up";
-    } else if (keyHandler.downPressed == true) {
+    } else if (keyHandler.downPressed) {
       direction = "down";
-    } else if (keyHandler.leftPressed == true) {
+    } else if (keyHandler.leftPressed) {
       direction = "left";
-    } else if (keyHandler.rightPressed == true) {
+    } else if (keyHandler.rightPressed) {
       direction = "right";
     } else {
       direction = "standing";
+    }
+    if (keyHandler.spacePressed) {
+      this.spitFire();
     }
     
     // Apply gravity
@@ -143,6 +149,11 @@ public class Player extends Entity {
       }
       spriteCounter = 0;
     }
+  }
+
+  private void spitFire() {
+    Fireball fireball = new Fireball(gamePanel, this.worldX, this.worldY);
+    fireballList.add(fireball);
   }
 
   private void jump() {
