@@ -1,10 +1,10 @@
 package entity;
 
+import game.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import game.GamePanel;
 
 /** Projectile the player can fire.
  *
@@ -14,7 +14,10 @@ import game.GamePanel;
 public class Fireball {
   int worldX;
   int worldY;
+  int screenX;
+  int screenY;
   int velocity;
+  String direction;
   BufferedImage image;
   GamePanel gamePanel;
   
@@ -24,11 +27,15 @@ public class Fireball {
    * @param x x world position
    * @param y y world position
    */
-  public Fireball(GamePanel gp, int x, int y) {
+  public Fireball(GamePanel gp, int x, int y, String direction) {
+    int offset = 300;
     this.worldX = x;
     this.worldY = y;
+    this.screenX = worldX - offset;
+    this.screenY = worldY - offset;
     this.velocity = 4;
     this.gamePanel = gp;
+    this.direction = direction;
     loadImage();
   }
   
@@ -42,22 +49,20 @@ public class Fireball {
 
   /** Moves the fireball.
    *
-   * @param direction the direction mudkip is facing
    */
-  public void update(String direction) {
-    switch (direction) {
-      case "Left":
+  public void update() {
+    switch (this.direction) {
+      case "left":
         this.worldX -= velocity;
         break;
-      case "Right":
+      case "right":
         this.worldX += velocity;
         break;
       default:
-        System.out.println("PROBLEM IN FIREBALL");
     }
   }
   
   public void draw(Graphics2D g2) {
-    g2.drawImage(image, this.worldX, this.worldY, gamePanel.tileSize, gamePanel.tileSize, null);
+    g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
   }
 }

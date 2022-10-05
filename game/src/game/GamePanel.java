@@ -1,5 +1,6 @@
 package game;
 
+import entity.Fireball;
 import entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -93,6 +94,9 @@ public class GamePanel extends JPanel implements Runnable {
       System.exit(0);
     }  
     player.update();
+    for (Fireball f : player.fireballList) {
+      f.update();
+    }
   }
 
   /** All of the drawing stuff.
@@ -103,6 +107,9 @@ public class GamePanel extends JPanel implements Runnable {
     Graphics2D g2 = (Graphics2D) g;
     tm.draw(g2);
     player.draw(g2);
+    for (Fireball f : player.fireballList) {
+      f.draw(g2);
+    }
     // Free up the memory after we draw
     g2.dispose();
   }
