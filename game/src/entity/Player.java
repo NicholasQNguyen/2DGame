@@ -19,9 +19,6 @@ public class Player extends Entity {
   public int screenX;
   public int screenY;
   private double jumpSpeed;
-  private long jumpTimer;
-  private final long jumpTime = 450000;
-  private boolean ableToJump = true;
 
   /** Constructor.
    *
@@ -46,9 +43,6 @@ public class Player extends Entity {
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    this.speed = 4;
-    this.jumpSpeed = 4.55;
-    this.jumpTimer = jumpTime;
     this.direction = "standing";
     this.accelX = 0.5;
     
@@ -76,7 +70,8 @@ public class Player extends Entity {
   /** Grab the keyboard input and change the player's position.
    * 
    */
-  public void update() { long currentTime = System.nanoTime(); if (keyHandler.upPressed == true) {
+  public void update() { 
+    if (keyHandler.upPressed == true) {
       direction = "up";
     } else if (keyHandler.downPressed == true) {
       direction = "down";
@@ -95,7 +90,8 @@ public class Player extends Entity {
     collisionOn = false;
     gamePanel.collisionChecker.checkTile(this);
 
-    if (this.bottomCollision && (!this.leftCollision || !this.rightCollision)) {
+    // Touching the ground
+    if (this.bottomCollision) {
       this.velocityY = 0;
       switch (this.direction) {
         case "up":
@@ -117,6 +113,14 @@ public class Player extends Entity {
         default:
           System.out.println("PROBLEM");
       }
+    }
+    
+    if (this.leftCollision) {
+      this.velocityX = 0;
+      this.worldX += 1;
+    } else if (this.rightCollision) {
+      this.velocityX = 0;
+      this.worldX -= 1;
     }
     
     // Reset the collisions
