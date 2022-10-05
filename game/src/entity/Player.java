@@ -102,12 +102,12 @@ public class Player extends Entity {
           this.jump();
           break;
         case "right":
-          if (Math.abs(this.velocityX) < 5) {
+          if (this.velocityX < 5) {
             this.velocityX += this.accelX;
           }
           break;
         case "left":
-          if (Math.abs(this.velocityX) < 5) {
+          if (this.velocityX > -5) {
             this.velocityX -= this.accelX;
           }
           break;
