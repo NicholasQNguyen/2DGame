@@ -87,7 +87,6 @@ public class Player extends Entity {
     this.velocityY += gamePanel.gravity;
 
     // Check tile collision
-    collisionOn = false;
     gamePanel.collisionChecker.checkTile(this);
 
     // Touching the ground
