@@ -23,6 +23,8 @@ public class Player extends Entity {
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
+  private long fireballTime = 1500000;
+  long fireballTimer;
   public List<Fireball> fireballList = new ArrayList<Fireball>();
 
   /** Constructor.
@@ -52,6 +54,8 @@ public class Player extends Entity {
     this.direction = "standing";
     this.accelX = 0.5;
     
+    this.fireballTimer = 0;
+    
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
   }
 
@@ -77,6 +81,9 @@ public class Player extends Entity {
    * 
    */
   public void update() { 
+    // Get starting time to get time elapsed
+    final long start = System.nanoTime();
+    
     if (keyHandler.upPressed) {
       direction = "up";
     } else if (keyHandler.downPressed) {
@@ -88,13 +95,17 @@ public class Player extends Entity {
     } else {
       direction = "standing";
     }
-    if (keyHandler.spacePressed) {
+
+    if (keyHandler.spacePressed && this.fireballTimer < 0) {
       this.spitFire();
+      System.out.println("Hadouken");
+      this.fireballTimer = this.fireballTime;
     }
+    
+    System.out.println("SPACE_PRESSED: " + keyHandler.spacePressed);
     
     // Apply gravity
     this.velocityY += gamePanel.gravity;
-
     // Check tile collision
     gamePanel.collisionChecker.checkTile(this);
 
@@ -140,6 +151,12 @@ public class Player extends Entity {
     // Apply velocity
     this.worldY += this.velocityY;
     this.worldX += this.velocityX;
+    
+    // Handle the fireballTimer
+    long finish = System.nanoTime();
+    System.out.println("PRE-TIMER: " + this.fireballTimer);
+    this.fireballTimer -= (finish - start);
+    System.out.println("POST-TIMER: " + this.fireballTimer);
 
     // Cycle through the 2 animation frames
     this.spriteCounter++;

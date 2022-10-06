@@ -64,7 +64,7 @@ public class KeyHandler implements KeyListener {
       rightPressed = false;
     }
     if (code == KeyEvent.VK_SPACE) {
-      upPressed = false;
+      spacePressed = false;
     }
   }
 }

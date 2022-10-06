@@ -64,6 +64,15 @@ public class Fireball {
         break;
       default:
     }
+    // delete the fireball if it went off the world
+    if (this.worldX > Math.abs(gamePanel.worldWidth)) {
+      try {
+        this.finalize();
+        // System.out.println("DELETE");
+      } catch (Throwable e) {
+        e.printStackTrace();
+      }
+    }
   }
   
   /** Draw the fireball with an offset.
