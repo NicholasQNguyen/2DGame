@@ -94,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
       System.exit(0);
     }  
     player.update();
+    player.updateWindowOffset(screenWidth, screenHeight, worldWidth, screenHeight);
     for (Fireball f : player.fireballList) {
       f.update();
     }

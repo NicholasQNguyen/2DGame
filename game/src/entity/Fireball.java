@@ -28,13 +28,12 @@ public class Fireball {
    * @param y y world position
    */
   public Fireball(GamePanel gp, int x, int y, String direction) {
-    int offset = 300;
+    this.gamePanel = gp;
     this.worldX = x;
     this.worldY = y;
-    this.screenX = worldX - offset;
-    this.screenY = worldY - offset;
+    this.screenX = worldX - this.gamePanel.player.offsetX;
+    this.screenY = worldY - this.gamePanel.player.offsetY;
     this.velocity = 4;
-    this.gamePanel = gp;
     this.direction = direction;
     loadImage();
   }
@@ -51,6 +50,8 @@ public class Fireball {
    *
    */
   public void update() {
+    this.screenX = worldX - this.gamePanel.player.offsetX;
+    this.screenY = worldY - this.gamePanel.player.offsetY;
     switch (this.direction) {
       case "left":
         this.worldX -= velocity;

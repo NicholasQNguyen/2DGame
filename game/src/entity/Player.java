@@ -20,6 +20,8 @@ public class Player extends Entity {
   KeyHandler keyHandler;
   public int screenX;
   public int screenY;
+  public int offsetX;
+  public int offsetY;
   private double jumpSpeed;
   public List<Fireball> fireballList = new ArrayList<Fireball>();
 
@@ -213,5 +215,21 @@ public class Player extends Entity {
         System.out.println("PROBLEM");
     }
     g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+  }
+  
+  /** Method to get the screen offset from world -> screen coordinates.
+   *
+   * @param screenSizeX Horizontal screen size
+   * @param screenSizeY Vertical screen size
+   * @param worldSizeX Horizontal total world size
+   * @param worldSizeY Vertical total world size
+   */
+  public void updateWindowOffset(int screenSizeX, int screenSizeY, int worldSizeX, int worldSizeY) {
+    this.offsetX = Math.min(Math.max(0, 
+                                 this.worldX + (this.solidArea.width / 2) - (screenSizeX / 2)),
+                        worldSizeX - screenSizeX);
+    this.offsetY = Math.min(Math.max(0,
+                                 this.worldY + (this.solidArea.height / 2) - (screenSizeY / 2)),
+                        worldSizeY - screenSizeY);
   }
 }
