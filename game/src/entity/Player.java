@@ -25,13 +25,14 @@ public class Player extends Entity {
   public BufferedImage left2;
   public BufferedImage right1;
   public BufferedImage right2;
+
   KeyHandler keyHandler;
   public int screenX;
   public int screenY;
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
-  private final long fireballTime = 250000;
+  private final long fireballTime = 550000;
   long fireballTimer;
   public List<Fireball> fireballList = new ArrayList<Fireball>();
 
@@ -131,6 +132,7 @@ public class Player extends Entity {
             this.velocityX -= this.accelX;
           }
           break;
+        case "down":
         case "standing":
           this.velocityX = 0;
           break;
@@ -239,10 +241,10 @@ public class Player extends Entity {
    */
   public void updateWindowOffset(int screenSizeX, int screenSizeY, int worldSizeX, int worldSizeY) {
     this.offsetX = Math.min(Math.max(0, 
-                                 this.worldX + (this.solidArea.width / 2) - (screenSizeX / 2)),
-                        worldSizeX - screenSizeX);
+                                     this.worldX + (this.solidArea.width / 2) - (screenSizeX / 2)),
+                            worldSizeX - screenSizeX);
     this.offsetY = Math.min(Math.max(0,
-                                 this.worldY + (this.solidArea.height / 2) - (screenSizeY / 2)),
-                        worldSizeY - screenSizeY);
+                                     this.worldY + (this.solidArea.height / 2) - (screenSizeY / 2)),
+                            worldSizeY - screenSizeY);
   }
 }
