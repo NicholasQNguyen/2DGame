@@ -23,7 +23,7 @@ public class Player extends Entity {
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
-  private final long fireballTime = 850000;
+  private final long fireballTime = 650000;
   long fireballTimer;
   public List<Fireball> fireballList = new ArrayList<Fireball>();
 
@@ -82,7 +82,7 @@ public class Player extends Entity {
    */
   public void update() { 
     // Get starting time to get time elapsed
-    long start = System.nanoTime();
+    final long start = System.nanoTime();
     
     if (keyHandler.upPressed) {
       direction = "up";
@@ -98,7 +98,6 @@ public class Player extends Entity {
 
     if (keyHandler.spacePressed && this.fireballTimer < 0) {
       this.spitFire();
-      System.out.println("Hadouken");
       this.fireballTimer = this.fireballTime;
     }
     
@@ -151,9 +150,7 @@ public class Player extends Entity {
     this.worldX += this.velocityX;
     
     // Handle the fireballTimer
-    System.out.println("PRE-TIMER: " + this.fireballTimer);
     this.fireballTimer -= (System.nanoTime() - start);
-    System.out.println("POST-TIMER: " + this.fireballTimer);
 
     // Cycle through the 2 animation frames
     this.spriteCounter++;
