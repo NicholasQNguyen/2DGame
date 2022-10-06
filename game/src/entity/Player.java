@@ -23,7 +23,7 @@ public class Player extends Entity {
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
-  private final long fireballTime = 650000;
+  private final long fireballTime = 250000;
   long fireballTimer;
   public List<Fireball> fireballList = new ArrayList<Fireball>();
 
