@@ -59,6 +59,9 @@ public class Fireball {
       case "right":
         this.worldX += velocity;
         break;
+      case "standing":
+        this.worldX += velocity;
+        break;
       default:
     }
   }

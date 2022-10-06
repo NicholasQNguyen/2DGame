@@ -205,9 +205,9 @@ public class Player extends Entity {
         
       case "standing":
         if (this.spriteNumber == 1) {
-          image = down1;
+          image = right1;
         } else {
-          image = down2;
+          image = right2;
         }
         break;
 
