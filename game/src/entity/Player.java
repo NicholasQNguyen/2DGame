@@ -17,6 +17,14 @@ import javax.imageio.ImageIO;
  *
  */
 public class Player extends Entity {
+  public BufferedImage up1;
+  public BufferedImage up2;
+  public BufferedImage down1;
+  public BufferedImage down2;
+  public BufferedImage left1;
+  public BufferedImage left2;
+  public BufferedImage right1;
+  public BufferedImage right2;
   KeyHandler keyHandler;
   public int screenX;
   public int screenY;
@@ -43,8 +51,8 @@ public class Player extends Entity {
    *
    */
   public void setDefaultValues() {
-    this.worldX = gamePanel.worldWidth / 2;
-    this.worldY = 0;
+    this.worldX = gamePanel.worldWidth / 2 - 400;
+    this.worldY = 100;
     // Start just off center X and above the ground Y
     this.screenX = gamePanel.screenWidth / 2;
     this.screenY = gamePanel.screenHeight / 2;

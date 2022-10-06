@@ -2,6 +2,7 @@ package game;
 
 import entity.Fireball;
 import entity.Player;
+import entity.Target;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -40,6 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
   Thread gameThread;
   KeyHandler keyHandler = new KeyHandler();
   public Player player = new Player(this, keyHandler);
+  // Spawn a dummy target in the middle of the world
+  public Target target = new Target(this, worldWidth / 2, 0);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   
@@ -95,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     }  
     player.update();
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, screenHeight);
+    target.update();
     for (Fireball f : player.fireballList) {
       f.update();
     }
@@ -111,6 +115,7 @@ public class GamePanel extends JPanel implements Runnable {
     for (Fireball f : player.fireballList) {
       f.draw(g2);
     }
+    target.draw(g2);
     // Free up the memory after we draw
     g2.dispose();
   }
