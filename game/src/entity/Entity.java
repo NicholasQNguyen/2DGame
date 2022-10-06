@@ -2,7 +2,6 @@ package entity;
 
 import game.GamePanel;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 /** Parent class for all entities (Player, enemies, etc.
  *
