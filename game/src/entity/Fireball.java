@@ -49,6 +49,7 @@ public class Fireball {
   /** Moves the fireball.
    *
    */
+  @SuppressWarnings("deprecation")
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY - 120;
