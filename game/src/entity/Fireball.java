@@ -66,7 +66,14 @@ public class Fireball {
     }
   }
   
+  /** Draw the fireball with an offset.
+   *
+   * @param g2 Graphics 2D from gamePanel
+   */
   public void draw(Graphics2D g2) {
-    g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+    // Don't draw if beyond limit
+    if (this.worldX < Math.abs(gamePanel.worldWidth)) {
+      g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+    }
   }
 }

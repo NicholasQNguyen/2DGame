@@ -170,7 +170,6 @@ public class Player extends Entity {
     BufferedImage image = null;
 
     switch (direction) {
-
       case "up":
         if (this.spriteNumber == 1) {
           image = up1;
@@ -178,7 +177,6 @@ public class Player extends Entity {
           image = up2;
         }
         break;
-
       case "down":
         if (this.spriteNumber == 1) {
           image = down1;
@@ -186,7 +184,6 @@ public class Player extends Entity {
           image = down2;
         }
         break;
-
       case "right":
         if (this.spriteNumber == 1) {
           image = right1;
@@ -194,7 +191,6 @@ public class Player extends Entity {
           image = right2;
         }
         break;
-
       case "left":
         if (this.spriteNumber == 1) {
           image = left1;
@@ -202,7 +198,6 @@ public class Player extends Entity {
           image = left2;
         }
         break;
-        
       case "standing":
         if (this.spriteNumber == 1) {
           image = right1;
@@ -210,7 +205,6 @@ public class Player extends Entity {
           image = right2;
         }
         break;
-
       default:
         System.out.println("PROBLEM");
     }
