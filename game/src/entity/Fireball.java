@@ -51,7 +51,7 @@ public class Fireball {
    */
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;
-    this.screenY = worldY - this.gamePanel.player.offsetY;
+    this.screenY = worldY - this.gamePanel.player.offsetY - 120;
     switch (this.direction) {
       case "left":
         this.worldX -= velocity;
