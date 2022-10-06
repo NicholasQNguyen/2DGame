@@ -141,6 +141,7 @@ public class Player extends Entity {
       }
     }
     
+    // Move 1 pixel away to prevent being stuck forever
     if (this.leftCollision) {
       this.velocityX = 0;
       this.worldX += 1;
@@ -174,6 +175,9 @@ public class Player extends Entity {
     }
   }
 
+  /** Instantiate and add a new fireball to the list.
+   * 
+   */
   private void spitFire() {
     Fireball fireball = new Fireball(gamePanel, this.worldX, this.worldY, this.direction);
     fireballList.add(fireball);
