@@ -57,15 +57,14 @@ public class Fireball {
       case "left":
         this.worldX -= velocity;
         break;
-      case "right":
-        this.worldX += velocity;
-        break;
       case "up":
       case "down":
       case "standing":
+      case "right":
         this.worldX += velocity;
         break;
       default:
+        System.out.println("PROBLEM");
     }
     // delete the fireball if it went off the world
     if (this.worldX > Math.abs(gamePanel.worldWidth)) {
