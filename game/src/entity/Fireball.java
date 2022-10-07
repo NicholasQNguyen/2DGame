@@ -2,6 +2,7 @@ package entity;
 
 import game.GamePanel;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -11,15 +12,9 @@ import javax.imageio.ImageIO;
  * @author Nicholas Nguyen
  *
  */
-public class Fireball {
-  int worldX;
-  int worldY;
-  int screenX;
-  int screenY;
+public class Fireball extends Entity {
   int velocity;
-  String direction;
   BufferedImage image;
-  GamePanel gamePanel;
   
   /** Constructor.
    *
@@ -35,6 +30,7 @@ public class Fireball {
     this.screenY = worldY - this.gamePanel.player.offsetY;
     this.velocity = 4;
     this.direction = direction;
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
     loadImage();
   }
   

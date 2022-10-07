@@ -1,6 +1,7 @@
 package game;
 
 import entity.Entity;
+import entity.Fireball;
 
 /** Class to handle collisions.
  *
@@ -71,5 +72,9 @@ public class CollisionChecker {
     int fireRightColumn = fireRightWorldX / gamePanel.tileSize;
     int fireTopRow = fireTopWorldY / gamePanel.tileSize;
     int fireBottomRow = fireBottomWorldY / gamePanel.tileSize;
+    
+    if (fireRightColumn > entityLeftColumn) {
+      System.out.println("HIT");
+    }
   }
 }
