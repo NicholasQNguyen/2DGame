@@ -10,6 +10,7 @@ import entity.Fireball;
  */
 public class CollisionChecker {
   GamePanel gamePanel;
+
   /** Constructor.
    * 
    */
@@ -52,6 +53,12 @@ public class CollisionChecker {
       entity.rightCollision = true;
     }
   }
+  
+  /** Checks for fireball collision.
+   *
+   * @param entity The thing we're hitting
+   * @param fireball The fireball
+   */
   public void checkFireball(Entity entity, Entity fireball) {
     int entityLeftWorldX = entity.worldX + entity.solidArea.x;
     int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
