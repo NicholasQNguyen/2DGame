@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
   KeyHandler keyHandler = new KeyHandler();
   public Player player = new Player(this, keyHandler);
   // Spawn a dummy target in the middle of the world
-  public Target target = new Target(this, worldWidth / 2, 0);
+  public Target target = new Target(this, worldWidth / 2, 300);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   
