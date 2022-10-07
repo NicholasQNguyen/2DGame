@@ -8,9 +8,7 @@ import entity.Entity;
  *
  */
 public class CollisionChecker {
-
   GamePanel gamePanel;
-
   /** Constructor.
    * 
    */
@@ -52,5 +50,26 @@ public class CollisionChecker {
     if (gamePanel.tm.tile[topRightTile].collision) {
       entity.rightCollision = true;
     }
+  }
+  public void checkFireball(Entity entity, Entity fireball) {
+    int entityLeftWorldX = entity.worldX + entity.solidArea.x;
+    int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
+    int entityTopWorldY = entity.worldY + entity.solidArea.y;
+    int entityBottomWorldY = entity.worldY + entity.solidArea.y + entity.solidArea.height;
+    
+    int entityLeftColumn = entityLeftWorldX / gamePanel.tileSize;
+    int entityRightColumn = entityRightWorldX / gamePanel.tileSize;
+    int entityTopRow = entityTopWorldY / gamePanel.tileSize;
+    int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
+
+    int fireLeftWorldX = fireball.worldX + fireball.solidArea.x;
+    int fireRightWorldX = fireball.worldX + fireball.solidArea.x + fireball.solidArea.width;
+    int fireTopWorldY = fireball.worldY + fireball.solidArea.y;
+    int fireBottomWorldY = fireball.worldY + fireball.solidArea.y + fireball.solidArea.height;
+    
+    int fireLeftColumn = fireLeftWorldX / gamePanel.tileSize;
+    int fireRightColumn = fireRightWorldX / gamePanel.tileSize;
+    int fireTopRow = fireTopWorldY / gamePanel.tileSize;
+    int fireBottomRow = fireBottomWorldY / gamePanel.tileSize;
   }
 }
