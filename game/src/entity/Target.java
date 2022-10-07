@@ -2,6 +2,7 @@ package entity;
 
 import game.GamePanel;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -27,6 +28,8 @@ public class Target extends Entity {
     this.worldY = y;
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
+    
     getImage();
   }
   
@@ -49,5 +52,4 @@ public class Target extends Entity {
   public void draw(Graphics2D g2) {
     g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
   }
-
 }
