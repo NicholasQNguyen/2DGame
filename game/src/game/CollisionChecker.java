@@ -80,6 +80,7 @@ public class CollisionChecker {
     int fireTopRow = fireTopWorldY / gamePanel.tileSize;
     int fireBottomRow = fireBottomWorldY / gamePanel.tileSize;
     
+    // Check if it hits
     if (fireRightColumn == entityLeftColumn
         && fireTopRow == entityTopRow) {
       System.out.println("HIT");
