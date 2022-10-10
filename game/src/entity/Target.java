@@ -32,7 +32,7 @@ public class Target extends Entity {
     
     getImage();
   }
-  
+
   /** Load in the target image.
    *
    */
@@ -43,12 +43,12 @@ public class Target extends Entity {
       e.printStackTrace();
     }
   }
-  
+
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
   }
-  
+
   public void draw(Graphics2D g2) {
     g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
   }
