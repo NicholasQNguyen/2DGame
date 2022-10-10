@@ -184,6 +184,8 @@ public class Player extends Entity {
       }
       spriteCounter = 0;
     }
+    this.screenX = worldX - this.offsetX;
+    this.screenY = worldY - this.offsetY;
   }
 
   /** Instantiate and add a new fireball to the list.
