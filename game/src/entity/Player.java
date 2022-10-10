@@ -90,13 +90,10 @@ public class Player extends Entity {
     }
   }
 
-  /** Grab the keyboard input and change the player's position.
-   * 
+  /** Deal with keyboard input.
+   *
    */
-  public void update() { 
-    // Get starting time to get time elapsed
-    final long start = System.nanoTime();
-    
+  public void handleEvent() {
     if (keyHandler.upPressed) {
       direction = "up";
     } else if (keyHandler.downPressed) {
@@ -113,6 +110,16 @@ public class Player extends Entity {
       this.spitFire();
       this.fireballTimer = this.fireballTime;
     }
+  }
+  
+  /** Grab the keyboard input and change the player's position.
+   * 
+   */
+  public void update() { 
+    // Get starting time to get time elapsed
+    final long start = System.nanoTime();
+    
+    handleEvent();
     
     // Apply gravity
     this.velocityY += gamePanel.gravity;
