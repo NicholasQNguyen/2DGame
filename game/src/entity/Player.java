@@ -250,6 +250,5 @@ public class Player extends Entity {
     this.offsetY = Math.min(Math.max(0,
                                      this.worldY + (this.solidArea.height / 2) - (screenSizeY / 2)),
                             worldSizeY - screenSizeY);
-    System.out.println("THING: " + (this.worldY + (this.solidArea.height / 2) - (screenSizeY / 2)));
   }
 }

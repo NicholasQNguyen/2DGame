@@ -98,8 +98,6 @@ public class GamePanel extends JPanel implements Runnable {
       System.exit(0);
     }  
     player.update();
-    System.out.println("SCREEN HEIGHT: " + screenHeight);
-    System.out.println("WORLD HEIGHT: " + worldHeight);
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     target.update();
     for (Fireball f : player.fireballList) {

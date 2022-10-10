@@ -47,8 +47,6 @@ public class Target extends Entity {
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
-    System.out.println("OFFSET Y: " + this.gamePanel.player.offsetY);
-    System.out.println("SCREEN Y: " + this.screenY);
   }
   
   public void draw(Graphics2D g2) {
