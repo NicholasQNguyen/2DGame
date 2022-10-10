@@ -48,7 +48,7 @@ public class Fireball extends Entity {
   @SuppressWarnings("deprecation")
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;
-    this.screenY = worldY - this.gamePanel.player.offsetY - 120;
+    this.screenY = worldY - this.gamePanel.player.offsetY;
     switch (this.direction) {
       case "left":
         this.worldX -= velocity;
