@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 
+import fsm.EntityState;
+
 
 /** Class for the player controlled entity.
  *
@@ -35,6 +37,8 @@ public class Player extends Entity {
   private final long fireballTime = 550000;
   long fireballTimer;
   public List<Fireball> fireballList = new ArrayList<Fireball>();
+  
+  private EntityState state = new EntityState("standing");
 
   /** Constructor.
    *
