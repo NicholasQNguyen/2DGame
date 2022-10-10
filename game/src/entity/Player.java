@@ -112,7 +112,7 @@ public class Player extends Entity {
     }
   }
   
-  /** Grab the keyboard input and change the player's position.
+  /** Check for collision and move accordingly.
    * 
    */
   public void update() { 
