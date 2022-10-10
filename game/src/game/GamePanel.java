@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 
   // World Settings
   public final int maxWorldColumns = 50;
-  public final int maxWorldRows = 12;
+  public final int maxWorldRows = 17;
   public final int worldWidth = this.maxWorldColumns * this.tileSize;
   public final int worldHeight = this.maxWorldRows * this.tileSize;
 
@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
   KeyHandler keyHandler = new KeyHandler();
   public Player player = new Player(this, keyHandler);
   // Spawn a dummy target in the middle of the world
-  public Target target = new Target(this, worldWidth / 2, 300);
+  public Target target = new Target(this, worldWidth / 2, 100);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   
@@ -76,11 +76,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     while (gameThread != null) {
       currentTime = System.nanoTime();
+      // TODO Pass delta to update
       delta += (currentTime - lastTime) / drawInterval;
       lastTime = currentTime;
       if (delta > 1) {
 
-        update();
+        update(delta);
         repaint();
 
         delta--;
@@ -91,13 +92,15 @@ public class GamePanel extends JPanel implements Runnable {
   /** Main game data loop.
    * 
    */
-  public void update() {
+  public void update(double delta) {
     // Exit on esc press
     if (keyHandler.escPressed) {
       System.exit(0);
     }  
     player.update();
-    player.updateWindowOffset(screenWidth, screenHeight, worldWidth, screenHeight);
+    System.out.println("SCREEN HEIGHT: " + screenHeight);
+    System.out.println("WORLD HEIGHT: " + worldHeight);
+    player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     target.update();
     for (Fireball f : player.fireballList) {
       f.update();
