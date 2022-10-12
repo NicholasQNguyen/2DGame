@@ -27,6 +27,9 @@ public class Player extends Entity {
   public BufferedImage right1;
   public BufferedImage right2;
 
+  public int spriteCounter = 0;
+  public int spriteNumber = 1;
+
   KeyHandler keyHandler;
   public int screenX;
   public int screenY;
