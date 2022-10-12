@@ -104,10 +104,9 @@ public class GamePanel extends JPanel implements Runnable {
       f.update();
       if (player.fireballList.size() > 0) {
         if (this.collisionChecker.checkFireball(target, f)) {
-          System.out.println("DIE!");
-          // f.kill();
+          f.kill();
           player.fireballList.remove(f);
-        };
+        }
       }
     }
   }
