@@ -68,11 +68,8 @@ public class EntityState {
     for (Map.Entry<String, Boolean> e : this.movement.entrySet()) {
       // Reset all of the states
       e.setValue(false);
-      if (e.getKey() == action && e.getValue() == false) {
+      if (e.getKey() == action) {
         e.setValue(true);
-        if (!this.movement.get(action)) {
-          this.movement.put(action, true);
-        }
         this.state = action;
       }
     }
