@@ -30,7 +30,8 @@ public class Fireball extends Entity {
     this.screenY = worldY - this.gamePanel.player.offsetY;
     this.velocity = 4;
     this.direction = direction;
-    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
+    // this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
+    this.solidArea = new Rectangle(10, 0, 0, 0);
     loadImage();
   }
   

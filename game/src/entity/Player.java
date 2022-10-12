@@ -123,7 +123,6 @@ public class Player extends Entity {
     
     this.handleEvent();
     this.state.manageState(this.direction);
-    System.out.println("STATE: " + this.state.getState());
 
     // Apply gravity
     this.velocityY += gamePanel.gravity;
@@ -203,7 +202,6 @@ public class Player extends Entity {
   }
 
   private void jump() {
-    System.out.println("JUMPING");
     this.velocityY -= this.jumpSpeed;
   }
 
