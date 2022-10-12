@@ -1,6 +1,7 @@
 package entity;
 
 import game.GamePanel;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 /** Parent class for all entities (Player, enemies, etc.
@@ -32,4 +33,10 @@ public abstract class Entity {
   public int hp;
   
   public abstract void update();
+  
+  public abstract void draw(Graphics2D g2);
+  
+  public void takeDamage(int damage) {
+    this.hp -= damage;
+  }
 }

@@ -8,9 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.JPanel;
 import tile.TileManager;
 
@@ -52,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   
   // List to hold the enemies in the game
-  private List<Entity> enemyList = new ArrayList<Entity>();
+  private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
   // Spawn a dummy target in the middle of the world
   public Target target = new Target(this, ((worldWidth / 2) + 150), 400);
 
@@ -113,8 +112,16 @@ public class GamePanel extends JPanel implements Runnable {
     for (Fireball f : player.fireballList) {
       f.update();
       if (player.fireballList.size() > 0) {
-        if (this.collisionChecker.checkFireball(target, f)) {
-          player.fireballList.remove(f);
+        for (Entity enemy : this.enemyList) {
+          if (this.collisionChecker.checkFireball(enemy, f)) {
+            player.fireballList.remove(f);
+            enemy.takeDamage(f.damage);
+            if (enemy.hp <= 0) {
+              this.enemyList.remove(enemy);
+            }
+            System.out.println(enemy.hp);
+            System.out.println(enemyList);
+          }
         }
       }
     }
@@ -131,7 +138,9 @@ public class GamePanel extends JPanel implements Runnable {
     for (Fireball f : player.fireballList) {
       f.draw(g2);
     }
-    target.draw(g2);
+    for (Entity enemy : this.enemyList) {
+      enemy.draw(g2);
+    }
     // Free up the memory after we draw
     g2.dispose();
   }
