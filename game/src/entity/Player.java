@@ -117,6 +117,7 @@ public class Player extends Entity {
   /** Check for collision and move accordingly.
    * 
    */
+  @Override
   public void update() { 
     // Get starting time to get time elapsed
     final long start = System.nanoTime();

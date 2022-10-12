@@ -1,5 +1,6 @@
 package game;
 
+import entity.Entity;
 import entity.Fireball;
 import entity.Player;
 import entity.Target;
@@ -7,6 +8,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
 import tile.TileManager;
 
@@ -37,18 +41,21 @@ public class GamePanel extends JPanel implements Runnable {
 
   final int fps = 60;
 
+  // In-game variables
+  public final double gravity = .1;
+
   // Initialize some components
   Thread gameThread;
   KeyHandler keyHandler = new KeyHandler();
   public Player player = new Player(this, keyHandler);
-  // Spawn a dummy target in the middle of the world
-  public Target target = new Target(this, (worldWidth / 2) + 150, 450);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   
-  // In-game variables
-  public final double gravity = .1;
-  
+  // List to hold the enemies in the game
+  private List<Entity> enemyList = new ArrayList<Entity>();
+  // Spawn a dummy target in the middle of the world
+  public Target target = new Target(this, ((worldWidth / 2) + 150), 400);
+
   /** Constructor.
    *
  */
@@ -58,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     this.setDoubleBuffered(true);
     this.addKeyListener(keyHandler);
     this.setFocusable(true);
+    this.enemyList.add(target);
   }
 
   public void startGameThread() {
@@ -99,7 +107,9 @@ public class GamePanel extends JPanel implements Runnable {
     }  
     player.update();
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
-    target.update();
+    for (Entity enemy : this.enemyList) {
+      enemy.update();
+    }
     for (Fireball f : player.fireballList) {
       f.update();
       if (player.fireballList.size() > 0) {

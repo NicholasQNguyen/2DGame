@@ -44,6 +44,7 @@ public class Target extends Entity {
     }
   }
 
+  @Override
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;

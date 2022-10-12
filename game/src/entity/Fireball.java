@@ -46,6 +46,7 @@ public class Fireball extends Entity {
   /** Moves the fireball.
    *
    */
+  @Override
   @SuppressWarnings("deprecation")
   public void update() {
     this.screenX = worldX - this.gamePanel.player.offsetX;

@@ -26,4 +26,7 @@ public abstract class Entity {
   public boolean bottomCollision = false;
   public boolean leftCollision = false;
   public boolean rightCollision = false;
+
+  public void update() {
+  }
 }
