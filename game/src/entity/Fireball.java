@@ -41,6 +41,17 @@ public class Fireball extends Entity {
       e.printStackTrace();
     }
   }
+  
+  /** Kill the fireball. Just makes finalize visible.
+   * 
+   */
+  public void kill() {
+    try {
+      this.finalize();
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+  }
 
   /** Moves the fireball.
    *

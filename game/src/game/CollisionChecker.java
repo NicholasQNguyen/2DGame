@@ -58,8 +58,10 @@ public class CollisionChecker {
    *
    * @param entity The thing we're hitting
    * @param fireball The fireball
+   * @return boolean if we hit or not
    */
-  public void checkFireball(Entity entity, Entity fireball) {
+  public boolean checkFireball(Entity entity, Entity fireball) {
+    // Get collision of thing we're hitting
     int entityLeftWorldX = entity.worldX + entity.solidArea.x;
     int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
     int entityTopWorldY = entity.worldY + entity.solidArea.y;
@@ -70,6 +72,7 @@ public class CollisionChecker {
     int entityTopRow = entityTopWorldY / gamePanel.tileSize;
     int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
 
+    // Get collision of the fireball
     int fireLeftWorldX = fireball.worldX + fireball.solidArea.x;
     int fireRightWorldX = fireball.worldX + fireball.solidArea.x + fireball.solidArea.width;
     int fireTopWorldY = fireball.worldY + fireball.solidArea.y;
@@ -84,6 +87,8 @@ public class CollisionChecker {
     if (fireRightColumn == entityLeftColumn
         && fireTopRow == entityTopRow) {
       System.out.println("HIT");
+      return true;
     }
+    return false;
   }
 }

@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import javax.imageio.ImageIO;
 
 
@@ -36,7 +38,7 @@ public class Player extends Entity {
   private double jumpSpeed;
   private final long fireballTime = 550000;
   long fireballTimer;
-  public List<Fireball> fireballList = new ArrayList<Fireball>();
+  public List<Fireball> fireballList = new CopyOnWriteArrayList<Fireball>();
   
   private EntityState state = new EntityState("standing");
 
@@ -124,45 +126,10 @@ public class Player extends Entity {
     this.handleEvent();
     this.state.manageState(this.direction);
 
-    System.out.println("MOVEMENT_MAP: " + this.state.movement);
-    System.out.println("STATE: " + this.state.getState());
     // Apply gravity
     this.velocityY += gamePanel.gravity;
     // Check tile collision
     gamePanel.collisionChecker.checkTile(this);
-
-    System.out.println("UP_PRESSED: " + this.keyHandler.upPressed);
-    System.out.println("DOWN_PRESSED: " + this.keyHandler.downPressed);
-    System.out.println("LEFT_PRESSED: " + this.keyHandler.leftPressed);
-    System.out.println("RIGHT_PRESSED: " + this.keyHandler.rightPressed);
-    
-    /**
-    // Touching the ground
-    if (this.bottomCollision) {
-      this.velocityY = 0;
-      switch (this.direction) {
-        case "up":
-          this.jump();
-          break;
-        case "right":
-          if (this.velocityX < 5) {
-            this.velocityX += this.accelX;
-          }
-          break;
-        case "left":
-          if (this.velocityX > -5) {
-            this.velocityX -= this.accelX;
-          }
-          break;
-        case "down":
-        case "standing":
-          this.velocityX = 0;
-          break;
-        default:
-          System.out.println("PROBLEM");
-      }
-    }
-    */
     
     if (this.bottomCollision) {
       System.out.println(this.state.getState());
