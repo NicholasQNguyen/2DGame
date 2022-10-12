@@ -53,7 +53,6 @@ public class GamePanel extends JPanel implements Runnable {
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   JoystickHandler jsHandler;
-  ControllerManager controllers = new ControllerManager();
   
   // List to hold the enemies in the game
   private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
