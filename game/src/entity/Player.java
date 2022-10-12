@@ -123,6 +123,7 @@ public class Player extends Entity {
     
     this.handleEvent();
     this.state.manageState(this.direction);
+    System.out.println("STATE: " + this.state.getState());
 
     // Apply gravity
     this.velocityY += gamePanel.gravity;
@@ -210,7 +211,7 @@ public class Player extends Entity {
   public void draw(Graphics2D g2) {
     BufferedImage image = null;
 
-    switch (this.state.getFacing()) {
+    switch (this.state.getState()) {
       case "up":
         if (this.spriteNumber == 1) {
           image = up1;
