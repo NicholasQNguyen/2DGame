@@ -30,6 +30,8 @@ public class Target extends Entity {
     this.screenY = worldY - this.gamePanel.player.offsetY;
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 30, gamePanel.tileSize - 30);
     
+    this.hp = 50;
+    
     getImage();
   }
 

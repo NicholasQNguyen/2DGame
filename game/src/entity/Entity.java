@@ -9,6 +9,7 @@ import java.awt.Rectangle;
  *
  */
 public abstract class Entity {
+  // Movement variables
   public int worldX;
   public int worldY;
   public int screenX;
@@ -21,12 +22,14 @@ public abstract class Entity {
   
   public Rectangle solidArea;
 
+  // Mostly Collision stuff
   public GamePanel gamePanel;
   public boolean topCollision = false;
   public boolean bottomCollision = false;
   public boolean leftCollision = false;
   public boolean rightCollision = false;
 
-  public void update() {
-  }
+  public int hp;
+  
+  public abstract void update();
 }
