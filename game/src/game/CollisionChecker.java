@@ -1,7 +1,6 @@
 package game;
 
 import entity.Entity;
-import entity.Fireball;
 
 /** Class to handle collisions.
  *
