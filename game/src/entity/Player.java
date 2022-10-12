@@ -241,10 +241,18 @@ public class Player extends Entity {
         }
         break;
       case "standing":
-        if (this.spriteNumber == 1) {
-          image = right1;
+        if (this.state.getLastFacing() == "left") {
+          if (this.spriteNumber == 1) {
+            image = left1;
+          } else {
+            image = left2;
+          }
         } else {
-          image = right2;
+          if (this.spriteNumber == 1) {
+            image = right1;
+          } else {
+            image = right2;
+          }
         }
         break;
       default:

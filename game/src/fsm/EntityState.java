@@ -12,18 +12,6 @@ public class EntityState {
   public HashMap<String, Boolean> movement = new HashMap<String, Boolean>();
   private String state;
   private String lastFacing;
-  
-  /** Returns the state.
-   *
-   * @return The state we're in
-   */
-  public String getState() {
-    return this.state;
-  }
-
-  public void setState(String newState) {
-    this.state = newState;
-  }
 
   /** Constructor.
    *
@@ -40,6 +28,22 @@ public class EntityState {
     movement.put("standing", false);
   }
   
+  /** Returns the state.
+   *
+   * @return The state we're in
+   */
+  public String getState() {
+    return this.state;
+  }
+  
+  public String getLastFacing() {
+    return this.lastFacing;
+  }
+
+  public void setState(String newState) {
+    this.state = newState;
+  }
+
   /** Returns the direction we're currently facing and resets the lastFacing.
    *
    */
@@ -65,6 +69,9 @@ public class EntityState {
    * @param action String with the direction inputted
    */
   public void manageState(String action) {
+    if ((this.lastFacing != this.state) && this.state != "standing") {
+      this.lastFacing = this.state;
+    }
     for (Map.Entry<String, Boolean> e : this.movement.entrySet()) {
       // Reset all of the states
       e.setValue(false);
