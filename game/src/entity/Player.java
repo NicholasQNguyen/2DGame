@@ -45,6 +45,7 @@ public class Player extends Entity {
    * @param kh KeyHandler for keyboard input
    */
   public Player(GamePanel gp, KeyHandler kh) {
+    
     this.gamePanel = gp;
     this.keyHandler = kh;
     setDefaultValues();
@@ -104,7 +105,6 @@ public class Player extends Entity {
     } else {
       direction = "standing";
     }
-    this.state.manageState(direction);
 
     if (keyHandler.spacePressed && this.fireballTimer < 0) {
       this.spitFire();
@@ -120,13 +120,21 @@ public class Player extends Entity {
     final long start = System.nanoTime();
     
     this.handleEvent();
-    
+    this.state.manageState(this.direction);
+
+    System.out.println("MOVEMENT_MAP: " + this.state.movement);
+    System.out.println("STATE: " + this.state.getState());
     // Apply gravity
     this.velocityY += gamePanel.gravity;
     // Check tile collision
     gamePanel.collisionChecker.checkTile(this);
 
+    System.out.println("UP_PRESSED: " + this.keyHandler.upPressed);
+    System.out.println("DOWN_PRESSED: " + this.keyHandler.downPressed);
+    System.out.println("LEFT_PRESSED: " + this.keyHandler.leftPressed);
+    System.out.println("RIGHT_PRESSED: " + this.keyHandler.rightPressed);
     
+    /**
     // Touching the ground
     if (this.bottomCollision) {
       this.velocityY = 0;
@@ -152,19 +160,33 @@ public class Player extends Entity {
           System.out.println("PROBLEM");
       }
     }
+    */
     
-    /** 
-    if (this.state.movement.get("up")) {
-      this.jump();
-    }
     if (this.bottomCollision) {
       System.out.println(this.state.getState());
       this.velocityY = 0;
-      if (this.state.getState() == "up") {
-        this.jump();
+      switch (this.state.getState()) {
+        case "up":
+          this.jump();
+          break;
+        case "right":
+          if (this.velocityX < 5) {
+            this.velocityX += this.accelX;
+          }
+          break;
+        case "left":
+          if (this.velocityX > -5) {
+            this.velocityX -= this.accelX;
+          }
+          break;
+        case "down":
+        case "standing":
+          this.velocityX = 0;
+          break;
+        default:
+          System.out.println("PROBLEM");
       }
     }
-    */
     
     // Move 1 pixel away to prevent being stuck forever
     if (this.leftCollision) {

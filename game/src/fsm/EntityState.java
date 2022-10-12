@@ -13,6 +13,10 @@ public class EntityState {
   private String state;
   private String lastFacing;
   
+  /** Returns the state.
+   *
+   * @return The state we're in
+   */
   public String getState() {
     return this.state;
   }
@@ -33,6 +37,7 @@ public class EntityState {
     movement.put("down", false);
     movement.put("left", false);
     movement.put("right", false);
+    movement.put("standing", false);
   }
   
   /** Returns the direction we're currently facing and resets the lastFacing.
@@ -48,6 +53,8 @@ public class EntityState {
         this.lastFacing = "left";
       } else if (e.getKey() == "right" && e.getValue()) {
         this.lastFacing = "right";
+      } else {
+        this.lastFacing = "standing";
       }
     }
     return this.lastFacing;
@@ -59,37 +66,14 @@ public class EntityState {
    */
   public void manageState(String action) {
     for (Map.Entry<String, Boolean> e : this.movement.entrySet()) {
+      // Reset all of the states
+      e.setValue(false);
       if (e.getKey() == action && e.getValue() == false) {
         e.setValue(true);
         if (!this.movement.get(action)) {
           this.movement.put(action, true);
         }
-        if (this.state == "standing") {
-          this.state = "moving";
-        }
-      } else if (action.startsWith("stop")
-                 && this.movement.containsKey(action.substring(4))) {
-        String direction = action.substring(4);
-        if (this.movement.get(direction)) {
-          this.movement.replace(direction, false);
-          boolean allStop = true;
-          for (Map.Entry<String, Boolean> e2 : this.movement.entrySet()) {
-            if (e2.getValue()) {
-              allStop = false;
-              break;
-            }
-          }
-          if (allStop) {
-            this.state = "standing";
-          }
-        }
-      } else if (action == "stopall") {
-        if (this.state != "standing") {
-          for (Map.Entry<String, Boolean> e2 : this.movement.entrySet()) {
-            e2.setValue(false);
-          }
-          this.state = "standing";
-        }
+        this.state = action;
       }
     }
   }
