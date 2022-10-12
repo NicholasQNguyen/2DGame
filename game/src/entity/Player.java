@@ -195,7 +195,10 @@ public class Player extends Entity {
    * 
    */
   private void spitFire() {
-    Fireball fireball = new Fireball(gamePanel, this.worldX, this.worldY, this.direction);
+    Fireball fireball = new Fireball(gamePanel,
+                                     this.worldX,
+                                     this.worldY,
+                                     this.state.getLastFacing());
     fireballList.add(fireball);
   }
 
