@@ -9,7 +9,7 @@ import java.util.Map;
  *
  */
 public class EntityState {
-  private HashMap<String, Boolean> movement = new HashMap<String, Boolean>();
+  public HashMap<String, Boolean> movement = new HashMap<String, Boolean>();
   private String state;
   private String lastFacing;
   
@@ -61,10 +61,13 @@ public class EntityState {
     for (Map.Entry<String, Boolean> e : this.movement.entrySet()) {
       if (e.getKey() == action && e.getValue() == false) {
         e.setValue(true);
+        if (!this.movement.get(action)) {
+          this.movement.put(action, true);
+        }
         if (this.state == "standing") {
           this.state = "moving";
         }
-      } else if (action.substring(0, 4) == "stop"
+      } else if (action.startsWith("stop")
                  && this.movement.containsKey(action.substring(4))) {
         String direction = action.substring(4);
         if (this.movement.get(direction)) {

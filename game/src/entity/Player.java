@@ -1,5 +1,6 @@
 package entity;
 
+import fsm.EntityState;
 import game.GamePanel;
 import game.KeyHandler;
 import java.awt.Graphics2D;
@@ -9,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
-
-import fsm.EntityState;
 
 
 /** Class for the player controlled entity.
@@ -105,6 +104,7 @@ public class Player extends Entity {
     } else {
       direction = "standing";
     }
+    this.state.manageState(direction);
 
     if (keyHandler.spacePressed && this.fireballTimer < 0) {
       this.spitFire();
@@ -119,13 +119,14 @@ public class Player extends Entity {
     // Get starting time to get time elapsed
     final long start = System.nanoTime();
     
-    handleEvent();
+    this.handleEvent();
     
     // Apply gravity
     this.velocityY += gamePanel.gravity;
     // Check tile collision
     gamePanel.collisionChecker.checkTile(this);
 
+    
     // Touching the ground
     if (this.bottomCollision) {
       this.velocityY = 0;
@@ -152,6 +153,19 @@ public class Player extends Entity {
       }
     }
     
+    /** 
+    if (this.state.movement.get("up")) {
+      this.jump();
+    }
+    if (this.bottomCollision) {
+      System.out.println(this.state.getState());
+      this.velocityY = 0;
+      if (this.state.getState() == "up") {
+        this.jump();
+      }
+    }
+    */
+    
     // Move 1 pixel away to prevent being stuck forever
     if (this.leftCollision) {
       this.velocityX = 0;
@@ -160,7 +174,7 @@ public class Player extends Entity {
       this.velocityX = 0;
       this.worldX -= 1;
     }
-    
+
     // Reset the collisions
     this.bottomCollision = false;
     this.topCollision = false;
@@ -170,7 +184,7 @@ public class Player extends Entity {
     // Apply velocity
     this.worldY += this.velocityY;
     this.worldX += this.velocityX;
-    
+
     // Handle the fireballTimer
     this.fireballTimer -= (System.nanoTime() - start);
 
@@ -197,6 +211,7 @@ public class Player extends Entity {
   }
 
   private void jump() {
+    System.out.println("JUMPING");
     this.velocityY -= this.jumpSpeed;
   }
 
