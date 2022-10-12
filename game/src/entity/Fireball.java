@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 public class Fireball extends Entity {
   int velocity;
   BufferedImage image;
-  public int damage = 50;
+  public int damage = 10;
   
   /** Constructor.
    *

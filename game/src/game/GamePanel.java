@@ -4,6 +4,7 @@ import entity.Entity;
 import entity.Fireball;
 import entity.Player;
 import entity.Target;
+import com.studiohartman.jamepad.ControllerManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
