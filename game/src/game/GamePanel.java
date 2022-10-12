@@ -4,7 +4,6 @@ import entity.Entity;
 import entity.Fireball;
 import entity.Player;
 import entity.Target;
-import com.studiohartman.jamepad.ControllerManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,6 +11,9 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.JPanel;
+
+import com.studiohartman.jamepad.ControllerManager;
+
 import tile.TileManager;
 
 /** Contains main data and art loops.
@@ -50,6 +52,8 @@ public class GamePanel extends JPanel implements Runnable {
   public Player player = new Player(this, keyHandler);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
+  JoystickHandler jsHandler;
+  ControllerManager controllers = new ControllerManager();
   
   // List to hold the enemies in the game
   private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
@@ -66,6 +70,8 @@ public class GamePanel extends JPanel implements Runnable {
     this.addKeyListener(keyHandler);
     this.setFocusable(true);
     this.enemyList.add(target);
+
+    this.jsHandler = new JoystickHandler();
   }
 
   public void startGameThread() {
@@ -105,6 +111,9 @@ public class GamePanel extends JPanel implements Runnable {
     if (keyHandler.escPressed) {
       System.exit(0);
     }  
+    if (this.jsHandler.getControllerState().a) {
+      System.out.println("\"A\" on \"" + this.jsHandler.getControllerState().controllerType + "\" is pressed");
+    }
     player.update();
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     for (Entity enemy : this.enemyList) {
