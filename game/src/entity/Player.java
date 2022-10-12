@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
  *
  */
 public class Player extends Entity {
+  // Sprites + sprite stuff
   public BufferedImage up1;
   public BufferedImage up2;
   public BufferedImage down1;
@@ -26,13 +27,10 @@ public class Player extends Entity {
   public BufferedImage left2;
   public BufferedImage right1;
   public BufferedImage right2;
-
   public int spriteCounter = 0;
   public int spriteNumber = 1;
 
   KeyHandler keyHandler;
-  public int screenX;
-  public int screenY;
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
@@ -41,6 +39,7 @@ public class Player extends Entity {
   public List<Fireball> fireballList = new ArrayList<Fireball>();
   
   private EntityState state = new EntityState("standing");
+
 
   /** Constructor.
    *
