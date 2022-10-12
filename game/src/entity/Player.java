@@ -132,7 +132,6 @@ public class Player extends Entity {
     gamePanel.collisionChecker.checkTile(this);
     
     if (this.bottomCollision) {
-      System.out.println(this.state.getState());
       this.velocityY = 0;
       switch (this.state.getState()) {
         case "up":
