@@ -1,8 +1,7 @@
 package game;
 
-import com.studiohartman.jamepad.ControllerManager;
-import com.studiohartman.jamepad.ControllerState;
-import net.java.games.input.Event;
+import net.java.games.input.Controller;
+import net.java.games.input.ControllerEnvironment;
 
 /** Class to handle all gamepad input.
  *
@@ -10,18 +9,18 @@ import net.java.games.input.Event;
  *
  */
 public class JoystickHandler {
-  private ControllerManager controllers;
 
+  private Controller[] controllers;
+  
   /** Constructor.
    *
    */
   public JoystickHandler() {
-    this.controllers = new ControllerManager();
-    this.controllers.initSDLGamepad();
+    /* Get the available controllers */
+    controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
   }
-
-  public ControllerState getControllerState() {
-    System.out.println(this.controllers.getNumControllers());
-    return this.controllers.getState(0);
+  
+  public Controller[] getControllers() {
+    return this.controllers;
   }
 }
