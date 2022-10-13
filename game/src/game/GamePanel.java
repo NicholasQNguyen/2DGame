@@ -110,9 +110,6 @@ public class GamePanel extends JPanel implements Runnable {
     if (keyHandler.escPressed) {
       System.exit(0);
     }  
-    if (this.jsHandler.getControllerState().a) {
-      System.out.println("\"A\" on \"" + this.jsHandler.getControllerState().controllerType + "\" is pressed");
-    }
     player.update();
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     for (Entity enemy : this.enemyList) {
