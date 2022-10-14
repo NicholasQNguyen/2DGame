@@ -12,6 +12,10 @@ public class Goblin extends Entity {
   public Goblin() {
     // TODO Auto-generated constructor stub
   }
+  
+  private void getImage() {
+    
+  }
 
   @Override
   public void update() {
