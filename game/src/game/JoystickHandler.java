@@ -1,5 +1,9 @@
 package game;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 
@@ -11,7 +15,7 @@ import net.java.games.input.ControllerEnvironment;
 public class JoystickHandler {
 
   private Controller[] controllers;
-  
+
   /** Constructor.
    *
    */
@@ -19,7 +23,7 @@ public class JoystickHandler {
     /* Get the available controllers */
     controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
   }
-  
+
   public Controller[] getControllers() {
     return this.controllers;
   }

@@ -8,15 +8,16 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="libs/jinput-2.0.9.jar" sourcepath="libs/jinput-2.0.9.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="https://javadoc.io/doc/net.java.jinput/jinput/latest/net/java/games/input/package-summary.html"/>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="game/jinputDLLs"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="libs/Jamepad.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="libs/jinput-2.0.9.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="game/jinputDLLs"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

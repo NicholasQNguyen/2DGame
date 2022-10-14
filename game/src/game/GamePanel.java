@@ -11,9 +11,6 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.JPanel;
-
-import com.studiohartman.jamepad.ControllerManager;
-
 import tile.TileManager;
 
 /** Contains main data and art loops.
@@ -52,7 +49,8 @@ public class GamePanel extends JPanel implements Runnable {
   public Player player = new Player(this, keyHandler);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
-  JoystickHandler jsHandler;
+  // TODO Get controllers working
+  // JoystickHandler jsHandler;
   
   // List to hold the enemies in the game
   private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
@@ -70,7 +68,8 @@ public class GamePanel extends JPanel implements Runnable {
     this.setFocusable(true);
     this.enemyList.add(target);
 
-    this.jsHandler = new JoystickHandler();
+    // TODO Get controllers working.
+    // this.jsHandler = new JoystickHandler();
   }
 
   public void startGameThread() {
