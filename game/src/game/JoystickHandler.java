@@ -3,7 +3,6 @@ package game;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 

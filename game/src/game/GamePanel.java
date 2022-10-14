@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+
 import javax.swing.JPanel;
 import tile.TileManager;
 
@@ -54,8 +56,6 @@ public class GamePanel extends JPanel implements Runnable {
   
   // List to hold the enemies in the game
   private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
-  // Spawn a dummy target in the middle of the world
-  public Target target = new Target(this, ((worldWidth / 2) + 150), 400);
 
   /** Constructor.
    *
@@ -66,10 +66,15 @@ public class GamePanel extends JPanel implements Runnable {
     this.setDoubleBuffered(true);
     this.addKeyListener(keyHandler);
     this.setFocusable(true);
-    this.enemyList.add(target);
-
     // TODO Get controllers working.
     // this.jsHandler = new JoystickHandler();
+
+    // Spawn a dummy target in the middle of the world
+    for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, 5 + 1); i++) {
+      enemyList.add(new Target(this,
+                               ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
+                               400 + ThreadLocalRandom.current().nextInt(-150, 50)));
+    }
   }
 
   public void startGameThread() {
