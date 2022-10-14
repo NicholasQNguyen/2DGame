@@ -72,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Spawn a dummy target in the middle of the world
     for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, 5 + 1); i++) {
       enemyList.add(new Target(this,
-                               ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
+                           ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
                                400 + ThreadLocalRandom.current().nextInt(-150, 50)));
     }
   }
