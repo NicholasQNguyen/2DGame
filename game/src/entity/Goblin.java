@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -23,9 +24,20 @@ public class Goblin extends Entity {
   public BufferedImage right2;
   public int spriteCounter = 0;
   public int spriteNumber = 1;
+  
+  public double jumpSpeed;
 
+  /** Constructor.
+   *
+   */
   public Goblin() {
-    // TODO Auto-generated constructor stub
+    this.worldX = gamePanel.worldWidth / 2 - 400;
+    this.worldY = 100;
+    this.getImage();
+    this.jumpSpeed = 4.55;
+    this.direction = "standing";
+    this.accelX = 0.5;
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
   }
   
   private void getImage() {
