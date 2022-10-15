@@ -2,6 +2,7 @@ package game;
 
 import entity.Entity;
 import entity.Fireball;
+import entity.Goblin;
 import entity.Player;
 import entity.Target;
 import java.awt.Color;
@@ -75,7 +76,8 @@ public class GamePanel extends JPanel implements Runnable {
                            ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
                                400 + ThreadLocalRandom.current().nextInt(-150, 50)));
     }
-  }
+    enemyList.add(new Goblin(this, worldWidth / 2, 400));
+ }
 
   public void startGameThread() {
     gameThread = new Thread(this);
