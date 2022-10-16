@@ -46,8 +46,9 @@ public class GamePanel extends JPanel implements Runnable {
 
   // Initialize some components
   Thread gameThread;
-  KeyHandler keyHandler = new KeyHandler();
-  public Player player = new Player(this, keyHandler);
+  PlayerKeyHandler playerKeyHandler = new PlayerKeyHandler();
+  GoblinKeyHandler goblinKeyHandler = new GoblinKeyHandler();
+  public Player player = new Player(this, playerKeyHandler);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   // TODO Get controllers working
@@ -63,7 +64,8 @@ public class GamePanel extends JPanel implements Runnable {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(Color.white);
     this.setDoubleBuffered(true);
-    this.addKeyListener(keyHandler);
+    this.addKeyListener(playerKeyHandler);
+    this.addKeyListener(goblinKeyHandler);
     this.setFocusable(true);
     // TODO Get controllers working.
     // this.jsHandler = new JoystickHandler();
@@ -100,7 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
    */
   public void update(double delta) {
     // Exit on esc press
-    if (keyHandler.escPressed) {
+    if (playerKeyHandler.escPressed) {
       System.exit(0);
     }  
     player.update(Clock.getInstance().getDelta());

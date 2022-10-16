@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
  * @author Nicholas Nguyen
  *
  */
-public class KeyHandler implements KeyListener {
+public class PlayerKeyHandler implements KeyListener {
 
   public boolean upPressed = false;
   public boolean downPressed = false;
@@ -40,7 +40,7 @@ public class KeyHandler implements KeyListener {
     if (code == KeyEvent.VK_ESCAPE) {
       escPressed = true;
     }
-    if (code == KeyEvent.VK_SPACE) {
+    if (code == KeyEvent.VK_F) {
       spacePressed = true;
     }
   }
@@ -61,7 +61,7 @@ public class KeyHandler implements KeyListener {
     if (code == KeyEvent.VK_D) {
       rightPressed = false;
     }
-    if (code == KeyEvent.VK_SPACE) {
+    if (code == KeyEvent.VK_F) {
       spacePressed = false;
     }
   }

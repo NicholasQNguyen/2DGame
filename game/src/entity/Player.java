@@ -2,7 +2,7 @@ package entity;
 
 import fsm.EntityState;
 import game.GamePanel;
-import game.KeyHandler;
+import game.PlayerKeyHandler;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -30,7 +30,7 @@ public class Player extends Entity {
   public int spriteCounter = 0;
   public int spriteNumber = 1;
 
-  KeyHandler keyHandler;
+  PlayerKeyHandler keyHandler;
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
@@ -46,7 +46,7 @@ public class Player extends Entity {
    * @param gp The GamePanel
    * @param kh KeyHandler for keyboard input
    */
-  public Player(GamePanel gp, KeyHandler kh) {
+  public Player(GamePanel gp, PlayerKeyHandler kh) {
     
     this.gamePanel = gp;
     this.keyHandler = kh;
@@ -175,8 +175,6 @@ public class Player extends Entity {
     this.worldX += this.velocityX;
 
     // Handle the fireballTimer
-    // this.fireballTimer -= (System.nanoTime() - start);
-
     this.fireballTimer -= delta;
     // Cycle through the 2 animation frames
     this.spriteCounter++;
