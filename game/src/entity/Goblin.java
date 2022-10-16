@@ -44,6 +44,7 @@ public class Goblin extends Entity {
     this.accelX = 0.5;
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
     this.state = new EntityState("left");
+    this.hp = 100;
   }
   
   private void getImage() {

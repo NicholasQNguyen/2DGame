@@ -34,8 +34,8 @@ public class Player extends Entity {
   public int offsetX;
   public int offsetY;
   private double jumpSpeed;
-  private final long fireballTime = 550000;
-  long fireballTimer;
+  private final double fireballTime = .001;
+  double fireballTimer;
   public List<Fireball> fireballList = new CopyOnWriteArrayList<Fireball>();
   
   private EntityState state = new EntityState("standing");
@@ -120,7 +120,7 @@ public class Player extends Entity {
   @Override
   public void update(double delta) { 
     // Get starting time to get time elapsed
-    final long start = System.nanoTime();
+    // System.out.println("DELTA" + delta);
     
     this.handleEvent();
     this.state.manageState(this.direction);
@@ -175,8 +175,9 @@ public class Player extends Entity {
     this.worldX += this.velocityX;
 
     // Handle the fireballTimer
-    this.fireballTimer -= (System.nanoTime() - start);
+    // this.fireballTimer -= (System.nanoTime() - start);
 
+    this.fireballTimer -= delta;
     // Cycle through the 2 animation frames
     this.spriteCounter++;
     if (this.spriteCounter > 10) {
@@ -195,11 +196,11 @@ public class Player extends Entity {
    * 
    */
   private void spitFire() {
-    Fireball fireball = new Fireball(gamePanel,
-                                     this.worldX,
-                                     this.worldY,
-                                     this.state.getLastFacing());
-    fireballList.add(fireball);
+    this.fireballList.add(new Fireball(gamePanel,
+                                       this.worldX,
+                                       this.worldY,
+                                       this.state.getLastFacing()));
+
   }
 
   private void jump() {
