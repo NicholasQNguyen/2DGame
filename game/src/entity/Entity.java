@@ -32,7 +32,7 @@ public abstract class Entity {
 
   public int hp;
   
-  public abstract void update();
+  public abstract void update(double delta);
   
   public abstract void draw(Graphics2D g2);
   

@@ -118,7 +118,7 @@ public class Player extends Entity {
    * 
    */
   @Override
-  public void update() { 
+  public void update(double delta) { 
     // Get starting time to get time elapsed
     final long start = System.nanoTime();
     

@@ -103,13 +103,13 @@ public class GamePanel extends JPanel implements Runnable {
     if (keyHandler.escPressed) {
       System.exit(0);
     }  
-    player.update();
+    player.update(Clock.getInstance().getDelta());
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     for (Entity enemy : this.enemyList) {
-      enemy.update();
+      enemy.update(Clock.getInstance().getDelta());
     }
     for (Fireball f : player.fireballList) {
-      f.update();
+      f.update(Clock.getInstance().getDelta());
       if (player.fireballList.size() > 0) {
         for (Entity enemy : this.enemyList) {
           if (this.collisionChecker.checkFireball(enemy, f)) {

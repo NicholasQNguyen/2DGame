@@ -62,7 +62,7 @@ public class Goblin extends Entity {
   }
 
   @Override
-  public void update() {
+  public void update(double delta) {
     // TODO Auto-generated method stub
     // Apply gravity
     this.velocityY -= this.gamePanel.gravity;

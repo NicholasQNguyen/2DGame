@@ -49,7 +49,7 @@ public class Fireball extends Entity {
    */
   @Override
   @SuppressWarnings("deprecation")
-  public void update() {
+  public void update(double delta) {
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
     switch (this.direction) {
