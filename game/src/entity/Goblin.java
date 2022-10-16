@@ -64,6 +64,7 @@ public class Goblin extends Entity {
   @Override
   public void update() {
     // TODO Auto-generated method stub
+    // Apply gravity
     this.velocityY -= this.gamePanel.gravity;
     gamePanel.collisionChecker.checkTile(this);
     this.worldX += this.velocityX;

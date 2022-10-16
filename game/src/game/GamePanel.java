@@ -41,8 +41,6 @@ public class GamePanel extends JPanel implements Runnable {
   public final int worldWidth = this.maxWorldColumns * this.tileSize;
   public final int worldHeight = this.maxWorldRows * this.tileSize;
 
-  final int fps = 60;
-
   // In-game variables
   public final double gravity = .1;
 
@@ -77,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
                                400 + ThreadLocalRandom.current().nextInt(-150, 50)));
     }
     enemyList.add(new Goblin(this, worldWidth / 2, 400));
- }
+  }
 
   public void startGameThread() {
     gameThread = new Thread(this);
@@ -88,22 +86,11 @@ public class GamePanel extends JPanel implements Runnable {
   @Override
   public void run() {
 
-    final double drawInterval = 1000000000 / fps;
-    double delta = 0.0;
-    long lastTime = System.nanoTime();
-    long currentTime;
-
     while (gameThread != null) {
-      currentTime = System.nanoTime();
-      // TODO Pass delta to update
-      delta += (currentTime - lastTime) / drawInterval;
-      lastTime = currentTime;
-      if (delta > 1) {
+      if (Clock.getInstance().update()) {
 
-        update(delta);
+        update(Clock.getInstance().getDelta());
         repaint();
-
-        delta--;
       }
     }
   }
