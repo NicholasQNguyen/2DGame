@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
                            ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
                                400 + ThreadLocalRandom.current().nextInt(-150, 50)));
     }
-    enemyList.add(new Goblin(this, worldWidth / 2, 400));
+    enemyList.add(new Goblin(this, this.goblinKeyHandler));
   }
 
   public void startGameThread() {

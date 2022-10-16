@@ -2,6 +2,7 @@ package entity;
 
 import fsm.EntityState;
 import game.GamePanel;
+import game.GoblinKeyHandler;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -14,35 +15,14 @@ import javax.imageio.ImageIO;
  * @author Nicholas Nguyen
  *
  */
-public class Goblin extends Entity {
-  // Sprites + sprite stuff
-  public BufferedImage up1;
-  public BufferedImage up2;
-  public BufferedImage down1;
-  public BufferedImage down2;
-  public BufferedImage left1;
-  public BufferedImage left2;
-  public BufferedImage right1;
-  public BufferedImage right2;
-  public int spriteCounter = 0;
-  public int spriteNumber = 1;
-  
-  public double jumpSpeed;
-  
-  private EntityState state;
+public class Goblin extends Controlled {
 
   /** Constructor.
    *
    */
-  public Goblin(GamePanel gp, int x, int y) {
-    this.gamePanel = gp;
-    this.worldX = x;
-    this.worldY = y;
+  public Goblin(GamePanel gp, GoblinKeyHandler kh) {
+    super(gp, kh);
     this.getImage();
-    this.jumpSpeed = 4.55;
-    this.direction = "standing";
-    this.accelX = 0.5;
-    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
     this.state = new EntityState("left");
     this.hp = 100;
   }
@@ -63,12 +43,20 @@ public class Goblin extends Entity {
   }
 
   @Override
+  protected void handleEvent() {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  protected void jump() {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
   public void update(double delta) {
-    // Apply gravity
-    this.velocityY -= this.gamePanel.gravity;
-    gamePanel.collisionChecker.checkTile(this);
-    this.worldX += this.velocityX;
-    this.worldY -= this.velocityY;
+    super.update(delta);
     if (this.bottomCollision) {
       this.velocityY = 0;
     }
@@ -130,5 +118,7 @@ public class Goblin extends Entity {
     }
     g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
   }
+
+
 }
 

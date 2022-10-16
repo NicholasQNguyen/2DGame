@@ -17,39 +17,21 @@ import javax.imageio.ImageIO;
  * @author Nicholas Nguyen 
  *
  */
-public class Player extends Entity {
-  // Sprites + sprite stuff
-  public BufferedImage up1;
-  public BufferedImage up2;
-  public BufferedImage down1;
-  public BufferedImage down2;
-  public BufferedImage left1;
-  public BufferedImage left2;
-  public BufferedImage right1;
-  public BufferedImage right2;
-  public int spriteCounter = 0;
-  public int spriteNumber = 1;
+public class Player extends Controlled {
 
-  PlayerKeyHandler keyHandler;
   public int offsetX;
   public int offsetY;
-  private double jumpSpeed;
   private final double fireballTime = .001;
   double fireballTimer;
   public List<Fireball> fireballList = new CopyOnWriteArrayList<Fireball>();
   
-  private EntityState state = new EntityState("standing");
-
-
   /** Constructor.
    *
    * @param gp The GamePanel
    * @param kh KeyHandler for keyboard input
    */
   public Player(GamePanel gp, PlayerKeyHandler kh) {
-    
-    this.gamePanel = gp;
-    this.keyHandler = kh;
+    super(gp, kh);
     setDefaultValues();
     getPlayerImage();
   }
@@ -65,13 +47,7 @@ public class Player extends Entity {
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    this.jumpSpeed = 4.55;
-    this.direction = "standing";
-    this.accelX = 0.5;
-    
     this.fireballTimer = 0;
-    
-    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
   }
 
   /** Load all of the player images from a stream.
@@ -119,41 +95,8 @@ public class Player extends Entity {
    */
   @Override
   public void update(double delta) { 
-    // Get starting time to get time elapsed
-    // System.out.println("DELTA" + delta);
     
-    this.handleEvent();
-    this.state.manageState(this.direction);
-
-    // Apply gravity
-    this.velocityY += gamePanel.gravity;
-    // Check tile collision
-    gamePanel.collisionChecker.checkTile(this);
-    
-    if (this.bottomCollision) {
-      this.velocityY = 0;
-      switch (this.state.getState()) {
-        case "up":
-          this.jump();
-          break;
-        case "right":
-          if (this.velocityX < 5) {
-            this.velocityX += this.accelX;
-          }
-          break;
-        case "left":
-          if (this.velocityX > -5) {
-            this.velocityX -= this.accelX;
-          }
-          break;
-        case "down":
-        case "standing":
-          this.velocityX = 0;
-          break;
-        default:
-          System.out.println("PROBLEM");
-      }
-    }
+    super.update(delta);
     
     // Move 1 pixel away to prevent being stuck forever
     if (this.leftCollision) {
@@ -201,67 +144,6 @@ public class Player extends Entity {
 
   }
 
-  private void jump() {
-    this.velocityY -= this.jumpSpeed;
-  }
-
-  /** Handle of the the drawing of the player.
-   *
-   * @param g2 Graphics 2D from gamePanel
-   */
-  public void draw(Graphics2D g2) {
-    BufferedImage image = null;
-
-    switch (this.state.getState()) {
-      case "up":
-        if (this.spriteNumber == 1) {
-          image = up1;
-        } else {
-          image = up2;
-        }
-        break;
-      case "down":
-        if (this.spriteNumber == 1) {
-          image = down1;
-        } else {
-          image = down2;
-        }
-        break;
-      case "right":
-        if (this.spriteNumber == 1) {
-          image = right1;
-        } else {
-          image = right2;
-        }
-        break;
-      case "left":
-        if (this.spriteNumber == 1) {
-          image = left1;
-        } else {
-          image = left2;
-        }
-        break;
-      case "standing":
-        if (this.state.getLastFacing() == "left") {
-          if (this.spriteNumber == 1) {
-            image = left1;
-          } else {
-            image = left2;
-          }
-        } else {
-          if (this.spriteNumber == 1) {
-            image = right1;
-          } else {
-            image = right2;
-          }
-        }
-        break;
-      default:
-        System.out.println("PROBLEM");
-    }
-    g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-  }
-  
   /** Method to get the screen offset from world -> screen coordinates.
    *
    * @param screenSizeX Horizontal screen size

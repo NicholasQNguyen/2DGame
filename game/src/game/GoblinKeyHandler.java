@@ -8,14 +8,7 @@ import java.awt.event.KeyListener;
  * @author Nicholas Nguyen
  *
  */
-public class GoblinKeyHandler implements KeyListener {
-
-  public boolean upPressed = false;
-  public boolean downPressed = false;
-  public boolean leftPressed = false;
-  public boolean rightPressed = false;
-  public boolean spacePressed = false;
-  public boolean escPressed = false;
+public class GoblinKeyHandler extends ControlledKeyHandler {
 
   @Override
   public void keyTyped(KeyEvent e) {

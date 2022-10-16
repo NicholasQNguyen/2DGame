@@ -8,20 +8,14 @@ import java.awt.event.KeyListener;
  * @author Nicholas Nguyen
  *
  */
-public class PlayerKeyHandler implements KeyListener {
+public class PlayerKeyHandler extends ControlledKeyHandler {
 
-  public boolean upPressed = false;
-  public boolean downPressed = false;
-  public boolean leftPressed = false;
-  public boolean rightPressed = false;
-  public boolean spacePressed = false;
-  public boolean escPressed = false;
-
-  @Override
   public void keyTyped(KeyEvent e) {
   }
 
-  @Override
+  /** When you press a key.
+   * 
+   */
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode();
 
@@ -45,7 +39,9 @@ public class PlayerKeyHandler implements KeyListener {
     }
   }
 
-  @Override
+  /** When you release a key.
+   * 
+   */
   public void keyReleased(KeyEvent e) {
     int code = e.getKeyCode();
 
