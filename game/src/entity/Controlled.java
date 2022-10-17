@@ -3,6 +3,8 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import fsm.EntityState;
 import game.ControlledKeyHandler;
@@ -25,6 +27,10 @@ public abstract class Controlled extends Entity {
   public BufferedImage right2;
   public int spriteCounter = 0;
   public int spriteNumber = 1;
+
+  public List<Fireball> fireballList = new CopyOnWriteArrayList<Fireball>();
+  final double fireballTime = .0001;
+  double fireballTimer = 0;
 
   double jumpSpeed;
   EntityState state = new EntityState("standing");
@@ -62,6 +68,18 @@ public abstract class Controlled extends Entity {
     // Apply velocity
     this.worldX += this.velocityX;
     this.worldY += this.velocityY;
+    // Handle the fireballTimer
+    this.fireballTimer -= delta;
+    // Cycle through the 2 animation frames
+    this.spriteCounter++;
+    if (this.spriteCounter > 10) {
+      if (this.spriteNumber == 1) {
+        this.spriteNumber = 2;
+      } else {
+        this.spriteNumber = 1;
+      }
+      spriteCounter = 0;
+    }
   }
 
   /** Deal with keyboard input.
@@ -78,6 +96,10 @@ public abstract class Controlled extends Entity {
       direction = "right";
     } else {
       direction = "standing";
+    }
+    if (keyHandler.spacePressed && this.fireballTimer < 0) {
+      this.spitFire();
+      this.fireballTimer = this.fireballTime;
     }
   } 
   
@@ -181,4 +203,14 @@ public abstract class Controlled extends Entity {
     return this.screenY;
   }
 
+  /** Instantiate and add a new fireball to the list.
+   * 
+   */
+  void spitFire() {
+    this.fireballList.add(new Fireball(gamePanel,
+                                       this.worldX,
+                                       this.worldY,
+                                       this.state.getLastFacing()));
+    this.fireballTimer = this.fireballTime;
+  }
 }

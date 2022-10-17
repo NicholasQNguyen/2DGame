@@ -1,5 +1,6 @@
 package game;
 
+import entity.Controlled;
 import entity.Entity;
 import entity.Fireball;
 import entity.Goblin;
@@ -30,8 +31,8 @@ public class GamePanel extends JPanel implements Runnable {
   public final int tileSize = originalTileSize * scale;
 
   // Screen Settings
-  public final int maxScreenColumns = 16;
-  public final int maxScreenRows = 12;
+  public final int maxScreenColumns = 32;
+  public final int maxScreenRows = 17;
   public final int screenWidth = tileSize * maxScreenColumns;
   public final int screenHeight = tileSize * maxScreenRows;
 
@@ -49,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
   PlayerKeyHandler playerKeyHandler = new PlayerKeyHandler();
   GoblinKeyHandler goblinKeyHandler = new GoblinKeyHandler();
   public Player player = new Player(this, playerKeyHandler);
+  public Goblin goblin = new Goblin(this, goblinKeyHandler);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   // TODO Get controllers working
@@ -76,7 +78,6 @@ public class GamePanel extends JPanel implements Runnable {
                            ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
                                400 + ThreadLocalRandom.current().nextInt(-150, 50)));
     }
-    enemyList.add(new Goblin(this, this.goblinKeyHandler));
   }
 
   public void startGameThread() {
@@ -106,10 +107,39 @@ public class GamePanel extends JPanel implements Runnable {
       System.exit(0);
     }  
     player.update(Clock.getInstance().getDelta());
+    goblin.update(Clock.getInstance().getDelta());
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     for (Entity enemy : this.enemyList) {
       enemy.update(Clock.getInstance().getDelta());
     }
+    this.fireballCollision(player);
+    this.fireballCollision(goblin);
+  }
+
+  /** All of the drawing stuff.
+   * 
+   */
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D) g;
+    tm.draw(g2);
+    player.draw(g2);
+    goblin.draw(g2);
+    for (Fireball f : player.fireballList) {
+      f.draw(g2);
+    }
+    for (Fireball f : goblin.fireballList) {
+      f.draw(g2);
+    }
+    for (Entity enemy : this.enemyList) {
+      enemy.draw(g2);
+    }
+    // Free up the memory after we draw
+    g2.dispose();
+  }
+
+
+  private void fireballCollision(Controlled player) {
     for (Fireball f : player.fireballList) {
       f.update(Clock.getInstance().getDelta());
       if (player.fireballList.size() > 0) {
@@ -126,22 +156,5 @@ public class GamePanel extends JPanel implements Runnable {
       }
     }
   }
-
-  /** All of the drawing stuff.
-   * 
-   */
-  public void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    Graphics2D g2 = (Graphics2D) g;
-    tm.draw(g2);
-    player.draw(g2);
-    for (Fireball f : player.fireballList) {
-      f.draw(g2);
-    }
-    for (Entity enemy : this.enemyList) {
-      enemy.draw(g2);
-    }
-    // Free up the memory after we draw
-    g2.dispose();
-  }
+  
 }

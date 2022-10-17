@@ -1,14 +1,8 @@
 package entity;
 
-import fsm.EntityState;
 import game.GamePanel;
 import game.PlayerKeyHandler;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import javax.imageio.ImageIO;
 
 
@@ -21,9 +15,6 @@ public class Player extends Controlled {
 
   public int offsetX;
   public int offsetY;
-  private final double fireballTime = .0001;
-  double fireballTimer;
-  public List<Fireball> fireballList = new CopyOnWriteArrayList<Fireball>();
   
   /** Constructor.
    *
@@ -41,13 +32,12 @@ public class Player extends Controlled {
    */
   public void setDefaultValues() {
     this.worldX = gamePanel.worldWidth / 2 - 400;
-    this.worldY = 100;
+    this.worldY = 0;
     // Start just off center X and above the ground Y
     this.screenX = gamePanel.screenWidth / 2;
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    this.fireballTimer = 0;
   }
 
   /** Load all of the player images from a stream.
@@ -68,16 +58,6 @@ public class Player extends Controlled {
     }
   }
 
-  @Override
-  public void handleEvent() {
-    super.handleEvent();
-    if (keyHandler.spacePressed && this.fireballTimer < 0) {
-      this.spitFire();
-      this.fireballTimer = this.fireballTime;
-    }
-  }
-
-  
   /** Check for collision and move accordingly.
    * 
    */
@@ -101,32 +81,8 @@ public class Player extends Controlled {
     this.leftCollision = false;
     this.rightCollision = false;
 
-    // Handle the fireballTimer
-    this.fireballTimer -= delta;
-    // Cycle through the 2 animation frames
-    this.spriteCounter++;
-    if (this.spriteCounter > 10) {
-      if (this.spriteNumber == 1) {
-        this.spriteNumber = 2;
-      } else {
-        this.spriteNumber = 1;
-      }
-      spriteCounter = 0;
-    }
     this.screenX = worldX - this.offsetX;
     this.screenY = worldY - this.offsetY;
-  }
-
-
-  /** Instantiate and add a new fireball to the list.
-   * 
-   */
-  private void spitFire() {
-    this.fireballList.add(new Fireball(gamePanel,
-                                       this.worldX,
-                                       this.worldY,
-                                       this.state.getLastFacing()));
-    this.fireballTimer = this.fireballTime;
   }
 
   /** Method to get the screen offset from world -> screen coordinates.
