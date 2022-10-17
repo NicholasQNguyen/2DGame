@@ -39,7 +39,9 @@ public abstract class Controlled extends Entity {
   int worldY;
   int screenX;
   int screenY;
+
   String facing;
+  boolean blocking = false;
 
   /** Contructor.
    * 
@@ -80,6 +82,7 @@ public abstract class Controlled extends Entity {
       }
       spriteCounter = 0;
     }
+    this.checkBlocking();
   }
 
   /** Deal with keyboard input.
@@ -223,6 +226,40 @@ public abstract class Controlled extends Entity {
       return "left";
     } else {
       return "right";
+    }
+  }
+  
+  /** Method to return opposites of directions. e.g. inputting "right" returns "left."
+   *
+   * @param direction direction currently facing
+   * @return the opposite of that direction
+   */
+  String opposite(String direction) {
+    if (direction != null) {
+      switch (direction) {
+        case "right":
+          return "left";
+        case "left":
+          return "right";
+        case "up":
+          return "down";
+        case "down":
+          return "up";
+        default:
+          System.out.println("PROBLEM");
+          return "YIKES";
+      }
+    } else {
+      return "N/A";
+    }
+  }
+  
+  void checkBlocking() {
+    if (opposite(this.facing) == this.state.getLastFacing()
+        && (this.keyHandler.leftPressed || this.keyHandler.rightPressed)) {
+      this.blocking = true;
+    } else {
+      this.blocking = false;
     }
   }
 }
