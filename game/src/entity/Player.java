@@ -90,6 +90,7 @@ public class Player extends Controlled {
     this.screenY = worldY - this.offsetY;
 
     this.facing = this.orient(this.gamePanel.goblin);
+    this.direction = this.facing;
     System.out.println("MUDKIP: " + this.hp);
   }
 

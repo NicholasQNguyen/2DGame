@@ -41,6 +41,10 @@ public class Goblin extends Controlled {
       left2 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinLeft2.png"));
       right1 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinRight1.png"));
       right2 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinRight2.png"));
+      leftBlock1 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinLeftBlock1.png"));
+      leftBlock2 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinLeftBlock2.png"));
+      rightBlock1 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinRightBlock1.png"));
+      rightBlock2 = ImageIO.read(getClass().getResourceAsStream("/enemy/goblinRightBlock2.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -69,6 +73,7 @@ public class Goblin extends Controlled {
     this.screenY = worldY - this.gamePanel.player.offsetY;
 
     this.facing = this.orient(this.gamePanel.player);
+    this.direction = this.facing;
     System.out.println("GOBLIN: " + this.hp);
   }
 }
