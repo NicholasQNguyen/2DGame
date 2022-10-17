@@ -1,8 +1,7 @@
 package game;
 
-import java.awt.Rectangle;
-
 import entity.Entity;
+import java.awt.Rectangle;
 
 /** Class to handle collisions.
  *

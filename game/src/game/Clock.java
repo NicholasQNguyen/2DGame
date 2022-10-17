@@ -48,7 +48,7 @@ public class Clock {
         return false;
       }
     }
-    
+
     double getDelta() {
       return this.delta;
     }

@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /** Class to handle keyboard input.
  *

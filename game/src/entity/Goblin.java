@@ -1,12 +1,7 @@
 package entity;
 
-import fsm.EntityState;
 import game.GamePanel;
 import game.GoblinKeyHandler;
-
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -76,4 +71,3 @@ public class Goblin extends Controlled {
     this.facing = this.orient(this.gamePanel.player);
   }
 }
-

@@ -1,14 +1,13 @@
 package entity;
 
+import fsm.EntityState;
+import game.ControlledKeyHandler;
+import game.GamePanel;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import fsm.EntityState;
-import game.ControlledKeyHandler;
-import game.GamePanel;
 
 /** Abstract class for entities that are controlled.
  *
