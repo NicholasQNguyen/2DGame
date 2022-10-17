@@ -28,7 +28,7 @@ public class Goblin extends Controlled {
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    this.hp = 100;
+    this.hp = 20;
   }
   
   private void getImage() {

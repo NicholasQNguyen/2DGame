@@ -38,7 +38,7 @@ public class Player extends Controlled {
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    this.hp = 100;
+    this.hp = 20;
   }
 
   /** Load all of the player images from a stream.
