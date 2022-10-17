@@ -5,16 +5,23 @@
 # Projectile Spam
 A 2D, untraditional, pvp fighting game inspired by games like Divekick and Nidhogg. In this game, you play as a Mudkip or a Goblin shooting fireballs at eachother. 1 shot and it's over, so don't get hit!
 
+### How to run
+Import the project into eclipse. Then go to Main.java and run it from there.
+
 ### Controls
 <b>Mudkip:</b>
 
 WASD to move
+
+Move away from the enemy to block projectiles
 
 F to fire a fireball
 
 <b>Goblin:</b>
 
 Arrow keys to move
+
+Move away from the enemy to block projectile
 
 Space to fire a fireball
 
