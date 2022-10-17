@@ -22,6 +22,8 @@ public class Goblin extends Controlled {
    */
   public Goblin(GamePanel gp, GoblinKeyHandler kh) {
     super(gp, kh);
+    this.worldX = (this.gamePanel.worldWidth / 2);
+    this.worldY = (this.gamePanel.worldHeight / 2);
     this.getImage();
     this.state = new EntityState("left");
     this.hp = 100;
@@ -43,15 +45,8 @@ public class Goblin extends Controlled {
   }
 
   @Override
-  protected void handleEvent() {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  protected void jump() {
-    // TODO Auto-generated method stub
-    
+  public void handleEvent() {
+    super.handleEvent();
   }
 
   @Override

@@ -21,7 +21,7 @@ public class Player extends Controlled {
 
   public int offsetX;
   public int offsetY;
-  private final double fireballTime = .001;
+  private final double fireballTime = .0001;
   double fireballTimer;
   public List<Fireball> fireballList = new CopyOnWriteArrayList<Fireball>();
   
@@ -68,35 +68,23 @@ public class Player extends Controlled {
     }
   }
 
-  /** Deal with keyboard input.
-   *
-   */
+  @Override
   public void handleEvent() {
-    if (keyHandler.upPressed) {
-      direction = "up";
-    } else if (keyHandler.downPressed) {
-      direction = "down";
-    } else if (keyHandler.leftPressed) {
-      direction = "left";
-    } else if (keyHandler.rightPressed) {
-      direction = "right";
-    } else {
-      direction = "standing";
-    }
-
+    super.handleEvent();
     if (keyHandler.spacePressed && this.fireballTimer < 0) {
       this.spitFire();
       this.fireballTimer = this.fireballTime;
     }
   }
+
   
   /** Check for collision and move accordingly.
    * 
    */
   @Override
   public void update(double delta) { 
-    
     super.update(delta);
+    super.checkCollision();
     
     // Move 1 pixel away to prevent being stuck forever
     if (this.leftCollision) {
@@ -112,10 +100,6 @@ public class Player extends Controlled {
     this.topCollision = false;
     this.leftCollision = false;
     this.rightCollision = false;
-
-    // Apply velocity
-    this.worldY += this.velocityY;
-    this.worldX += this.velocityX;
 
     // Handle the fireballTimer
     this.fireballTimer -= delta;
@@ -133,6 +117,7 @@ public class Player extends Controlled {
     this.screenY = worldY - this.offsetY;
   }
 
+
   /** Instantiate and add a new fireball to the list.
    * 
    */
@@ -141,7 +126,7 @@ public class Player extends Controlled {
                                        this.worldX,
                                        this.worldY,
                                        this.state.getLastFacing()));
-
+    this.fireballTimer = this.fireballTime;
   }
 
   /** Method to get the screen offset from world -> screen coordinates.

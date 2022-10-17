@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Rectangle;
+
 import entity.Entity;
 
 /** Class to handle collisions.
@@ -21,17 +23,30 @@ public class CollisionChecker {
    *
    * @param entity player/enemy that we're checking collision for
    */
-  public void checkTile(Entity entity) {
+  public void checkTile(int worldX, int worldY, Rectangle solidArea, Entity entity) {
+    /**
     int entityLeftWorldX = entity.worldX + entity.solidArea.x;
     int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
     int entityTopWorldY = entity.worldY + entity.solidArea.y;
     int entityBottomWorldY = entity.worldY + entity.solidArea.y + entity.solidArea.height;
+    System.out.println("ENTITY: " + entity);
+    System.out.println("worldX " + entity.worldX);
+    System.out.println("worldY " + entity.worldY);
     
     int entityLeftColumn = entityLeftWorldX / gamePanel.tileSize;
     int entityRightColumn = entityRightWorldX / gamePanel.tileSize;
     int entityTopRow = entityTopWorldY / gamePanel.tileSize;
     int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
+    */
+    int entityLeftWorldX = worldX + solidArea.x;
+    int entityRightWorldX = worldX + solidArea.x + solidArea.width;
+    int entityTopWorldY = worldY + solidArea.y;
+    int entityBottomWorldY = worldY + solidArea.y + solidArea.height;
     
+    int entityLeftColumn = entityLeftWorldX / gamePanel.tileSize;
+    int entityRightColumn = entityRightWorldX / gamePanel.tileSize;
+    int entityTopRow = entityTopWorldY / gamePanel.tileSize;
+    int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
     int topLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
     int topRightTile = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
     int bottomLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];

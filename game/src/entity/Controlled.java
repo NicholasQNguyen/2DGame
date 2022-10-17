@@ -47,23 +47,41 @@ public abstract class Controlled extends Entity {
     this.accelX = 0.5;
   }
 
-  abstract void handleEvent();
-
   void jump() {
     this.velocityY -= this.jumpSpeed;
   }
 
   @Override
   public void update(double delta) {
-    // TODO Auto-generated method stub
     this.handleEvent();
     this.state.manageState(this.direction);
+    this.gamePanel.collisionChecker.checkTile(this.worldX, this.worldY, this.solidArea, this);
 
     // Apply gravity
     this.velocityY += gamePanel.gravity;
-    // Check tile collision
-    gamePanel.collisionChecker.checkTile(this);
+    // Apply velocity
+    this.worldX += this.velocityX;
+    this.worldY += this.velocityY;
+  }
 
+  /** Deal with keyboard input.
+   *
+   */
+  public void handleEvent() {
+    if (keyHandler.upPressed) {
+      direction = "up";
+    } else if (keyHandler.downPressed) {
+      direction = "down";
+    } else if (keyHandler.leftPressed) {
+      direction = "left";
+    } else if (keyHandler.rightPressed) {
+      direction = "right";
+    } else {
+      direction = "standing";
+    }
+  } 
+  
+  void checkCollision() {
     if (this.bottomCollision) {
       this.velocityY = 0;
       switch (this.state.getState()) {
