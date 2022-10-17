@@ -72,63 +72,8 @@ public class Goblin extends Controlled {
 
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
+
+    this.facing = this.orient(this.gamePanel.player);
   }
-
-  @Override
-  public void draw(Graphics2D g2) {
-    // TODO Auto-generated method stub
-    BufferedImage image = null;
-
-    switch (this.state.getState()) {
-      case "up":
-        if (this.spriteNumber == 1) {
-          image = up1;
-        } else {
-          image = up2;
-        }
-        break;
-      case "down":
-        if (this.spriteNumber == 1) {
-          image = down1;
-        } else {
-          image = down2;
-        }
-        break;
-      case "right":
-        if (this.spriteNumber == 1) {
-          image = right1;
-        } else {
-          image = right2;
-        }
-        break;
-      case "left":
-        if (this.spriteNumber == 1) {
-          image = left1;
-        } else {
-          image = left2;
-        }
-        break;
-      case "standing":
-        if (this.state.getLastFacing() == "left") {
-          if (this.spriteNumber == 1) {
-            image = left1;
-          } else {
-            image = left2;
-          }
-        } else {
-          if (this.spriteNumber == 1) {
-            image = right1;
-          } else {
-            image = right2;
-          }
-        }
-        break;
-      default:
-        System.out.println("PROBLEM");
-    }
-    g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
-  }
-
-
 }
 

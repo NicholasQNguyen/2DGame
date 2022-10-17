@@ -63,7 +63,7 @@ public class EntityState {
     }
     return this.lastFacing;
   }
-  
+
   /** Handle the movement from input.
    *
    * @param action String with the direction inputted

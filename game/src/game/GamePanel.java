@@ -113,8 +113,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
     this.fireballCollision(player, goblin);
     this.fireballCollision(goblin, player);
-    System.out.println(this.player.hp);
-    System.out.println(this.goblin.hp);
   }
 
   /** All of the drawing stuff.

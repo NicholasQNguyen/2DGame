@@ -40,6 +40,7 @@ public abstract class Controlled extends Entity {
   int worldY;
   int screenX;
   int screenY;
+  String facing;
 
   /** Contructor.
    * 
@@ -137,7 +138,7 @@ public abstract class Controlled extends Entity {
   public void draw(Graphics2D g2) {
     BufferedImage image = null;
 
-    switch (this.state.getState()) {
+    switch (this.facing) {
       case "up":
         if (this.spriteNumber == 1) {
           image = up1;
@@ -212,5 +213,17 @@ public abstract class Controlled extends Entity {
                                        this.worldY,
                                        this.state.getLastFacing()));
     this.fireballTimer = this.fireballTime;
+  }
+  
+  /** Change the direction it's facing to match the enemy's direction.
+  *
+  * @param enemy opponent
+  */
+  String orient(Controlled enemy) {
+    if (enemy.worldX < this.worldX) {
+      return "left";
+    } else {
+      return "right";
+    }
   }
 }

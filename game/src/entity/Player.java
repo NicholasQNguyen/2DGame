@@ -84,6 +84,8 @@ public class Player extends Controlled {
 
     this.screenX = worldX - this.offsetX;
     this.screenY = worldY - this.offsetY;
+
+    this.facing = this.orient(this.gamePanel.goblin);
   }
 
   /** Method to get the screen offset from world -> screen coordinates.
