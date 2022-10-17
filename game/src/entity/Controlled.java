@@ -49,9 +49,9 @@ public abstract class Controlled extends Entity {
     this.gamePanel = gp;
     this.keyHandler = kh;
     this.solidArea = new Rectangle(0, 0, gamePanel.tileSize, gamePanel.tileSize);
-    this.jumpSpeed = 4.55;
+    this.jumpSpeed = 2.55;
     this.direction = "standing";
-    this.accelX = 0.5;
+    this.accelX = 0.2;
   }
 
   void jump() {
@@ -113,12 +113,12 @@ public abstract class Controlled extends Entity {
           this.jump();
           break;
         case "right":
-          if (this.velocityX < 5) {
+          if (this.velocityX < 3) {
             this.velocityX += this.accelX;
           }
           break;
         case "left":
-          if (this.velocityX > -5) {
+          if (this.velocityX > -3) {
             this.velocityX -= this.accelX;
           }
           break;
@@ -168,15 +168,16 @@ public abstract class Controlled extends Entity {
     } else if (this.direction == "left") {
       if (this.getBlocking()) {
         if (this.spriteNumber == 1) {
-          image = rightBlock1;
+          image = leftBlock1;
         } else {
-          image = rightBlock2;
+          image = leftBlock2;
         }
-      }
-      if (this.spriteNumber == 1) {
-        image = left1;
       } else {
-        image = left2;
+        if (this.spriteNumber == 1) {
+          image = left1;
+        } else {
+          image = left2;
+        }
       }
     } else if (this.direction == "standing") {
       if (this.state.getLastFacing() == "left") {

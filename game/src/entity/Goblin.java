@@ -74,6 +74,6 @@ public class Goblin extends Controlled {
 
     this.facing = this.orient(this.gamePanel.player);
     this.direction = this.facing;
-    System.out.println("GOBLIN: " + this.hp);
+    // System.out.println("GOBLIN: " + this.hp);
   }
 }
