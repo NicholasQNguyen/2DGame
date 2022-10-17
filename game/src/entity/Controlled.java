@@ -100,7 +100,7 @@ public abstract class Controlled extends Entity {
     } else {
       direction = "standing";
     }
-    if (keyHandler.spacePressed && this.fireballTimer < 0) {
+    if (keyHandler.spacePressed && this.fireballTimer < 0 && !this.blocking) {
       this.spitFire();
       this.fireballTimer = this.fireballTime;
     }
