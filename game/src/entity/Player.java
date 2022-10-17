@@ -25,6 +25,7 @@ public class Player extends Controlled {
     super(gp, kh);
     setDefaultValues();
     getPlayerImage();
+    this.hp = 100;
   }
 
   /** Helper function to constructor where we initialize some values.

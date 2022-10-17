@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
 
   // Screen Settings
   public final int maxScreenColumns = 32;
-  public final int maxScreenRows = 17;
+  public final int maxScreenRows = 14;
   public final int screenWidth = tileSize * maxScreenColumns;
   public final int screenHeight = tileSize * maxScreenRows;
 
@@ -91,7 +91,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     while (gameThread != null) {
       if (Clock.getInstance().update()) {
-
         update(Clock.getInstance().getDelta());
         repaint();
       }
@@ -112,8 +111,10 @@ public class GamePanel extends JPanel implements Runnable {
     for (Entity enemy : this.enemyList) {
       enemy.update(Clock.getInstance().getDelta());
     }
-    this.fireballCollision(player);
-    this.fireballCollision(goblin);
+    this.fireballCollision(player, goblin);
+    this.fireballCollision(goblin, player);
+    System.out.println(this.player.hp);
+    System.out.println(this.goblin.hp);
   }
 
   /** All of the drawing stuff.
@@ -138,7 +139,7 @@ public class GamePanel extends JPanel implements Runnable {
     g2.dispose();
   }
 
-  private void fireballCollision(Controlled player) {
+  private void fireballCollision(Controlled player, Controlled target) {
     for (Fireball f : player.fireballList) {
       f.update(Clock.getInstance().getDelta());
       if (player.fireballList.size() > 0) {
@@ -150,6 +151,11 @@ public class GamePanel extends JPanel implements Runnable {
             if (enemy.hp <= 0) {
               this.enemyList.remove(enemy);
             }
+          }
+          if (this.collisionChecker.checkFireball(target, f)) {
+            player.fireballList.remove(f);
+            target.takeDamage(f.damage);
+            System.out.println(enemy.hp);
           }
         }
       }

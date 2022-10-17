@@ -53,7 +53,6 @@ public class Goblin extends Controlled {
   public void update(double delta) {
     super.update(delta);
     super.checkCollision();
-    System.out.println("Y: " + this.worldY);
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
   }
