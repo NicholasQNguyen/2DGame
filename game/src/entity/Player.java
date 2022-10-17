@@ -25,7 +25,6 @@ public class Player extends Controlled {
     super(gp, kh);
     setDefaultValues();
     getPlayerImage();
-    this.hp = 100;
   }
 
   /** Helper function to constructor where we initialize some values.
@@ -39,6 +38,7 @@ public class Player extends Controlled {
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
+    this.hp = 100;
   }
 
   /** Load all of the player images from a stream.

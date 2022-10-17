@@ -22,15 +22,17 @@ public class Goblin extends Controlled {
    */
   public Goblin(GamePanel gp, GoblinKeyHandler kh) {
     super(gp, kh);
+    this.setDefaultValues();
+    this.getImage();
+  }
+  
+  private void setDefaultValues() {
     this.worldX = gamePanel.worldWidth / 2 - 400;
     this.worldY = 0;
-    // Start just off center X and above the ground Y
     this.screenX = gamePanel.screenWidth / 2;
     this.screenY = gamePanel.screenHeight / 2;
     this.worldX += this.screenX;
     this.worldY += this.screenY;
-    this.getImage();
-    this.state = new EntityState("left");
     this.hp = 100;
   }
   
@@ -53,6 +55,21 @@ public class Goblin extends Controlled {
   public void update(double delta) {
     super.update(delta);
     super.checkCollision();
+    // Move 1 pixel away to prevent being stuck forever
+    if (this.leftCollision) {
+      this.velocityX = 0;
+      this.worldX += 1;
+    } else if (this.rightCollision) {
+      this.velocityX = 0;
+      this.worldX -= 1;
+    }
+
+    // Reset the collisions
+    this.bottomCollision = false;
+    this.topCollision = false;
+    this.leftCollision = false;
+    this.rightCollision = false;
+
     this.screenX = worldX - this.gamePanel.player.offsetX;
     this.screenY = worldY - this.gamePanel.player.offsetY;
   }
