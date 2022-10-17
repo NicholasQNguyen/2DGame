@@ -14,6 +14,7 @@ Goblin:
 Arrow keys to move
 Space to fire a fireball
 
+#### Credits
 Following this tutorial:
 https://www.youtube.com/watch?v=om59cwR7psI
 
