@@ -54,6 +54,10 @@ public class Player extends Controlled {
       left2 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipLeft2.png"));
       right1 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipRight1.png"));
       right2 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipRight2.png"));
+      leftBlock1 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipLeftBlock1.png"));
+      leftBlock2 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipLeftBlock2.png"));
+      rightBlock1 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipRightBlock1.png"));
+      rightBlock2 = ImageIO.read(getClass().getResourceAsStream("/player/mudkipRightBlock2.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }

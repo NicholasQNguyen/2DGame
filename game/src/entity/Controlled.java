@@ -24,6 +24,10 @@ public abstract class Controlled extends Entity {
   public BufferedImage left2;
   public BufferedImage right1;
   public BufferedImage right2;
+  public BufferedImage leftBlock1;
+  public BufferedImage leftBlock2;
+  public BufferedImage rightBlock1;
+  public BufferedImage rightBlock2;
   public int spriteCounter = 0;
   public int spriteNumber = 1;
 
@@ -135,52 +139,59 @@ public abstract class Controlled extends Entity {
   public void draw(Graphics2D g2) {
     BufferedImage image = null;
 
-    switch (this.facing) {
-      case "up":
+    if (this.direction == "up") {
+      if (this.spriteNumber == 1) {
+        image = up1;
+      } else {
+        image = up2;
+      }
+    } else if (this.direction == "down") {
+      if (this.spriteNumber == 1) {
+        image = down1;
+      } else {
+        image = down2;
+      }
+    } else if (this.direction == "right") {
+      if (this.getBlocking()) {
         if (this.spriteNumber == 1) {
-          image = up1;
+          image = rightBlock1;
         } else {
-          image = up2;
+          image = rightBlock2;
         }
-        break;
-      case "down":
-        if (this.spriteNumber == 1) {
-          image = down1;
-        } else {
-          image = down2;
-        }
-        break;
-      case "right":
+      } else {
         if (this.spriteNumber == 1) {
           image = right1;
         } else {
           image = right2;
         }
-        break;
-      case "left":
+      }
+    } else if (this.direction == "left") {
+      if (this.getBlocking()) {
+        if (this.spriteNumber == 1) {
+          image = rightBlock1;
+        } else {
+          image = rightBlock2;
+        }
+      }
+      if (this.spriteNumber == 1) {
+        image = left1;
+      } else {
+        image = left2;
+      }
+    } else if (this.direction == "standing") {
+      if (this.state.getLastFacing() == "left") {
         if (this.spriteNumber == 1) {
           image = left1;
         } else {
           image = left2;
         }
-        break;
-      case "standing":
-        if (this.state.getLastFacing() == "left") {
-          if (this.spriteNumber == 1) {
-            image = left1;
-          } else {
-            image = left2;
-          }
+      } else {
+        if (this.spriteNumber == 1) {
+          image = right1;
         } else {
-          if (this.spriteNumber == 1) {
-            image = right1;
-          } else {
-            image = right2;
-          }
+          image = right2;
         }
-        break;
-      default:
-        System.out.println("PROBLEM");
+      }
     }
     g2.drawImage(image, this.screenX, this.screenY, gamePanel.tileSize, gamePanel.tileSize, null);
   }

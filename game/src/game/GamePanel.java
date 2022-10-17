@@ -115,12 +115,14 @@ public class GamePanel extends JPanel implements Runnable {
     
     if (this.player.getHp() <= 0) {
       System.out.println("GOBLIN WINS");
+      System.exit(0);
     } else if (this.goblin.getHp() <= 0) {
       System.out.println("MUDKIP WINS");
+      System.exit(0); 
     }
   }
 
-  /** All of the drawing stuff.
+  /** Draw all of the elements.
    * 
    */
   public void paintComponent(Graphics g) {
