@@ -112,6 +112,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
     this.fireballCollision(player, goblin);
     this.fireballCollision(goblin, player);
+    
+    if (this.player.getHp() <= 0) {
+      System.out.println("GOBLIN WINS");
+    } else if (this.goblin.getHp() <= 0) {
+      System.out.println("MUDKIP WINS");
+    }
   }
 
   /** All of the drawing stuff.
@@ -149,7 +155,8 @@ public class GamePanel extends JPanel implements Runnable {
               this.enemyList.remove(enemy);
             }
           }
-          if (this.collisionChecker.checkFireball(target, f)) {
+          if (this.collisionChecker.checkFireball(target, f)
+              && !target.getBlocking()) {
             player.fireballList.remove(f);
             target.takeDamage(f.damage);
             System.out.println(enemy.hp);

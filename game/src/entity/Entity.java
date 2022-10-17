@@ -39,4 +39,8 @@ public abstract class Entity {
   public void takeDamage(int damage) {
     this.hp -= damage;
   }
+  
+  public int getHp() {
+    return this.hp;
+  }
 }
