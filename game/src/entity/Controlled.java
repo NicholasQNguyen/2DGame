@@ -35,11 +35,6 @@ public abstract class Controlled extends Entity {
   EntityState state = new EntityState("standing");
   ControlledKeyHandler keyHandler;
 
-  int worldX;
-  int worldY;
-  int screenX;
-  int screenY;
-
   String facing;
   boolean blocking = false;
 
@@ -100,7 +95,7 @@ public abstract class Controlled extends Entity {
     } else {
       direction = "standing";
     }
-    if (keyHandler.spacePressed && this.fireballTimer < 0) {
+    if (keyHandler.spacePressed && this.fireballTimer < 0 && !this.blocking) {
       this.spitFire();
       this.fireballTimer = this.fireballTime;
     }
