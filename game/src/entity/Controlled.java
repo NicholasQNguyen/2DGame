@@ -213,7 +213,7 @@ public abstract class Controlled extends Entity {
     this.fireballList.add(new Fireball(gamePanel,
                                        this.worldX,
                                        this.worldY,
-                                       this.state.getLastFacing()));
+                                       this.facing));
     this.fireballTimer = this.fireballTime;
   }
   
