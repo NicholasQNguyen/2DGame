@@ -138,7 +138,6 @@ public class GamePanel extends JPanel implements Runnable {
     g2.dispose();
   }
 
-
   private void fireballCollision(Controlled player) {
     for (Fireball f : player.fireballList) {
       f.update(Clock.getInstance().getDelta());
@@ -156,5 +155,4 @@ public class GamePanel extends JPanel implements Runnable {
       }
     }
   }
-  
 }

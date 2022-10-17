@@ -31,7 +31,7 @@ public class Player extends Controlled {
    *
    */
   public void setDefaultValues() {
-    this.worldX = gamePanel.worldWidth / 2 - 400;
+    this.worldX = gamePanel.worldWidth / 2 - 1200;
     this.worldY = 0;
     // Start just off center X and above the ground Y
     this.screenX = gamePanel.screenWidth / 2;
