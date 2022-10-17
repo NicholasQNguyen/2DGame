@@ -64,27 +64,35 @@ public class CollisionChecker {
     int entityLeftWorldX = entity.worldX + entity.solidArea.x;
     int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
     int entityTopWorldY = entity.worldY + entity.solidArea.y;
+    int entityBottomWorldY = entity.worldY + entity.solidArea.y + entity.solidArea.height;
     
     int entityLeftColumn = entityLeftWorldX / gamePanel.tileSize;
     int entityRightColumn = entityRightWorldX / gamePanel.tileSize;
     int entityTopRow = entityTopWorldY / gamePanel.tileSize;
+    int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
 
     // Get collision of the fireball
     int fireLeftWorldX = fireball.worldX + fireball.solidArea.x;
     int fireRightWorldX = fireball.worldX + fireball.solidArea.x + fireball.solidArea.width;
     int fireTopWorldY = fireball.worldY + fireball.solidArea.y;
+    int fireBottomWorldY = fireball.worldY + fireball.solidArea.y + fireball.solidArea.height;
     
     int fireLeftColumn = fireLeftWorldX / gamePanel.tileSize;
     int fireRightColumn = fireRightWorldX / gamePanel.tileSize;
     int fireTopRow = fireTopWorldY / gamePanel.tileSize;
+    int fireBottomRow = fireBottomWorldY / gamePanel.tileSize;
     
     // Check if it hits
     boolean hit = false;
     if ((fireRightColumn == entityLeftColumn
         && fireTopRow == entityTopRow) 
         || (fireLeftColumn == entityRightColumn
-        && fireTopRow == entityTopRow)) {
-      return hit = true;
+        && fireTopRow == entityTopRow)
+        || (fireRightColumn == entityLeftColumn
+        && fireBottomRow == entityBottomRow) 
+        || (fireLeftColumn == entityRightColumn
+        && fireBottomRow == entityBottomRow)) {
+      hit = true;
     }
     return hit;
   }

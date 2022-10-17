@@ -86,6 +86,7 @@ public class Player extends Controlled {
     this.screenY = worldY - this.offsetY;
 
     this.facing = this.orient(this.gamePanel.goblin);
+    System.out.println("MUDKIP: " + this.hp);
   }
 
   /** Method to get the screen offset from world -> screen coordinates.

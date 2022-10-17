@@ -262,4 +262,8 @@ public abstract class Controlled extends Entity {
       this.blocking = false;
     }
   }
+  
+  public boolean getBlocking() {
+    return this.blocking;
+  }
 }

@@ -69,5 +69,6 @@ public class Goblin extends Controlled {
     this.screenY = worldY - this.gamePanel.player.offsetY;
 
     this.facing = this.orient(this.gamePanel.player);
+    System.out.println("GOBLIN: " + this.hp);
   }
 }
