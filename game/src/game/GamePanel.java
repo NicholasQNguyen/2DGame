@@ -21,8 +21,8 @@ import tile.TileManager;
  * @author Nicholas Nguyen
  *
 */
-@SuppressWarnings("serial")
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends AbstractPanel implements Runnable {
+  private static final long serialVersionUID = 8456515379314064814L;
 
   // Tile settings
   final int originalTileSize = 16;
