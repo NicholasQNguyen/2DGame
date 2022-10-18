@@ -45,9 +45,12 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
     }
   }
   
+  public void startGameThread() {
+    thread = new Thread(this);
+    thread.start();
+  }
+
   abstract void update(double delta);
 
-  protected void paintComponent(Graphics g) {
-    Graphics2D g2 = (Graphics2D) g;
-  }
+  protected abstract void paintComponent(Graphics g);
 }

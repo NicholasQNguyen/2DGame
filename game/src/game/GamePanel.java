@@ -60,12 +60,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
     }
   }
 
-  public void startGameThread() {
-    thread = new Thread(this);
-    thread.start();
-  }
-
-  
   /** Main game data loop.
    * 
    */

@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
  *
  */
 public class MenuPanel extends AbstractPanel implements Runnable {
+  private static final long serialVersionUID = 326275584165267040L;
 
   MenuKeyHandler menuKeyHandler = new MenuKeyHandler();
 
@@ -21,21 +22,16 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(Color.white);
     this.setDoubleBuffered(true);
-    this.setFocusable(true);
     this.addKeyListener(menuKeyHandler);
-  }
-
-  public void startGameThread() {
-    thread = new Thread(this);
-    thread.start();
-  }
-
-  @Override
-  public void run() {
+    this.setFocusable(true);
   }
 
   @Override
   void update(double delta) {
+    // Exit on esc press
+    if (menuKeyHandler.escPressed) {
+      System.exit(0);
+    }  
     // TODO Auto-generated method stub
     
   }
