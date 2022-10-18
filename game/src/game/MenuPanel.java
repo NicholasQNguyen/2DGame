@@ -22,6 +22,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     this.setBackground(Color.white);
     this.setDoubleBuffered(true);
     this.setFocusable(true);
+    this.addKeyListener(menuKeyHandler);
   }
 
   public void startGameThread() {
