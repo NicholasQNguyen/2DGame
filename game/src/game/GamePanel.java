@@ -13,7 +13,6 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.swing.JPanel;
 import tile.TileManager;
 
 /** Contains main data and art loops.
