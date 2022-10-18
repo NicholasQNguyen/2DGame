@@ -2,7 +2,6 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 
 /** A panel to run the main menu.
  *
