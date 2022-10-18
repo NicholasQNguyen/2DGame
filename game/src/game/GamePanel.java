@@ -28,7 +28,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
   public final double gravity = .1;
 
   // Initialize some components
-  Thread gameThread;
   PlayerKeyHandler playerKeyHandler = new PlayerKeyHandler();
   GoblinKeyHandler goblinKeyHandler = new GoblinKeyHandler();
   public Player player = new Player(this, playerKeyHandler);
@@ -63,21 +62,10 @@ public class GamePanel extends AbstractPanel implements Runnable {
   }
 
   public void startGameThread() {
-    gameThread = new Thread(this);
-    gameThread.start();
+    thread = new Thread(this);
+    thread.start();
   }
 
-  // The game loop
-  @Override
-  public void run() {
-
-    while (gameThread != null) {
-      if (Clock.getInstance().update()) {
-        update(Clock.getInstance().getDelta());
-        repaint();
-      }
-    }
-  }
   
   /** Main game data loop.
    * 

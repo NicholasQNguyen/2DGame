@@ -26,7 +26,21 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   public final int worldWidth = this.maxWorldColumns * this.tileSize;
   public final int worldHeight = this.maxWorldRows * this.tileSize;
   
+  Thread thread;
+
   public AbstractPanel() {
   }
 
+  // The game loop
+  @Override
+  public void run() {
+    while (thread != null) {
+      if (Clock.getInstance().update()) {
+        update(Clock.getInstance().getDelta());
+        repaint();
+      }
+    }
+  }
+  
+  abstract void update(double delta);
 }

@@ -9,6 +9,9 @@ import java.awt.Dimension;
  *
  */
 public class MenuPanel extends AbstractPanel implements Runnable {
+
+  MenuKeyHandler menuKeyHandler = new MenuKeyHandler();
+
   /** Constructor. 
    * 
    */
@@ -19,10 +22,18 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     this.setFocusable(true);
   }
 
+  public void startGameThread() {
+    thread = new Thread(this);
+    thread.start();
+  }
+
   @Override
   public void run() {
+  }
+
+  @Override
+  void update(double delta) {
     // TODO Auto-generated method stub
     
   }
-
 }
