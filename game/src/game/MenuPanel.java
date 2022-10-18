@@ -2,6 +2,8 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /** A panel to run the main menu.
  *
@@ -35,5 +37,10 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   void update(double delta) {
     // TODO Auto-generated method stub
     
+  }
+
+  @Override
+  protected void paintComponent(Graphics g) {
+    // TODO Auto-generated method stub
   }
 }

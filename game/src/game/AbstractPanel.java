@@ -1,6 +1,9 @@
 package game;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import tile.TileManager;
 
 /** Abstract class for the panels.
  *
@@ -43,4 +46,8 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   }
   
   abstract void update(double delta);
+
+  protected void paintComponent(Graphics g) {
+    Graphics2D g2 = (Graphics2D) g;
+  }
 }
