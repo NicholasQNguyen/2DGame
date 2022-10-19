@@ -19,6 +19,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   MenuTileManager mtm = new MenuTileManager(this);
   
   JButton button1 = new JButton("Start");
+  MenuListener menuListener = new MenuListener();
 
   /** Constructor. 
    * 
@@ -30,8 +31,9 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     this.setFocusable(true);
     this.setBackground(Color.BLUE);
 
-    button1.setBounds(50, 100, 95, 30);  
-    this.add(button1);  
+    button1.setBounds(50, 100, 95, 30);
+    button1.addActionListener(menuListener);
+    this.add(button1);
   }
 
   @Override
@@ -45,7 +47,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   @Override
   protected void paintComponent(Graphics g) {
     Graphics2D g2 = (Graphics2D) g;
-    // mtm.draw(g2);
+    mtm.draw(g2);
     this.button1.repaint();
     // Free up the memory after we draw
     g2.dispose();
