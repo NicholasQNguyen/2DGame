@@ -51,7 +51,8 @@ public class ScreenManager {
       menuPanel.run();
     }
     if (desiredState == "game") {
-      window.remove(menuPanel);
+      menuPanel.setVisible(false);
+      window.add(gamePanel);
       gamePanel.run();
     }
   }
