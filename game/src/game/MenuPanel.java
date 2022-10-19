@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import javax.swing.JButton;
 import tile.MenuTileManager;
 
 /** A panel to run the main menu.
@@ -16,16 +17,21 @@ public class MenuPanel extends AbstractPanel implements Runnable {
 
   MenuKeyHandler menuKeyHandler = new MenuKeyHandler();
   MenuTileManager mtm = new MenuTileManager(this);
+  
+  JButton button1 = new JButton("Start");
 
   /** Constructor. 
    * 
    */
   public MenuPanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-    this.setBackground(Color.white);
     this.setDoubleBuffered(true);
     this.addKeyListener(menuKeyHandler);
     this.setFocusable(true);
+    this.setBackground(Color.BLUE);
+
+    button1.setBounds(50, 100, 95, 30);  
+    this.add(button1);  
   }
 
   @Override
@@ -39,7 +45,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   @Override
   protected void paintComponent(Graphics g) {
     Graphics2D g2 = (Graphics2D) g;
-    mtm.draw(g2);
+    // mtm.draw(g2);
     // Free up the memory after we draw
     g2.dispose();
   }

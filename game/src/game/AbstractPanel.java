@@ -1,9 +1,7 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.JPanel;
-import tile.TileManager;
 
 /** Abstract class for the panels.
  *
