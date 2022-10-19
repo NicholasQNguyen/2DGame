@@ -46,5 +46,12 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   /** The thread to run.
    * 
    */
-  public abstract void run();
+  public void run() {
+    while (thread != null) {
+      if (Clock.getInstance().update()) {
+        this.update(Clock.getInstance().getDelta());
+        repaint();
+      }
+    }
+  }
 }
