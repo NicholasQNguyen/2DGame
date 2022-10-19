@@ -40,10 +40,8 @@ public class ScreenManager {
     if (desiredState == "game") {
       menuPanel.setVisible(false);
       gamePanel.startGameThread();
-      gamePanel.requestFocusInWindow();
-      gamePanel.setVisible(true);
       window.add(gamePanel);
-      System.out.println("GP FOCUS: " + gamePanel.isFocusOwner());
+      gamePanel.requestFocus();
       // menuPanel.stopGameThread();
     }
   }

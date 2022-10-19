@@ -61,10 +61,6 @@ public abstract class Controlled extends Entity {
   @Override
   public void update(double delta) {
     this.handleEvent();
-    System.out.println("BOT " + keyHandler.downPressed);
-    System.out.println("TOP " + keyHandler.upPressed);
-    System.out.println("LEFT " + keyHandler.leftPressed);
-    System.out.println("RIGHT " + keyHandler.rightPressed);
     this.state.manageState(this.direction);
     this.gamePanel.collisionChecker.checkTile(this.worldX, this.worldY, this.solidArea, this);
 
