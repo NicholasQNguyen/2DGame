@@ -16,5 +16,4 @@ public class MenuListener implements ActionListener {
     starting = true;
     System.out.println("HAVE FUN");
   }
-
 }

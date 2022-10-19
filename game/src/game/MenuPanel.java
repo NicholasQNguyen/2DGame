@@ -1,5 +1,6 @@
 package game;
 
+import fsm.ScreenState;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,6 +21,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   
   JButton button1 = new JButton("Start");
   MenuListener menuListener = new MenuListener();
+  boolean starting = false;
 
   /** Constructor. 
    * 
@@ -41,7 +43,15 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     // Exit on esc press
     if (menuKeyHandler.escPressed) {
       System.exit(0);
-    }  
+    }
+    if (this.starting) {
+      this.setEnabled(false);
+    }
+    if (this.menuListener.starting) {
+      System.out.println("STARTING");
+      ScreenState.getInstance().setState("game");
+      this.starting = true;
+    }
   }
 
   @Override
@@ -55,6 +65,8 @@ public class MenuPanel extends AbstractPanel implements Runnable {
 
   @Override
   public void run() {
-    super.run();
+    while (!this.starting) {
+      super.run();
+    }
   }
 }  

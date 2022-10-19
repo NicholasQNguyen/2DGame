@@ -23,7 +23,7 @@ public class Main {
 
     final GamePanel gamePanel = new GamePanel();
     final MenuPanel menuPanel = new MenuPanel();
-    // window.add(gamePanel);
+    window.add(gamePanel);
     window.add(menuPanel);
     window.pack();
 
