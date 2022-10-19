@@ -31,11 +31,14 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   
   public Thread thread = new Thread(this);
 
+  /** Constructor.
+   * 
+   */
   public AbstractPanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setDoubleBuffered(true);
-    this.setFocusable(true);
     this.setBackground(Color.BLUE);
+    this.setFocusable(true);
   }
 
   public void startGameThread() {

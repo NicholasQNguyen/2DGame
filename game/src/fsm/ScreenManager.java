@@ -1,8 +1,11 @@
 package fsm;
 
 import game.GamePanel;
+import game.GoblinKeyHandler;
 import game.Main;
 import game.MenuPanel;
+import game.PlayerKeyHandler;
+
 import javax.swing.JFrame;
 
 /** Manager to handle if we're in game, menu, etc.
@@ -36,9 +39,12 @@ public class ScreenManager {
     }
     if (desiredState == "game") {
       menuPanel.setVisible(false);
-      window.add(gamePanel);
       gamePanel.startGameThread();
-      menuPanel.stopGameThread();
+      gamePanel.requestFocusInWindow();
+      gamePanel.setVisible(true);
+      window.add(gamePanel);
+      System.out.println("GP FOCUS: " + gamePanel.isFocusOwner());
+      // menuPanel.stopGameThread();
     }
   }
 }
