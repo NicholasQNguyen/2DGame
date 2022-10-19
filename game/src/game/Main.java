@@ -1,5 +1,6 @@
 package game;
 
+import fsm.ScreenManager;
 import javax.swing.JFrame;
 
 /** Class to start up the game.
@@ -21,16 +22,16 @@ public class Main {
     window.setResizable(false);
     window.setTitle("2D Game");
 
-    final GamePanel gamePanel = new GamePanel();
-    final MenuPanel menuPanel = new MenuPanel();
-    window.add(gamePanel);
-    window.add(menuPanel);
     window.pack();
 
     window.setLocationRelativeTo(null);
     window.setVisible(true);
-
-    gamePanel.startGameThread();
-    menuPanel.startGameThread();
+    
+    ScreenManager sm = new ScreenManager(window);
+    if (sm.getState() == "menu") {
+      // TODO run the menu
+    } else {
+      // TODO run the game
+    }
   }
 }

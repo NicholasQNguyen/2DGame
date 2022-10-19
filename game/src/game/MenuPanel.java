@@ -1,6 +1,5 @@
 package game;
 
-import fsm.ScreenState;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -49,7 +48,6 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     }
     if (this.menuListener.starting) {
       System.out.println("STARTING");
-      ScreenState.getInstance().setState("game");
       this.starting = true;
     }
   }
