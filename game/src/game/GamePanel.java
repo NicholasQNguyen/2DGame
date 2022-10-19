@@ -67,7 +67,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
    */
   public void update(double delta) {
     // Exit on esc press
-    System.out.println("GAME PANEL UPDATE");
     if (playerKeyHandler.escPressed) {
       System.exit(0);
     }  

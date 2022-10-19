@@ -13,7 +13,6 @@ import javax.swing.JFrame;
  *
  */
 public class ScreenManager {
-  static String state;
   public static JFrame window;
   static GamePanel gamePanel = Main.gp;
   static MenuPanel menuPanel = Main.mp;
@@ -24,25 +23,10 @@ public class ScreenManager {
    */
   public ScreenManager() {
     window = Main.window;
-
-  }
-    
-  public void setState(String newState) {
-    state = newState;
-  }
-  
-  public String getState() {
-    return state;
+    window.add(menuPanel);
+    menuPanel.startGameThread();
   }
 
-  public void setPanel(AbstractPanel newPanel) {
-    currentPanel = newPanel;
-  }
-  
-  public AbstractPanel getPanel() {
-    return currentPanel;
-  }
-  
   /** Changes which program we run based on which state we're in.
    *
    */
@@ -51,10 +35,9 @@ public class ScreenManager {
       menuPanel.run();
     }
     if (desiredState == "game") {
-      menuPanel.stopGameThread();
       menuPanel.setVisible(false);
+      window.add(gamePanel);
       gamePanel.startGameThread();
-      gamePanel.setVisible(true);
     }
   }
 }

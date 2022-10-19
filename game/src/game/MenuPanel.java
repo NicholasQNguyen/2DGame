@@ -46,11 +46,11 @@ public class MenuPanel extends AbstractPanel implements Runnable {
       System.exit(0);
     }
     if (this.starting) {
-      this.remove(this);
       ScreenManager.chooseRun("game");
     }
+    System.out.println("MENULISTENER BOOL: " + this.menuListener.starting);
     if (this.menuListener.starting) {
-      System.out.println("STARTING");
+      System.out.println("YOOOOOOOOOOO");
       this.starting = true;
     }
   }
@@ -66,7 +66,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
 
   @Override
   public void run() {
-    while (!this.starting) {
+    if (!this.starting) {
       super.run();
     }
   }
