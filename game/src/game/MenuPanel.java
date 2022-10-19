@@ -46,6 +46,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   protected void paintComponent(Graphics g) {
     Graphics2D g2 = (Graphics2D) g;
     // mtm.draw(g2);
+    this.button1.repaint();
     // Free up the memory after we draw
     g2.dispose();
   }
