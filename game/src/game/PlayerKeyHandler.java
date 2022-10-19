@@ -39,7 +39,7 @@ public class PlayerKeyHandler extends ControlledKeyHandler {
   }
 
   /** When you release a key.
-   * 
+   *
    */
   public void keyReleased(KeyEvent e) {
     int code = e.getKeyCode();
