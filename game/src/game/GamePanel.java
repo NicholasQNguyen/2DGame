@@ -43,12 +43,9 @@ public class GamePanel extends AbstractPanel implements Runnable {
    *
  */
   public GamePanel() {
-    this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-    this.setBackground(Color.white);
-    this.setDoubleBuffered(true);
+    super();
     this.addKeyListener(playerKeyHandler);
     this.addKeyListener(goblinKeyHandler);
-    this.setFocusable(true);
     // TODO Get controllers working.
     // this.jsHandler = new JoystickHandler();
 
@@ -70,7 +67,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
     if (playerKeyHandler.escPressed) {
       System.exit(0);
     }  
-    System.out.println("UPDATING GAMEPANEL");
     player.update(Clock.getInstance().getDelta());
     goblin.update(Clock.getInstance().getDelta());
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);

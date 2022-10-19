@@ -21,10 +21,10 @@ public class ScreenManager {
    */
   public ScreenManager() {
     window = Main.window;
-    // window.add(menuPanel);
-    window.add(gamePanel);
-    // menuPanel.startGameThread();
-    gamePanel.startGameThread();
+    window.add(menuPanel);
+    // window.add(gamePanel);
+    menuPanel.startGameThread();
+    // gamePanel.startGameThread();
   }
 
   /** Changes which program we run based on which state we're in.
@@ -37,8 +37,8 @@ public class ScreenManager {
     if (desiredState == "game") {
       menuPanel.setVisible(false);
       window.add(gamePanel);
-      menuPanel.stopGameThread();
       gamePanel.startGameThread();
+      menuPanel.stopGameThread();
     }
   }
 }

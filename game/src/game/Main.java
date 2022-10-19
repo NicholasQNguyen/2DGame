@@ -19,7 +19,6 @@ public class Main {
    */
   public static void main(String[] args) {
     System.out.println("Hello World!");
-    ScreenManager sm = new ScreenManager();
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setResizable(false);
     window.setTitle("2D Game");

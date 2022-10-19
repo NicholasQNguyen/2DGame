@@ -69,6 +69,7 @@ public class Player extends Controlled {
   @Override
   public void update(double delta) { 
     super.update(delta);
+    System.out.println("PLAYER UPDATING");
     super.checkCollision();
     
     // Move 1 pixel away to prevent being stuck forever

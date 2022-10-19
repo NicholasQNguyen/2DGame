@@ -1,13 +1,10 @@
 package game;
 
-
-import java.awt.Color;
+import fsm.ScreenManager;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JButton;
-
-import fsm.ScreenManager;
 import tile.MenuTileManager;
 
 /** A panel to run the main menu.
@@ -29,12 +26,8 @@ public class MenuPanel extends AbstractPanel implements Runnable {
    * 
    */
   public MenuPanel() {
-    this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-    this.setDoubleBuffered(true);
+    super();
     this.addKeyListener(menuKeyHandler);
-    this.setFocusable(true);
-    this.setBackground(Color.BLUE);
-
     button1.setBounds(50, 100, 95, 30);
     button1.addActionListener(menuListener);
     this.add(button1);

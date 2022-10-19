@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -27,20 +29,26 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   public final int worldWidth = this.maxWorldColumns * this.tileSize;
   public final int worldHeight = this.maxWorldRows * this.tileSize;
   
-  Thread thread = new Thread(this);
+  public Thread thread = new Thread(this);
 
   public AbstractPanel() {
+    this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+    this.setDoubleBuffered(true);
+    this.setFocusable(true);
+    this.setBackground(Color.BLUE);
   }
 
   public void startGameThread() {
     thread.start();
   }
   
+  /** Pauses the game thread.
+   * 
+   */
   public void stopGameThread() {
     try {
       thread.sleep(10000000);
     } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
