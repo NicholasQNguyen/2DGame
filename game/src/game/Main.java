@@ -22,14 +22,14 @@ public class Main {
     window.setResizable(false);
     window.setTitle("2D Game");
 
-    window.pack();
-
-    window.setLocationRelativeTo(null);
-    window.setVisible(true);
     
     ScreenManager sm = new ScreenManager(window);
     if (sm.getState() == "menu") {
       // TODO run the menu
+      window.add(sm.getPanel());
+      window.pack();
+      window.setLocationRelativeTo(null);
+      window.setVisible(true);
     } else {
       // TODO run the game
     }

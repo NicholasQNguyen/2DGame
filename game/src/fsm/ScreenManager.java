@@ -23,7 +23,7 @@ public class ScreenManager {
    */
   public ScreenManager(JFrame window) {
     this.window = window;
-    this.state = "main menu";
+    this.state = "menu";
     final GamePanel gamePanel = new GamePanel();
     final MenuPanel menuPanel = new MenuPanel();
     window.add(gamePanel);
