@@ -1,6 +1,5 @@
 package fsm;
 
-import game.AbstractPanel;
 import game.GamePanel;
 import game.Main;
 import game.MenuPanel;
@@ -16,15 +15,16 @@ public class ScreenManager {
   public static JFrame window;
   static GamePanel gamePanel = Main.gp;
   static MenuPanel menuPanel = Main.mp;
-  static AbstractPanel currentPanel;
 
   /** Constructor.
    *
    */
   public ScreenManager() {
     window = Main.window;
-    window.add(menuPanel);
-    menuPanel.startGameThread();
+    // window.add(menuPanel);
+    window.add(gamePanel);
+    // menuPanel.startGameThread();
+    gamePanel.startGameThread();
   }
 
   /** Changes which program we run based on which state we're in.
@@ -37,6 +37,7 @@ public class ScreenManager {
     if (desiredState == "game") {
       menuPanel.setVisible(false);
       window.add(gamePanel);
+      menuPanel.stopGameThread();
       gamePanel.startGameThread();
     }
   }

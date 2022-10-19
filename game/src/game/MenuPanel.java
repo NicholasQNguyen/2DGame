@@ -1,5 +1,6 @@
 package game;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -48,9 +49,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     if (this.starting) {
       ScreenManager.chooseRun("game");
     }
-    System.out.println("MENULISTENER BOOL: " + this.menuListener.starting);
     if (this.menuListener.starting) {
-      System.out.println("YOOOOOOOOOOO");
       this.starting = true;
     }
   }

@@ -70,6 +70,7 @@ public class GamePanel extends AbstractPanel implements Runnable {
     if (playerKeyHandler.escPressed) {
       System.exit(0);
     }  
+    System.out.println("UPDATING GAMEPANEL");
     player.update(Clock.getInstance().getDelta());
     goblin.update(Clock.getInstance().getDelta());
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
@@ -113,6 +114,16 @@ public class GamePanel extends AbstractPanel implements Runnable {
     for (Fireball f : player.fireballList) {
       f.update(Clock.getInstance().getDelta());
       if (player.fireballList.size() > 0) {
+        if (this.collisionChecker.checkFireball(target, f)) {
+          player.fireballList.remove(f);
+          if (!target.getBlocking()) {
+            target.takeDamage(f.damage);
+          }
+        }
+      }
+    }
+  }
+        /** Hitting npc code.
         for (Entity enemy : this.enemyList) {
           if (this.collisionChecker.checkFireball(enemy, f)) {
             player.fireballList.remove(f);
@@ -122,21 +133,10 @@ public class GamePanel extends AbstractPanel implements Runnable {
               this.enemyList.remove(enemy);
             }
           }
-          if (this.collisionChecker.checkFireball(target, f)) {
-            player.fireballList.remove(f);
-            if (!target.getBlocking()) {
-              target.takeDamage(f.damage);
-              System.out.println(enemy.hp);
-            }
-          }
-        }
-      }
-    }
-  }
+          */
 
   @Override
   public void run() {
-    System.out.println("RUNNING");
     super.run();
   }
 }
