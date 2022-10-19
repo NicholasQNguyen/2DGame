@@ -34,17 +34,6 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   public AbstractPanel() {
   }
 
-  // The game loop
-  @Override
-  public void run() {
-    while (thread != null) {
-      if (Clock.getInstance().update()) {
-        update(Clock.getInstance().getDelta());
-        repaint();
-      }
-    }
-  }
-  
   public void startGameThread() {
     thread = new Thread(this);
     thread.start();
@@ -53,4 +42,9 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   abstract void update(double delta);
 
   protected abstract void paintComponent(Graphics g);
+
+  /** The thread to run.
+   * 
+   */
+  public abstract void run();
 }

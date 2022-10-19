@@ -21,13 +21,16 @@ public class Main {
     window.setResizable(false);
     window.setTitle("2D Game");
 
-    GamePanel gamePanel = new GamePanel();
-    window.add(gamePanel);
+    final GamePanel gamePanel = new GamePanel();
+    final MenuPanel menuPanel = new MenuPanel();
+    // window.add(gamePanel);
+    window.add(menuPanel);
     window.pack();
 
     window.setLocationRelativeTo(null);
     window.setVisible(true);
 
     gamePanel.startGameThread();
+    menuPanel.startGameThread();
   }
 }

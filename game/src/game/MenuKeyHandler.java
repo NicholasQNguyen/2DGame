@@ -30,6 +30,7 @@ public class MenuKeyHandler extends ControlledKeyHandler {
       rightPressed = true;
     }
     if (code == KeyEvent.VK_ESCAPE) {
+      System.out.println("ESCAPING");
       escPressed = true;
     }
     if (code == KeyEvent.VK_SPACE || code == KeyEvent.VK_F) {

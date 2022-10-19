@@ -27,7 +27,7 @@ public class MenuTileManager {
     tile = new Tile[10];
     mapTileNumber = new int[menuPanel.maxWorldColumns][menuPanel.maxWorldRows];
     getTileImage();
-    loadMap("/maps/stage1.txt");
+    loadMap("/maps/menu.txt");
   }
 
   /** Load all of the background tiles into Tile objects.

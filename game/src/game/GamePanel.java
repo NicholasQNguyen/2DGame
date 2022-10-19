@@ -131,4 +131,14 @@ public class GamePanel extends AbstractPanel implements Runnable {
       }
     }
   }
+
+  @Override
+  public void run() {
+    while (thread != null) {
+      if (Clock.getInstance().update()) {
+        this.update(Clock.getInstance().getDelta());
+        repaint();
+      }
+    }
+  }
 }
