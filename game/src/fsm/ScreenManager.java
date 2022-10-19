@@ -9,11 +9,12 @@ import javax.swing.JFrame;
 /** Manager to handle if we're in game, menu, etc.
  *
  * @author Nicholas Nguyen
+ * 
  *
  */
 public class ScreenManager {
   static String state;
-  private JFrame window;
+  public static JFrame window;
   static GamePanel gamePanel = Main.gp;
   static MenuPanel menuPanel = Main.mp;
   static AbstractPanel currentPanel;
@@ -23,7 +24,7 @@ public class ScreenManager {
    * @param window JFrame window from Main.
    */
   public ScreenManager(JFrame window) {
-    this.window = window;
+    ScreenManager.window = window;
   }
     
   public void setState(String newState) {
@@ -50,6 +51,7 @@ public class ScreenManager {
       menuPanel.run();
     }
     if (desiredState == "game") {
+      window.remove(menuPanel);
       gamePanel.run();
     }
   }

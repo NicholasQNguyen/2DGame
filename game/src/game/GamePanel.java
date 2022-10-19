@@ -134,6 +134,7 @@ public class GamePanel extends AbstractPanel implements Runnable {
 
   @Override
   public void run() {
+    System.out.println("RUNNING");
     super.run();
   }
 }
