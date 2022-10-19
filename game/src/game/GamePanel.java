@@ -52,12 +52,14 @@ public class GamePanel extends AbstractPanel implements Runnable {
     // TODO Get controllers working.
     // this.jsHandler = new JoystickHandler();
 
+    /**
     // Spawn a dummy target in the middle of the world
     for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, 5 + 1); i++) {
       enemyList.add(new Target(this,
                            ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
                                400 + ThreadLocalRandom.current().nextInt(-150, 50)));
     }
+    */
   }
 
   /** Main game data loop.
@@ -65,6 +67,7 @@ public class GamePanel extends AbstractPanel implements Runnable {
    */
   public void update(double delta) {
     // Exit on esc press
+    System.out.println("GAME PANEL UPDATE");
     if (playerKeyHandler.escPressed) {
       System.exit(0);
     }  

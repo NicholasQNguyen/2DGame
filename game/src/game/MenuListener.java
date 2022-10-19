@@ -14,6 +14,7 @@ public class MenuListener implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     starting = true;
+
     System.out.println("HAVE FUN");
   }
 }

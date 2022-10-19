@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 public class Main {
   public static final GamePanel gp = new GamePanel();
   public static final MenuPanel mp = new MenuPanel();
+  public static JFrame window = new JFrame();
 
   /** Main function.
    *
@@ -18,18 +19,18 @@ public class Main {
    */
   public static void main(String[] args) {
     System.out.println("Hello World!");
-    JFrame window = new JFrame();
-    ScreenManager sm = new ScreenManager(window);
+    ScreenManager sm = new ScreenManager();
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setResizable(false);
     window.setTitle("2D Game");
 
-    window.add(mp);
+    // window.add(gp);
+    // window.add(mp);
     window.pack();
     window.setLocationRelativeTo(null);
     window.setVisible(true);
     
-    mp.startGameThread();
-    gp.startGameThread();
+    // mp.startGameThread();
+    // gp.startGameThread();
   }
 }

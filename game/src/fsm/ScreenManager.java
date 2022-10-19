@@ -21,10 +21,10 @@ public class ScreenManager {
 
   /** Constructor.
    *
-   * @param window JFrame window from Main.
    */
-  public ScreenManager(JFrame window) {
-    ScreenManager.window = window;
+  public ScreenManager() {
+    window = Main.window;
+
   }
     
   public void setState(String newState) {
@@ -51,9 +51,10 @@ public class ScreenManager {
       menuPanel.run();
     }
     if (desiredState == "game") {
+      menuPanel.stopGameThread();
       menuPanel.setVisible(false);
-      window.add(gamePanel);
-      gamePanel.run();
+      gamePanel.startGameThread();
+      gamePanel.setVisible(true);
     }
   }
 }
