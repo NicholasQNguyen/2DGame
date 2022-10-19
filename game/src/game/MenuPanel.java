@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JButton;
+
+import fsm.ScreenManager;
 import tile.MenuTileManager;
 
 /** A panel to run the main menu.
@@ -44,7 +46,8 @@ public class MenuPanel extends AbstractPanel implements Runnable {
       System.exit(0);
     }
     if (this.starting) {
-      this.setEnabled(false);
+      this.remove(this);
+      ScreenManager.chooseRun("game");
     }
     if (this.menuListener.starting) {
       System.out.println("STARTING");

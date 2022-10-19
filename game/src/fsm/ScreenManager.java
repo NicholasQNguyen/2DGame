@@ -2,6 +2,7 @@ package fsm;
 
 import game.AbstractPanel;
 import game.GamePanel;
+import game.Main;
 import game.MenuPanel;
 import javax.swing.JFrame;
 
@@ -11,11 +12,11 @@ import javax.swing.JFrame;
  *
  */
 public class ScreenManager {
-  private String state;
+  static String state;
   private JFrame window;
-  private GamePanel gamepanel;
-  private MenuPanel menuPanel;
-  AbstractPanel currentPanel;
+  static GamePanel gamePanel = Main.gp;
+  static MenuPanel menuPanel = Main.mp;
+  static AbstractPanel currentPanel;
 
   /** Constructor.
    *
@@ -23,27 +24,33 @@ public class ScreenManager {
    */
   public ScreenManager(JFrame window) {
     this.window = window;
-    this.state = "menu";
-    final GamePanel gamePanel = new GamePanel();
-    final MenuPanel menuPanel = new MenuPanel();
-    window.add(gamePanel);
-    window.add(menuPanel);
-    this.currentPanel = menuPanel;
   }
     
   public void setState(String newState) {
-    this.state = newState;
+    state = newState;
   }
   
   public String getState() {
-    return this.state;
+    return state;
   }
 
   public void setPanel(AbstractPanel newPanel) {
-    this.currentPanel = newPanel;
+    currentPanel = newPanel;
   }
   
   public AbstractPanel getPanel() {
-    return this.currentPanel;
+    return currentPanel;
+  }
+  
+  /** Changes which program we run based on which state we're in.
+   *
+   */
+  public static void chooseRun(String desiredState) {
+    if (desiredState  == "menu") {
+      menuPanel.run();
+    }
+    if (desiredState == "game") {
+      gamePanel.run();
+    }
   }
 }

@@ -9,7 +9,8 @@ import javax.swing.JFrame;
  *
  */
 public class Main {
-
+  public static final GamePanel gp = new GamePanel();
+  public static final MenuPanel mp = new MenuPanel();
   /** Main function.
    *
    * @param args command line arguments
@@ -22,16 +23,13 @@ public class Main {
     window.setResizable(false);
     window.setTitle("2D Game");
 
+    window.add(gp);
+    window.add(mp);
+    window.pack();
+    window.setLocationRelativeTo(null);
+    window.setVisible(true);
     
-    ScreenManager sm = new ScreenManager(window);
-    if (sm.getState() == "menu") {
-      // TODO run the menu
-      window.add(sm.getPanel());
-      window.pack();
-      window.setLocationRelativeTo(null);
-      window.setVisible(true);
-    } else {
-      // TODO run the game
-    }
+    mp.startGameThread();
+    gp.startGameThread();
   }
 }
