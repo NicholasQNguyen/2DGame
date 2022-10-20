@@ -7,6 +7,7 @@ import game.MenuPanel;
 import game.PlayerKeyHandler;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
@@ -39,6 +40,7 @@ public class ScreenManager {
   public static void chooseRun(String desiredState) {
     if (desiredState  == "menu") {
       gamePanel.setVisible(false);
+      gamePanel.stopGameThread();
       menuPanel.setVisible(true);
       menuPanel.requestFocus();
     }
@@ -51,7 +53,12 @@ public class ScreenManager {
     }
   }
 
-  public static void displayVictor(JPanel p, PopupFactory pf) {
-    pf.getPopup(window, p, 100, 180);
+  public static void displayVictor(String victor) {
+    if (victor == "mudkip") {
+      JOptionPane.showMessageDialog(window, "Mudkip Wins!");
+    } else {
+      JOptionPane.showMessageDialog(window, "Goblin Wins!");
+      
+    }
   }
 }

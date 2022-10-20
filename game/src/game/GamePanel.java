@@ -46,14 +46,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
   
   // List to hold the enemies in the game
   private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
- 
-  // Popup window for victory.
-  JPanel mudkipP;
-  JPanel goblinP;
-  PopupFactory pf;
-
-  private Popup mudkipPop;
-  private Popup goblinPop;
 
   /** Constructor.
    *
@@ -62,18 +54,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
     super();
     this.addKeyListener(playerKeyHandler);
     this.addKeyListener(goblinKeyHandler);
-    mudkipP = new JPanel();
-    goblinP = new JPanel();
-    
-    JLabel mudkipWin = new JLabel("MUDKIP WINS");
-    JLabel goblinWin = new JLabel("GOBLIN WINS");
-
-    mudkipP.add(mudkipWin);
-    goblinP.add(goblinWin);
-    
-    pf = new PopupFactory();
-    mudkipPop = pf.getPopup(this, mudkipP, 180, 100);
-    goblinPop = pf.getPopup(this, goblinP, 180, 100);
     // TODO Get controllers working.
     // this.jsHandler = new JoystickHandler();
 
@@ -106,11 +86,11 @@ public class GamePanel extends AbstractPanel implements Runnable {
     
     if (this.player.getHp() <= 0) {
       System.out.println("GOBLIN WINS");
-      ScreenManager.displayVictor(goblinP, pf);
+      ScreenManager.displayVictor("goblin");
       ScreenManager.chooseRun("menu");
     } else if (this.goblin.getHp() <= 0) {
       System.out.println("MUDKIP WINS");
-      ScreenManager.displayVictor(goblinP, pf);
+      ScreenManager.displayVictor("mudkip");
       ScreenManager.chooseRun("menu");
       // System.exit(0); 
     }
