@@ -35,15 +35,24 @@ public class ScreenManager {
   public static void chooseRun(String desiredState) {
     ScreenManager.desiredState = desiredState;
     if (ScreenManager.desiredState  == "menu") {
+      menuPanel = new MenuPanel();
       gamePanel.setVisible(false);
       menuPanel.setVisible(true);
+      menuPanel.startGameThread();
+      window.add(menuPanel);
       menuPanel.requestFocus();
+      gamePanel.thread = null;
+      gamePanel = null;
     }
     if (ScreenManager.desiredState == "game") {
+      gamePanel = new GamePanel();
       menuPanel.setVisible(false);
+      gamePanel.setVisible(true);
       gamePanel.startGameThread();
       window.add(gamePanel);
       gamePanel.requestFocus();
+      menuPanel.thread = null;
+      menuPanel = null;
       // menuPanel.stopGameThread();
     }
   }
