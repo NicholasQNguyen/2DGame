@@ -38,7 +38,9 @@ public class ScreenManager {
    */
   public static void chooseRun(String desiredState) {
     if (desiredState  == "menu") {
-      menuPanel.run();
+      gamePanel.setVisible(false);
+      menuPanel.setVisible(true);
+      menuPanel.requestFocus();
     }
     if (desiredState == "game") {
       menuPanel.setVisible(false);
@@ -49,7 +51,7 @@ public class ScreenManager {
     }
   }
 
-  public void displayVictor(JPanel p, PopupFactory pf) {
+  public static void displayVictor(JPanel p, PopupFactory pf) {
     pf.getPopup(window, p, 100, 180);
   }
 }

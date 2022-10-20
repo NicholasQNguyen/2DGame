@@ -6,6 +6,8 @@ import entity.Fireball;
 import entity.Goblin;
 import entity.Player;
 import entity.Target;
+import fsm.ScreenManager;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -104,11 +106,12 @@ public class GamePanel extends AbstractPanel implements Runnable {
     
     if (this.player.getHp() <= 0) {
       System.out.println("GOBLIN WINS");
-      this.goblinPop.show();
-      // System.exit(0);
+      ScreenManager.displayVictor(goblinP, pf);
+      ScreenManager.chooseRun("menu");
     } else if (this.goblin.getHp() <= 0) {
       System.out.println("MUDKIP WINS");
-      this.mudkipPop.show();
+      ScreenManager.displayVictor(goblinP, pf);
+      ScreenManager.chooseRun("menu");
       // System.exit(0); 
     }
   }
