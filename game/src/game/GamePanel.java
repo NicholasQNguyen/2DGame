@@ -13,6 +13,12 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+
 import tile.TileManager;
 
 /** Contains main data and art loops.
@@ -38,14 +44,34 @@ public class GamePanel extends AbstractPanel implements Runnable {
   
   // List to hold the enemies in the game
   private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
+ 
+  // Popup window for victory.
+  JPanel mudkipP;
+  JPanel goblinP;
+  PopupFactory pf;
+
+  private Popup mudkipPop;
+  private Popup goblinPop;
 
   /** Constructor.
    *
- */
+   */
   public GamePanel() {
     super();
     this.addKeyListener(playerKeyHandler);
     this.addKeyListener(goblinKeyHandler);
+    mudkipP = new JPanel();
+    goblinP = new JPanel();
+    
+    JLabel mudkipWin = new JLabel("MUDKIP WINS");
+    JLabel goblinWin = new JLabel("GOBLIN WINS");
+
+    mudkipP.add(mudkipWin);
+    goblinP.add(goblinWin);
+    
+    pf = new PopupFactory();
+    mudkipPop = pf.getPopup(this, mudkipP, 180, 100);
+    goblinPop = pf.getPopup(this, goblinP, 180, 100);
     // TODO Get controllers working.
     // this.jsHandler = new JoystickHandler();
 
@@ -78,9 +104,11 @@ public class GamePanel extends AbstractPanel implements Runnable {
     
     if (this.player.getHp() <= 0) {
       System.out.println("GOBLIN WINS");
+      this.goblinPop.show();
       System.exit(0);
     } else if (this.goblin.getHp() <= 0) {
       System.out.println("MUDKIP WINS");
+      this.mudkipPop.show();
       System.exit(0); 
     }
   }
