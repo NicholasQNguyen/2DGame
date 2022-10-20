@@ -62,8 +62,6 @@ public class ScreenManager {
    */
   public static void displayVictor(String victor) {
     if (victor == "mudkip") { 
-      Target: main 
-
       JOptionPane.showConfirmDialog(gamePanel,
                                     "MUDKIP WINS",
                                     "VICTORY",
