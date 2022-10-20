@@ -7,6 +7,9 @@ import game.MenuPanel;
 import game.PlayerKeyHandler;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
 
 /** Manager to handle if we're in game, menu, etc.
  *
@@ -44,5 +47,9 @@ public class ScreenManager {
       gamePanel.requestFocus();
       // menuPanel.stopGameThread();
     }
+  }
+
+  public void displayVictor(JPanel p, PopupFactory pf) {
+    pf.getPopup(window, p, 100, 180);
   }
 }
