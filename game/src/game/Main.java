@@ -24,13 +24,8 @@ public class Main {
     window.setResizable(false);
     window.setTitle("2D Game");
 
-    // window.add(gp);
-    // window.add(mp);
     window.pack();
     window.setLocationRelativeTo(null);
     window.setVisible(true);
-    
-    // mp.startGameThread();
-    // gp.startGameThread();
   }
 }
