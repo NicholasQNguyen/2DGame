@@ -53,7 +53,6 @@ public class ScreenManager {
       gamePanel.requestFocus();
       menuPanel.thread = null;
       menuPanel = null;
-      // menuPanel.stopGameThread();
     }
   }
 
@@ -62,7 +61,9 @@ public class ScreenManager {
    * @param victor "goblin" or "mudkip"
    */
   public static void displayVictor(String victor) {
-    if (victor == "mudkip") {
+    if (victor == "mudkip") { 
+      Target: main 
+
       JOptionPane.showConfirmDialog(gamePanel,
                                     "MUDKIP WINS",
                                     "VICTORY",

@@ -5,22 +5,11 @@ import entity.Entity;
 import entity.Fireball;
 import entity.Goblin;
 import entity.Player;
-import entity.Target;
 import fsm.ScreenManager;
-
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ThreadLocalRandom;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
-
 import tile.TileManager;
 
 /** Contains main data and art loops.
