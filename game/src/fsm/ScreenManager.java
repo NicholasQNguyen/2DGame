@@ -34,7 +34,6 @@ public class ScreenManager {
   public static void chooseRun(String desiredState) {
     if (desiredState  == "menu") {
       gamePanel.setVisible(false);
-      gamePanel.stopGameThread();
       menuPanel.setVisible(true);
       menuPanel.requestFocus();
     }
@@ -43,7 +42,7 @@ public class ScreenManager {
       gamePanel.startGameThread();
       window.add(gamePanel);
       gamePanel.requestFocus();
-      // menuPanel.stopGameThread();
+      menuPanel.stopGameThread();
     }
   }
 
