@@ -1,16 +1,10 @@
 package fsm;
 
 import game.GamePanel;
-import game.GoblinKeyHandler;
 import game.Main;
 import game.MenuPanel;
-import game.PlayerKeyHandler;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
 
 /** Manager to handle if we're in game, menu, etc.
  *
@@ -53,6 +47,10 @@ public class ScreenManager {
     }
   }
 
+  /** Determine which victory popup to display.
+   *
+   * @param victor whether goblin or mudkip won
+   */
   public static void displayVictor(String victor) {
     if (victor == "mudkip") {
       JOptionPane.showMessageDialog(window, "Mudkip Wins!");

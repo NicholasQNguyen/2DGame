@@ -50,7 +50,7 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
    */
   public void stopGameThread() {
     try {
-      thread.sleep(10000000);
+      Thread.sleep(10000000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
