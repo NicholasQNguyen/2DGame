@@ -16,6 +16,7 @@ public class ScreenManager {
   public static JFrame window;
   static GamePanel gamePanel = Main.gp;
   static MenuPanel menuPanel = Main.mp;
+  public static String desiredState;
 
   /** Constructor.
    *
@@ -32,12 +33,13 @@ public class ScreenManager {
    *
    */
   public static void chooseRun(String desiredState) {
-    if (desiredState  == "menu") {
+    ScreenManager.desiredState = desiredState;
+    if (ScreenManager.desiredState  == "menu") {
       gamePanel.setVisible(false);
       menuPanel.setVisible(true);
       menuPanel.requestFocus();
     }
-    if (desiredState == "game") {
+    if (ScreenManager.desiredState == "game") {
       menuPanel.setVisible(false);
       gamePanel.startGameThread();
       window.add(gamePanel);

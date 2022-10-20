@@ -88,13 +88,17 @@ public class GamePanel extends AbstractPanel implements Runnable {
     if (this.player.getHp() <= 0) {
       // System.out.println("GOBLIN WINS");
       ScreenManager.displayVictor("goblin");
-      // ScreenManager.chooseRun("menu");
-      System.exit(0);
+      if (ScreenManager.desiredState != "menu") {
+        ScreenManager.chooseRun("menu");
+      }
+      // System.exit(0);
     } else if (this.goblin.getHp() <= 0) {
       // System.out.println("MUDKIP WINS");
       ScreenManager.displayVictor("mudkip");
-      // ScreenManager.chooseRun("menu");
-      System.exit(0); 
+      if (ScreenManager.desiredState != "menu") {
+        ScreenManager.chooseRun("menu");
+      }
+      // System.exit(0); 
     }
   }
 
