@@ -51,7 +51,7 @@ public abstract class Controlled extends Entity {
     this.jumpSpeed = 3.55;
     this.direction = "standing";
     this.accelX = 0.2;
-    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 8, gamePanel.tileSize + 2);
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 48, gamePanel.tileSize + 2);
   }
 
   void jump() {
