@@ -1,15 +1,12 @@
 package game;
 
 import entity.Controlled;
-import entity.Entity;
 import entity.Fireball;
 import entity.Goblin;
 import entity.Player;
 import fsm.ScreenManager;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import tile.TileManager;
 
 /** Contains main data and art loops.
@@ -30,12 +27,7 @@ public class GamePanel extends AbstractPanel implements Runnable {
   public Goblin goblin = new Goblin(this, goblinKeyHandler);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
-  // TODO Get controllers working
-  // JoystickHandler jsHandler;
   
-  // List to hold the enemies in the game
-  private List<Entity> enemyList = new CopyOnWriteArrayList<Entity>();
- 
   /** Constructor.
    *
    */
@@ -43,18 +35,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
     super();
     this.addKeyListener(playerKeyHandler);
     this.addKeyListener(goblinKeyHandler);
-    
-    // TODO Get controllers working.
-    // this.jsHandler = new JoystickHandler();
-
-    /**
-    // Spawn a dummy target in the middle of the world
-    for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, 5 + 1); i++) {
-      enemyList.add(new Target(this,
-                           ((worldWidth / 2) + 150) + ThreadLocalRandom.current().nextInt(-150, 50),
-                               400 + ThreadLocalRandom.current().nextInt(-150, 50)));
-    }
-    */
   }
 
   /** Main game data loop.
@@ -68,9 +48,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
     player.update(Clock.getInstance().getDelta());
     goblin.update(Clock.getInstance().getDelta());
     player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
-    for (Entity enemy : this.enemyList) {
-      enemy.update(Clock.getInstance().getDelta());
-    }
     this.fireballCollision(player, goblin);
     this.fireballCollision(goblin, player);
     
@@ -80,14 +57,12 @@ public class GamePanel extends AbstractPanel implements Runnable {
       if (ScreenManager.desiredState != "menu") {
         ScreenManager.chooseRun("menu");
       }
-      // System.exit(0);
     } else if (this.goblin.getHp() <= 0) {
       // System.out.println("MUDKIP WINS");
       ScreenManager.displayVictor("mudkip");
       if (ScreenManager.desiredState != "menu") {
         ScreenManager.chooseRun("menu");
       }
-      // System.exit(0); 
     }
   }
 
@@ -104,9 +79,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
     }
     for (Fireball f : goblin.fireballList) {
       f.draw(g2);
-    }
-    for (Entity enemy : this.enemyList) {
-      enemy.draw(g2);
     }
     // Free up the memory after we draw
     g2.dispose();
@@ -125,17 +97,6 @@ public class GamePanel extends AbstractPanel implements Runnable {
       }
     }
   }
-        /** Hitting npc code.
-        for (Entity enemy : this.enemyList) {
-          if (this.collisionChecker.checkFireball(enemy, f)) {
-            player.fireballList.remove(f);
-            enemy.takeDamage(f.damage);
-            System.out.println(enemy.hp);
-            if (enemy.hp <= 0) {
-              this.enemyList.remove(enemy);
-            }
-          }
-          */
 
   @Override
   public void run() {
