@@ -48,6 +48,6 @@ public abstract class Entity {
   
   public Entity(GamePanel gp) {
     this.gamePanel = gp;
-    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 16, gamePanel.tileSize);
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 45, gamePanel.tileSize);
   }
 }
