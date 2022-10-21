@@ -31,3 +31,8 @@ https://www.youtube.com/watch?v=om59cwR7psI
 
 Style made consistent with the use of CheckStyle
 https://checkstyle.sourceforge.io/
+
+#### Special thanks
+Dr. Elizabeth Matthews at Washington and Lee University for helping me with feedback and teaching me how to make games back in the Winter 2022 class Game Design.
+
+Tommy's Arcade in Lexington Virginia for getting me back into fighting games and heavily inspiring this game.

@@ -16,6 +16,7 @@ public class ScreenManager {
   public static JFrame window;
   static GamePanel gamePanel = Main.gp;
   static MenuPanel menuPanel = Main.mp;
+  public static String desiredState;
 
   /** Constructor.
    *
@@ -32,30 +33,44 @@ public class ScreenManager {
    *
    */
   public static void chooseRun(String desiredState) {
-    if (desiredState  == "menu") {
+    ScreenManager.desiredState = desiredState;
+    if (ScreenManager.desiredState  == "menu") {
+      menuPanel = new MenuPanel();
       gamePanel.setVisible(false);
       menuPanel.setVisible(true);
+      menuPanel.startGameThread();
+      window.add(menuPanel);
       menuPanel.requestFocus();
+      gamePanel.thread = null;
+      gamePanel = null;
     }
-    if (desiredState == "game") {
+    if (ScreenManager.desiredState == "game") {
+      gamePanel = new GamePanel();
       menuPanel.setVisible(false);
+      gamePanel.setVisible(true);
       gamePanel.startGameThread();
       window.add(gamePanel);
       gamePanel.requestFocus();
-      menuPanel.stopGameThread();
+      menuPanel.thread = null;
+      menuPanel = null;
     }
   }
 
-  /** Determine which victory popup to display.
+  /** Method to display a victory pop up window.
    *
-   * @param victor whether goblin or mudkip won
+   * @param victor "goblin" or "mudkip"
    */
   public static void displayVictor(String victor) {
     if (victor == "mudkip") {
-      JOptionPane.showMessageDialog(window, "Mudkip Wins!");
+      JOptionPane.showConfirmDialog(gamePanel,
+                                    "MUDKIP WINS",
+                                    "VICTORY",
+                                    JOptionPane.OK_CANCEL_OPTION);
     } else {
-      JOptionPane.showMessageDialog(window, "Goblin Wins!");
-      
+      JOptionPane.showConfirmDialog(gamePanel,
+                                    "GOBLIN WINS",
+                                    "VICTORY",
+                                    JOptionPane.OK_CANCEL_OPTION);
     }
   }
 }

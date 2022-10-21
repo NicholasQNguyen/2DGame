@@ -52,16 +52,17 @@ public class GamePanel extends AbstractPanel implements Runnable {
     this.fireballCollision(goblin, player);
     
     if (this.player.getHp() <= 0) {
-      System.out.println("GOBLIN WINS");
+      // System.out.println("GOBLIN WINS");
       ScreenManager.displayVictor("goblin");
-      ScreenManager.chooseRun("menu");
-      while (true);
+      if (ScreenManager.desiredState != "menu") {
+        ScreenManager.chooseRun("menu");
+      }
     } else if (this.goblin.getHp() <= 0) {
-      System.out.println("MUDKIP WINS");
+      // System.out.println("MUDKIP WINS");
       ScreenManager.displayVictor("mudkip");
-      ScreenManager.chooseRun("menu");
-      while (true);
-      // System.exit(0); 
+      if (ScreenManager.desiredState != "menu") {
+        ScreenManager.chooseRun("menu");
+      }
     }
   }
 
