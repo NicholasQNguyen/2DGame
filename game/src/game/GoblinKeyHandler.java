@@ -32,7 +32,7 @@ public class GoblinKeyHandler extends ControlledKeyHandler {
     if (code == KeyEvent.VK_ESCAPE) {
       escPressed = true;
     }
-    if (code == KeyEvent.VK_SPACE) {
+    if (code == KeyEvent.VK_SPACE || code == KeyEvent.VK_ENTER) {
       spacePressed = true;
     }
   }
@@ -53,7 +53,7 @@ public class GoblinKeyHandler extends ControlledKeyHandler {
     if (code == KeyEvent.VK_RIGHT) {
       rightPressed = false;
     }
-    if (code == KeyEvent.VK_SPACE) {
+    if (code == KeyEvent.VK_SPACE || code == KeyEvent.VK_ENTER) {
       spacePressed = false;
     }
   }
