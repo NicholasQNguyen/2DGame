@@ -70,7 +70,6 @@ public class Player extends Controlled {
   public void update(double delta) { 
     super.update(delta);
     super.checkCollision();
-    
     // Move 1 pixel away to prevent being stuck forever
     if (this.leftCollision) {
       this.velocityX = 0;
@@ -79,7 +78,6 @@ public class Player extends Controlled {
       this.velocityX = 0;
       this.worldX -= 1;
     }
-
     // Reset the collisions
     this.bottomCollision = false;
     this.topCollision = false;
@@ -93,5 +91,4 @@ public class Player extends Controlled {
     this.direction = this.facing;
     // System.out.println("MUDKIP: " + this.hp);
   }
-
 }

@@ -50,6 +50,8 @@ public class GamePanel extends AbstractPanel implements Runnable {
     player.update(Clock.getInstance().getDelta());
     goblin.update(Clock.getInstance().getDelta());
     camera.update(Clock.getInstance().getDelta());
+    System.out.println("CAMERA X: " + this.camera.worldX);
+    System.out.println("CAMERA Y: " + this.camera.worldY);
     camera.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     this.fireballCollision(player, goblin);
     this.fireballCollision(goblin, player);

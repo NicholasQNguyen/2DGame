@@ -1,8 +1,7 @@
 package entity;
 
-import java.awt.Graphics2D;
-
 import game.GamePanel;
+import java.awt.Graphics2D;
 
 /** Invisible entity that the camera tracks.
  *

@@ -48,9 +48,10 @@ public abstract class Controlled extends Entity {
   public Controlled(GamePanel gp, ControlledKeyHandler kh) {
     super(gp);
     this.keyHandler = kh;
-    this.jumpSpeed = 2.55;
+    this.jumpSpeed = 3.55;
     this.direction = "standing";
     this.accelX = 0.2;
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 8, gamePanel.tileSize + 2);
   }
 
   void jump() {
