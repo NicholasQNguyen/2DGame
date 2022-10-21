@@ -24,7 +24,7 @@ public class Fireball extends Entity {
    * @param y y world position
    */
   public Fireball(GamePanel gp, int x, int y, String direction) {
-    this.gamePanel = gp;
+    super(gp);
     this.worldX = x;
     this.worldY = y;
     this.screenX = worldX - this.gamePanel.player.offsetX;

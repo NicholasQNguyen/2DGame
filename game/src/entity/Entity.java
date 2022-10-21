@@ -32,15 +32,22 @@ public abstract class Entity {
 
   public int hp;
   
+  
   public abstract void update(double delta);
   
   public abstract void draw(Graphics2D g2);
   
   public void takeDamage(int damage) {
     this.hp -= damage;
+
   }
   
   public int getHp() {
     return this.hp;
+  }
+  
+  public Entity(GamePanel gp) {
+    this.gamePanel = gp;
+    this.solidArea = new Rectangle(0, 0, gamePanel.tileSize - 16, gamePanel.tileSize);
   }
 }

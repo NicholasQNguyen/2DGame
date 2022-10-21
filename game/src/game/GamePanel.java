@@ -1,5 +1,6 @@
 package game;
 
+import entity.Camera;
 import entity.Controlled;
 import entity.Fireball;
 import entity.Goblin;
@@ -25,6 +26,7 @@ public class GamePanel extends AbstractPanel implements Runnable {
   GoblinKeyHandler goblinKeyHandler = new GoblinKeyHandler();
   public Player player = new Player(this, playerKeyHandler);
   public Goblin goblin = new Goblin(this, goblinKeyHandler);
+  public Camera camera = new Camera(this);
   TileManager tm = new TileManager(this);
   public CollisionChecker collisionChecker = new CollisionChecker(this);
   
@@ -47,7 +49,8 @@ public class GamePanel extends AbstractPanel implements Runnable {
     }  
     player.update(Clock.getInstance().getDelta());
     goblin.update(Clock.getInstance().getDelta());
-    player.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
+    camera.update(Clock.getInstance().getDelta());
+    camera.updateWindowOffset(screenWidth, screenHeight, worldWidth, worldHeight);
     this.fireballCollision(player, goblin);
     this.fireballCollision(goblin, player);
     

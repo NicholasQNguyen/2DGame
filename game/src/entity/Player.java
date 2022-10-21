@@ -94,19 +94,4 @@ public class Player extends Controlled {
     // System.out.println("MUDKIP: " + this.hp);
   }
 
-  /** Method to get the screen offset from world -> screen coordinates.
-   *
-   * @param screenSizeX Horizontal screen size
-   * @param screenSizeY Vertical screen size
-   * @param worldSizeX Horizontal total world size
-   * @param worldSizeY Vertical total world size
-   */
-  public void updateWindowOffset(int screenSizeX, int screenSizeY, int worldSizeX, int worldSizeY) {
-    this.offsetX = Math.min(Math.max(0, 
-                                     this.worldX + (this.solidArea.width / 2) - (screenSizeX / 2)),
-                            worldSizeX - screenSizeX);
-    this.offsetY = Math.min(Math.max(0,
-                                     this.worldY + (this.solidArea.height / 2) - (screenSizeY / 2)),
-                            worldSizeY - screenSizeY);
-  }
 }

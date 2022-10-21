@@ -23,7 +23,7 @@ public class Target extends Entity {
    * @param y Starting Y
    */
   public Target(GamePanel gp, int x, int y) {
-    this.gamePanel = gp;
+    super(gp);
     this.worldX = x;
     this.worldY = y;
     this.screenX = worldX - this.gamePanel.player.offsetX;
