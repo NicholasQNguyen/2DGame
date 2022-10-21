@@ -27,7 +27,8 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   public MenuPanel() {
     super();
     this.addKeyListener(menuKeyHandler);
-    button1.setBounds(50, 100, 95, 30);
+    // button1.setLayout(null);
+    // button1.setBounds(550, 100, 95, 30);
     button1.addActionListener(menuListener);
     this.add(button1);
   }
