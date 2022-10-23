@@ -68,7 +68,7 @@ public class GamePanel extends AbstractPanel implements Runnable {
           ScreenManager.chooseRun("menu");
         }
       } else {
-        this.reset();
+        this.reset("goblin");
       }
     } else if (this.goblin.getHp() <= 0) {
       this.goblin.iterateRounds();
@@ -78,12 +78,18 @@ public class GamePanel extends AbstractPanel implements Runnable {
           ScreenManager.chooseRun("menu");
         }
       } else {
-        this.reset();
+        this.reset("mudkip");
       }
     }
   }
 
-  private void reset() {
+  private void reset(String victor) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    ScreenManager.displayRoundVictor(victor);
     this.player.setHp(20);
     this.goblin.setHp(20);
     this.player.worldX = this.worldWidth / 2 - 425;

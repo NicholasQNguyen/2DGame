@@ -73,4 +73,23 @@ public class ScreenManager {
                                     JOptionPane.OK_CANCEL_OPTION);
     }
   }
+  
+  /** Method to display the round victor's popup.
+   *
+   * @param victor "goblin" or "mudkip"
+   */
+  public static void displayRoundVictor(String victor) {
+    if (victor == "mudkip") { 
+      JOptionPane.showConfirmDialog(gamePanel,
+                                    "MUDKIP WINS THIS ROUND",
+                                    "VICTORY",
+                                    JOptionPane.OK_CANCEL_OPTION);
+    } else {
+      JOptionPane.showConfirmDialog(gamePanel,
+                                    "GOBLIN WINS THIS ROUND",
+                                    "VICTORY",
+                                    JOptionPane.OK_CANCEL_OPTION);
+    }
+    
+  }
 }

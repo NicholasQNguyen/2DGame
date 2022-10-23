@@ -29,21 +29,9 @@ public class CollisionChecker {
     int entityBottomWorldY = worldY + solidArea.y + solidArea.height;
     
     int entityLeftColumn = entityLeftWorldX / gamePanel.tileSize;
-    if (entityLeftColumn < 0) {
-      entityLeftColumn = 0;
-    }
     int entityRightColumn = entityRightWorldX / gamePanel.tileSize;
-    if (entityRightColumn < 0) {
-      entityRightColumn = 0;
-    }
     int entityTopRow = entityTopWorldY / gamePanel.tileSize;
-    if (entityTopRow < 0) {
-      entityTopRow = 0;
-    }
     int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
-    if (entityBottomRow < 0) {
-      entityBottomRow = 0;
-    }
     int topLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
     int topRightTile = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
     int bottomLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];
