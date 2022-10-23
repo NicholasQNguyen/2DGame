@@ -86,14 +86,16 @@ public class GamePanel extends AbstractPanel implements Runnable {
   private void reset() {
     this.player.setHp(20);
     this.goblin.setHp(20);
-    this.player.worldX = this.worldWidth / 2 - 1200;
-    this.player.worldY = 0;
-    this.goblin.worldX = this.worldWidth / 2 - 400;
-    this.goblin.worldY = 0;
+    this.player.worldX = this.worldWidth / 2 - 425;
+    this.player.worldY = this.worldHeight / 2;
+    this.goblin.worldX = this.worldWidth / 2 + 425;
+    this.goblin.worldY = this.worldHeight / 2;
     this.player.screenX = this.screenWidth / 2;
     this.player.screenY = this.screenHeight / 2;
     this.player.screenX = this.screenWidth / 2;
     this.player.screenY = this.screenHeight / 2;
+    this.player.fireballList.clear();
+    this.goblin.fireballList.clear();
   }
 
   /** Draw all of the elements.
