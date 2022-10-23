@@ -19,13 +19,21 @@ public class Clock {
     }
   }
 
-  static class C {
+  /** Class for the clock.
+   *
+   * @author Nicolas Nguyen 
+   *
+   */
+  public static class C {
     private double delta;
     private long lastTime;
     private long currentTime;
     private final int fps;
     private final double drawInterval;
 
+    /** Constructor.
+     * 
+     */
     public C() {
       this.delta = 0.0;
       this.lastTime = System.nanoTime();
@@ -49,7 +57,7 @@ public class Clock {
       }
     }
 
-    double getDelta() {
+    public double getDelta() {
       return this.delta;
     }
   }

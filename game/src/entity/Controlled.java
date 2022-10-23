@@ -1,6 +1,7 @@
 package entity;
 
 import fsm.EntityState;
+import game.Clock;
 import game.ControlledKeyHandler;
 import game.GamePanel;
 import java.awt.Graphics2D;
@@ -41,6 +42,7 @@ public abstract class Controlled extends Entity {
 
   String facing;
   boolean blocking = false;
+  private int rounds = 0;
 
   /** Contructor.
    * 
@@ -272,5 +274,26 @@ public abstract class Controlled extends Entity {
   
   public boolean getBlocking() {
     return this.blocking;
+  }
+
+  public int getRounds() {
+    return this.rounds;
+  }
+
+  public void iterateRounds() {
+    this.rounds++;
+  }
+  
+  public void setHp(int newHp) {
+    this.hp = newHp;
+  }
+  
+  /** Move the fireballs.
+   * 
+   */
+  public void fireballUpdate() {
+    for (Fireball f : this.fireballList) {
+      f.update(Clock.getInstance().getDelta());
+    }
   }
 }
