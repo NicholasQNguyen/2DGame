@@ -78,15 +78,17 @@ public class ScreenManager {
    *
    * @param victor "goblin" or "mudkip"
    */
-  public static void displayRoundVictor(String victor) {
+  public static void displayRoundVictor(String victor, int mudkipW, int goblinW) {
+    String roundCount = String.format("\nMUDKIP ROUNDS: %d / 5 \n"
+                                      + "GOBLIN ROUNDS: %d / 5", mudkipW, goblinW);
     if (victor == "mudkip") { 
       JOptionPane.showConfirmDialog(gamePanel,
-                                    "MUDKIP WINS THIS ROUND",
+                                    "MUDKIP WINS THIS ROUND" + roundCount,
                                     "VICTORY",
                                     JOptionPane.OK_CANCEL_OPTION);
     } else {
       JOptionPane.showConfirmDialog(gamePanel,
-                                    "GOBLIN WINS THIS ROUND",
+                                    "GOBLIN WINS THIS ROUND" + roundCount,
                                     "VICTORY",
                                     JOptionPane.OK_CANCEL_OPTION);
     }
