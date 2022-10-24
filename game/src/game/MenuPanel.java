@@ -3,6 +3,9 @@ package game;
 import fsm.ScreenManager;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import tile.MenuTileManager;
 
@@ -18,7 +21,9 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   MenuTileManager mtm = new MenuTileManager(this);
   
   JButton button1 = new JButton("Start");
+  JButton button2 = new JButton("How to Play");
   MenuListener menuListener = new MenuListener();
+  MenuListenerHowTo menuListenerHowTo = new MenuListenerHowTo();
   boolean starting = false;
 
   /** Constructor. 
@@ -27,10 +32,10 @@ public class MenuPanel extends AbstractPanel implements Runnable {
   public MenuPanel() {
     super();
     this.addKeyListener(menuKeyHandler);
-    // button1.setLayout(null);
-    // button1.setBounds(550, 100, 95, 30);
     button1.addActionListener(menuListener);
+    button2.addActionListener(menuListenerHowTo);
     this.add(button1);
+    this.add(button2);
   }
 
   @Override
@@ -61,5 +66,9 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     if (!this.starting) {
       super.run();
     }
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    System.out.println("WORKIGN");
   }
 }  

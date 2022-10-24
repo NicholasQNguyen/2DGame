@@ -26,7 +26,6 @@ public class CollisionChecker {
     int entityLeftWorldX = worldX + solidArea.x;
     // 48 from tileSize
     int entityRightWorldX = worldX + solidArea.x + 48;
-    System.out.println("ENTITY RIGHT WORLD X: " + entityRightWorldX);
     int entityTopWorldY = worldY + solidArea.y;
     int entityBottomWorldY = worldY + solidArea.y + 48;
     

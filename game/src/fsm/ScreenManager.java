@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class ScreenManager {
   public static JFrame window;
-  static GamePanel gamePanel = Main.gp;
-  static MenuPanel menuPanel = Main.mp;
+  public static GamePanel gamePanel = Main.gp;
+  public static MenuPanel menuPanel = Main.mp;
   public static String desiredState;
 
   /** Constructor.
@@ -92,6 +92,5 @@ public class ScreenManager {
                                     "VICTORY",
                                     JOptionPane.OK_CANCEL_OPTION);
     }
-    
   }
 }
