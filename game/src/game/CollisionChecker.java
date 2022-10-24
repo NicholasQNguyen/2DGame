@@ -24,14 +24,17 @@ public class CollisionChecker {
    */
   public void checkTile(int worldX, int worldY, Rectangle solidArea, Entity entity) {
     int entityLeftWorldX = worldX + solidArea.x;
-    int entityRightWorldX = worldX + solidArea.x + solidArea.width;
+    // 48 from tileSize
+    int entityRightWorldX = worldX + solidArea.x + 48;
+    System.out.println("ENTITY RIGHT WORLD X: " + entityRightWorldX);
     int entityTopWorldY = worldY + solidArea.y;
-    int entityBottomWorldY = worldY + solidArea.y + solidArea.height;
+    int entityBottomWorldY = worldY + solidArea.y + 48;
     
     int entityLeftColumn = entityLeftWorldX / gamePanel.tileSize;
     int entityRightColumn = entityRightWorldX / gamePanel.tileSize;
     int entityTopRow = entityTopWorldY / gamePanel.tileSize;
     int entityBottomRow = entityBottomWorldY / gamePanel.tileSize;
+
     int topLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityTopRow];
     int topRightTile = gamePanel.tm.mapTileNumber[entityRightColumn][entityTopRow];
     int bottomLeftTile = gamePanel.tm.mapTileNumber[entityLeftColumn][entityBottomRow];

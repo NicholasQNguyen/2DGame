@@ -15,7 +15,7 @@ public abstract class AbstractPanel extends JPanel implements Runnable {
   // Tile settings
   final int originalTileSize = 16;
   final int scale = 3;
-  public final int tileSize = originalTileSize * scale;
+  public final int tileSize = this.originalTileSize * this.scale;
 
   // Screen Settings
   public final int maxScreenColumns = 32;

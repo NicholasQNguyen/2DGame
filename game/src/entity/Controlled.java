@@ -84,8 +84,6 @@ public abstract class Controlled extends Entity {
       spriteCounter = 0;
     }
     this.checkBlocking();
-    System.out.println(this + " RIGHT COLLISION: " + this.rightCollision);
-    System.out.println(this + " RIGHT VELOCITY: " + this.velocityX);
   }
 
   /** Deal with keyboard input.
