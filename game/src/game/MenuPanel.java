@@ -4,8 +4,6 @@ import fsm.ScreenManager;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import tile.MenuTileManager;
 
@@ -50,6 +48,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     if (this.menuListener.starting) {
       this.starting = true;
     }
+    this.requestFocus();
   }
 
   @Override
@@ -57,6 +56,7 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     Graphics2D g2 = (Graphics2D) g;
     mtm.draw(g2);
     this.button1.repaint();
+    this.button2.repaint();
     // Free up the memory after we draw
     g2.dispose();
   }
@@ -66,9 +66,5 @@ public class MenuPanel extends AbstractPanel implements Runnable {
     if (!this.starting) {
       super.run();
     }
-  }
-
-  public void actionPerformed(ActionEvent e) {
-    System.out.println("WORKIGN");
   }
 }  

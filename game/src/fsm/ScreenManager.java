@@ -24,9 +24,7 @@ public class ScreenManager {
   public ScreenManager() {
     window = Main.window;
     window.add(menuPanel);
-    // window.add(gamePanel);
     menuPanel.startGameThread();
-    // gamePanel.startGameThread();
   }
 
   /** Changes which program we run based on which state we're in.
