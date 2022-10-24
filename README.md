@@ -6,7 +6,7 @@
 A 2D, untraditional, pvp fighting game inspired by games like Divekick and Nidhogg. In this game, you play as a Mudkip or a Goblin shooting fireballs at eachother. 1 shot and it's over, so don't get hit!
 
 ### How to run
-Import the project into eclipse. Then go to Main.java and run it from there.
+Import the project into eclipse. Then go to Main.java and run it from there. Or download the latest .jar file from the release and run it as an executable.
 
 ### Controls
 <b>Mudkip:</b>
@@ -24,6 +24,10 @@ Arrow keys to move
 Move away from the enemy to block projectile
 
 Space to fire a fireball
+
+<b>General:</b>
+
+Esc to exit the game.
 
 #### Credits
 Following this tutorial:
